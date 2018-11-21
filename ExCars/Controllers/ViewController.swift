@@ -13,13 +13,16 @@ import Alamofire
 class ViewController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
-
+    @IBOutlet weak var hitchhikerInfoView: HitchhikerInfoView!
+    
     var locationManager = CLLocationManager()
     let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
     let zoomLevel: Float = 15.0
     
     let stream = ExCarsStream()
     
+//    @IBOutlet weak var driverInfoView: DriverInfoView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +38,8 @@ class ViewController: UIViewController {
         mapView.delegate = self
 
         stream.delegate = self
+        
+        hitchhikerInfoView.isHidden = true
     }
 
 }
@@ -80,7 +85,13 @@ extension ViewController: CLLocationManagerDelegate {
 extension ViewController: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        hitchhikerInfoView.isHidden = false
+
         return false
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        hitchhikerInfoView.isHidden = true
     }
 
 }
