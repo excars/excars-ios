@@ -45,6 +45,8 @@ class ExCarsStream {
                 "data": [
                     "latitude": location.coordinate.latitude,
                     "longitude": location.coordinate.longitude,
+                    "course": location.course,
+                    "speed": location.speed
                 ]
             ]))
         } catch {
