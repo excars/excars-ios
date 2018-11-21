@@ -32,7 +32,8 @@ class ViewController: UIViewController {
         mapView.camera = GMSCameraPosition(target: defaultLocation, zoom: zoomLevel, bearing: 0, viewingAngle: 0)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isHidden = true
-        
+        mapView.delegate = self
+
         stream.delegate = self
     }
 
@@ -76,14 +77,59 @@ extension ViewController: CLLocationManagerDelegate {
 }
 
 
+extension ViewController: GMSMapViewDelegate {
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        return false
+    }
+
+}
+
+
 extension ViewController: ExCarsStreamDelegate {
 
     func didRecieveDataUpdate(type: String, data: [[String : Any]]) {
-        print("Receive: \(data)")
+        switch type {
+        case "MAP":
+            drawMarkers(data: data)
+        default:
+            print("Unknown type: \(type)")
+        }
     }
-    
+
     func didRecieveDataUpdate(type: String, data: [String : Any]) {
 
+    }
+
+    func drawMarkers(data: [[String: Any]]) {
+        mapView.clear()
+
+        let carIcon = UIImage(named: "car")
+        let hitchhikerIcon = UIImage(named: "hitchhiker")
+        
+        for item in data {
+            guard let latitude = (item["latitude"] as? NSString)?.doubleValue else {
+                continue
+            }
+            guard let longitude = (item["longitude"] as? NSString)?.doubleValue else {
+                continue
+            }
+
+            let position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            let marker = GMSMarker(position: position)
+
+            switch item["role"] as? String {
+            case "driver":
+                marker.icon = carIcon
+            case "hitchhiker":
+                marker.icon = hitchhikerIcon
+            default:
+                break
+            }
+
+            marker.userData = item
+            marker.map = mapView
+        }
     }
 
 }
