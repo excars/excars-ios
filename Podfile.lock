@@ -28,6 +28,9 @@ PODS:
   - GTMSessionFetcher/Full (1.2.0):
     - GTMSessionFetcher/Core (= 1.2.0)
   - KeychainAccess (3.1.2)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
   - Starscream (3.0.6)
 
 DEPENDENCIES:
@@ -36,6 +39,7 @@ DEPENDENCIES:
   - GooglePlaces
   - GoogleSignIn
   - KeychainAccess
+  - SDWebImage
   - Starscream
 
 SPEC REPOS:
@@ -48,6 +52,7 @@ SPEC REPOS:
     - GTMOAuth2
     - GTMSessionFetcher
     - KeychainAccess
+    - SDWebImage
     - Starscream
 
 SPEC CHECKSUMS:
@@ -59,8 +64,9 @@ SPEC CHECKSUMS:
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
 
-PODFILE CHECKSUM: 15af2e38ea8ce940d37520c21500a461cf63a164
+PODFILE CHECKSUM: 832191773a6c508c51cef38f9abb2f514f4ec73f
 
 COCOAPODS: 1.5.3

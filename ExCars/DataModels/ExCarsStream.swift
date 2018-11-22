@@ -54,6 +54,10 @@ class ExCarsStream {
         }
     }
     
+    func offerRide(uid: String) {
+        print("OFFER RIDE TO \(uid)!!!")
+    }
+    
 }
 
 

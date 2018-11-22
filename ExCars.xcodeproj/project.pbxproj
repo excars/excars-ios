@@ -16,6 +16,7 @@
 		7400C76821A153F500DFD5A3 /* ExCarsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400C76721A153F500DFD5A3 /* ExCarsUITests.swift */; };
 		7415AEDC21A5D1660042674A /* ExCarsStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415AEDB21A5D1660042674A /* ExCarsStream.swift */; };
 		7415AEDE21A5D83B0042674A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415AEDD21A5D83B0042674A /* Secrets.swift */; };
+		7442FD4321A7386600D311F8 /* Hitchhiker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442FD4221A7386600D311F8 /* Hitchhiker.swift */; };
 		745418ED21A35BCA00EF3F09 /* ExCarsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EC21A35BCA00EF3F09 /* ExCarsRouter.swift */; };
 		745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EE21A360EA00EF3F09 /* KeyChain.swift */; };
 		747FDFEF21A19B8E00BD8D75 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */; };
@@ -59,6 +60,7 @@
 		7400C76921A153F500DFD5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7415AEDB21A5D1660042674A /* ExCarsStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCarsStream.swift; sourceTree = "<group>"; };
 		7415AEDD21A5D83B0042674A /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		7442FD4221A7386600D311F8 /* Hitchhiker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hitchhiker.swift; sourceTree = "<group>"; };
 		745418EC21A35BCA00EF3F09 /* ExCarsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCarsRouter.swift; sourceTree = "<group>"; };
 		745418EE21A360EA00EF3F09 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		7400C74621A153F200DFD5A3 /* ExCars */ = {
 			isa = PBXGroup;
 			children = (
+				7442FD4121A7385100D311F8 /* Models */,
 				74A21CA721A5F5DE00982247 /* Views */,
 				7415AED821A5C9B30042674A /* DataModels */,
 				7415AED521A5C8F60042674A /* Controllers */,
@@ -178,6 +181,14 @@
 				7415AEDB21A5D1660042674A /* ExCarsStream.swift */,
 			);
 			path = DataModels;
+			sourceTree = "<group>";
+		};
+		7442FD4121A7385100D311F8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7442FD4221A7386600D311F8 /* Hitchhiker.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		74A21CA721A5F5DE00982247 /* Views */ = {
@@ -365,6 +376,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -376,6 +388,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,6 +434,7 @@
 				74A21CBA21A605B600982247 /* HitchhikerInfoView.swift in Sources */,
 				7415AEDE21A5D83B0042674A /* Secrets.swift in Sources */,
 				745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */,
+				7442FD4321A7386600D311F8 /* Hitchhiker.swift in Sources */,
 				7415AEDC21A5D1660042674A /* ExCarsStream.swift in Sources */,
 				7400C74A21A153F200DFD5A3 /* ViewController.swift in Sources */,
 				7400C74821A153F200DFD5A3 /* AppDelegate.swift in Sources */,

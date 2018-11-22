@@ -20,8 +20,6 @@ class ViewController: UIViewController {
     let zoomLevel: Float = 15.0
     
     let stream = ExCarsStream()
-    
-//    @IBOutlet weak var driverInfoView: DriverInfoView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +38,7 @@ class ViewController: UIViewController {
         stream.delegate = self
         
         hitchhikerInfoView.isHidden = true
+        hitchhikerInfoView.stream = stream
     }
 
 }
@@ -83,13 +82,20 @@ extension ViewController: CLLocationManagerDelegate {
 
 
 extension ViewController: GMSMapViewDelegate {
-    
+
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        hitchhikerInfoView.isHidden = false
+        Alamofire.request(ExCarsRouter.userInfo)
+            .responseJSON { response in
+                if let data = response.result.value as? [String: Any]{
+                    let hitchhiker = Hitchhiker(data: data)
+                    self.hitchhikerInfoView.setInfo(hitchhiker: hitchhiker)
+                    self.hitchhikerInfoView.isHidden = false
+                }
+        }
 
         return false
     }
-    
+
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         hitchhikerInfoView.isHidden = true
     }
