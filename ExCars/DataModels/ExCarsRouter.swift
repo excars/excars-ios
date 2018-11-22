@@ -17,12 +17,15 @@ public enum ExCarsRouter: URLRequestConvertible {
 
     case auth(String)
     case me
+    case userInfo
     
     var method: HTTPMethod {
         switch self {
         case .auth:
             return .post
         case .me:
+            return .get
+        case .userInfo:
             return .get
         }
     }
@@ -33,6 +36,8 @@ public enum ExCarsRouter: URLRequestConvertible {
             return "/auth/"
         case .me:
             return "/auth/me/"
+        case .userInfo:
+            return "/user_info/"
         }
     }
     

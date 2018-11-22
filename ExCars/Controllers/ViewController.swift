@@ -13,13 +13,14 @@ import Alamofire
 class ViewController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
-
+    @IBOutlet weak var hitchhikerInfoView: HitchhikerInfoView!
+    
     var locationManager = CLLocationManager()
     let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
     let zoomLevel: Float = 15.0
     
     let stream = ExCarsStream()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +36,9 @@ class ViewController: UIViewController {
         mapView.delegate = self
 
         stream.delegate = self
+        
+        hitchhikerInfoView.isHidden = true
+        hitchhikerInfoView.stream = stream
     }
 
 }
@@ -78,9 +82,22 @@ extension ViewController: CLLocationManagerDelegate {
 
 
 extension ViewController: GMSMapViewDelegate {
-    
+
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        Alamofire.request(ExCarsRouter.userInfo)
+            .responseJSON { response in
+                if let data = response.result.value as? [String: Any]{
+                    let hitchhiker = Hitchhiker(data: data)
+                    self.hitchhikerInfoView.setInfo(hitchhiker: hitchhiker)
+                    self.hitchhikerInfoView.isHidden = false
+                }
+        }
+
         return false
+    }
+
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        hitchhikerInfoView.isHidden = true
     }
 
 }

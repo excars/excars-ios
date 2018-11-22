@@ -16,9 +16,12 @@
 		7400C76821A153F500DFD5A3 /* ExCarsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400C76721A153F500DFD5A3 /* ExCarsUITests.swift */; };
 		7415AEDC21A5D1660042674A /* ExCarsStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415AEDB21A5D1660042674A /* ExCarsStream.swift */; };
 		7415AEDE21A5D83B0042674A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415AEDD21A5D83B0042674A /* Secrets.swift */; };
+		7442FD4321A7386600D311F8 /* Hitchhiker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442FD4221A7386600D311F8 /* Hitchhiker.swift */; };
 		745418ED21A35BCA00EF3F09 /* ExCarsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EC21A35BCA00EF3F09 /* ExCarsRouter.swift */; };
 		745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EE21A360EA00EF3F09 /* KeyChain.swift */; };
 		747FDFEF21A19B8E00BD8D75 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */; };
+		74A21CB821A605A500982247 /* HitchhikerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74A21CB721A605A500982247 /* HitchhikerInfoView.xib */; };
+		74A21CBA21A605B600982247 /* HitchhikerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A21CB921A605B600982247 /* HitchhikerInfoView.swift */; };
 		BD2E4109E5C82AAC0AC7AD28 /* Pods_ExCars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA4426F5266D8890A9B1B9D /* Pods_ExCars.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,9 +60,12 @@
 		7400C76921A153F500DFD5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7415AEDB21A5D1660042674A /* ExCarsStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCarsStream.swift; sourceTree = "<group>"; };
 		7415AEDD21A5D83B0042674A /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		7442FD4221A7386600D311F8 /* Hitchhiker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hitchhiker.swift; sourceTree = "<group>"; };
 		745418EC21A35BCA00EF3F09 /* ExCarsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCarsRouter.swift; sourceTree = "<group>"; };
 		745418EE21A360EA00EF3F09 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		74A21CB721A605A500982247 /* HitchhikerInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HitchhikerInfoView.xib; sourceTree = "<group>"; };
+		74A21CB921A605B600982247 /* HitchhikerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerInfoView.swift; sourceTree = "<group>"; };
 		C4F3098860B17DAC3D4991BC /* Pods_ExCarsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCarsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3E7380E57D919B93268712 /* Pods_ExCarsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCarsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA4426F5266D8890A9B1B9D /* Pods_ExCars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +132,8 @@
 		7400C74621A153F200DFD5A3 /* ExCars */ = {
 			isa = PBXGroup;
 			children = (
+				7442FD4121A7385100D311F8 /* Models */,
+				74A21CA721A5F5DE00982247 /* Views */,
 				7415AED821A5C9B30042674A /* DataModels */,
 				7415AED521A5C8F60042674A /* Controllers */,
 				7400C74721A153F200DFD5A3 /* AppDelegate.swift */,
@@ -173,6 +181,23 @@
 				7415AEDB21A5D1660042674A /* ExCarsStream.swift */,
 			);
 			path = DataModels;
+			sourceTree = "<group>";
+		};
+		7442FD4121A7385100D311F8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7442FD4221A7386600D311F8 /* Hitchhiker.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		74A21CA721A5F5DE00982247 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				74A21CB721A605A500982247 /* HitchhikerInfoView.xib */,
+				74A21CB921A605B600982247 /* HitchhikerInfoView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E13FEF35E88B83973C68D3C3 /* Pods */ = {
@@ -293,6 +318,7 @@
 			files = (
 				7400C75221A153F500DFD5A3 /* LaunchScreen.storyboard in Resources */,
 				7400C74F21A153F500DFD5A3 /* Assets.xcassets in Resources */,
+				74A21CB821A605A500982247 /* HitchhikerInfoView.xib in Resources */,
 				7400C74D21A153F200DFD5A3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +376,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -361,6 +388,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,8 +431,10 @@
 			files = (
 				745418ED21A35BCA00EF3F09 /* ExCarsRouter.swift in Sources */,
 				747FDFEF21A19B8E00BD8D75 /* LoginViewController.swift in Sources */,
+				74A21CBA21A605B600982247 /* HitchhikerInfoView.swift in Sources */,
 				7415AEDE21A5D83B0042674A /* Secrets.swift in Sources */,
 				745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */,
+				7442FD4321A7386600D311F8 /* Hitchhiker.swift in Sources */,
 				7415AEDC21A5D1660042674A /* ExCarsStream.swift in Sources */,
 				7400C74A21A153F200DFD5A3 /* ViewController.swift in Sources */,
 				7400C74821A153F200DFD5A3 /* AppDelegate.swift in Sources */,

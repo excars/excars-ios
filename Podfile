@@ -11,4 +11,5 @@ target :'ExCars' do
     pod 'Alamofire', '~> 4.7'
     pod 'KeychainAccess'
     pod 'Starscream'
+    pod 'SDWebImage'
 end
