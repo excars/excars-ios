@@ -26,6 +26,10 @@
 		74E2F0CE21AC2EFF0092FEEF /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0CD21AC2EFF0092FEEF /* Auth.swift */; };
 		74E2F0D021AC37470092FEEF /* XibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0CF21AC37470092FEEF /* XibView.swift */; };
 		74E2F0D421AC59C10092FEEF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0D321AC59C10092FEEF /* Message.swift */; };
+		74E2F0D621AC91100092FEEF /* WaitingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74E2F0D521AC91100092FEEF /* WaitingView.xib */; };
+		74E2F0D821AC918E0092FEEF /* WaitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0D721AC918E0092FEEF /* WaitingView.swift */; };
+		74E2F0DA21AC98390092FEEF /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0D921AC98390092FEEF /* SuccessView.swift */; };
+		74E2F0DE21AC9AEA0092FEEF /* SuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74E2F0DD21AC9AEA0092FEEF /* SuccessView.xib */; };
 		BD2E4109E5C82AAC0AC7AD28 /* Pods_ExCars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA4426F5266D8890A9B1B9D /* Pods_ExCars.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +78,10 @@
 		74E2F0CD21AC2EFF0092FEEF /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		74E2F0CF21AC37470092FEEF /* XibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibView.swift; sourceTree = "<group>"; };
 		74E2F0D321AC59C10092FEEF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		74E2F0D521AC91100092FEEF /* WaitingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaitingView.xib; sourceTree = "<group>"; };
+		74E2F0D721AC918E0092FEEF /* WaitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingView.swift; sourceTree = "<group>"; };
+		74E2F0D921AC98390092FEEF /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
+		74E2F0DD21AC9AEA0092FEEF /* SuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessView.xib; sourceTree = "<group>"; };
 		C4F3098860B17DAC3D4991BC /* Pods_ExCarsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCarsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3E7380E57D919B93268712 /* Pods_ExCarsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCarsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA4426F5266D8890A9B1B9D /* Pods_ExCars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +216,10 @@
 				74A21CB721A605A500982247 /* ProfileView.xib */,
 				74A21CB921A605B600982247 /* ProfileView.swift */,
 				74E2F0CF21AC37470092FEEF /* XibView.swift */,
+				74E2F0D521AC91100092FEEF /* WaitingView.xib */,
+				74E2F0D721AC918E0092FEEF /* WaitingView.swift */,
+				74E2F0D921AC98390092FEEF /* SuccessView.swift */,
+				74E2F0DD21AC9AEA0092FEEF /* SuccessView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -328,6 +340,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74E2F0DE21AC9AEA0092FEEF /* SuccessView.xib in Resources */,
+				74E2F0D621AC91100092FEEF /* WaitingView.xib in Resources */,
 				7400C75221A153F500DFD5A3 /* LaunchScreen.storyboard in Resources */,
 				7400C74F21A153F500DFD5A3 /* Assets.xcassets in Resources */,
 				74A21CB821A605A500982247 /* ProfileView.xib in Resources */,
@@ -443,10 +457,12 @@
 			files = (
 				74E2F0CE21AC2EFF0092FEEF /* Auth.swift in Sources */,
 				745418ED21A35BCA00EF3F09 /* APIRouter.swift in Sources */,
+				74E2F0D821AC918E0092FEEF /* WaitingView.swift in Sources */,
 				74E2F0C821AC0E550092FEEF /* Profile.swift in Sources */,
 				747FDFEF21A19B8E00BD8D75 /* LoginViewController.swift in Sources */,
 				74A21CBA21A605B600982247 /* ProfileView.swift in Sources */,
 				7415AEDE21A5D83B0042674A /* Secrets.swift in Sources */,
+				74E2F0DA21AC98390092FEEF /* SuccessView.swift in Sources */,
 				74E2F0CC21AC17650092FEEF /* APIClient.swift in Sources */,
 				745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */,
 				7415AEDC21A5D1660042674A /* WSClient.swift in Sources */,

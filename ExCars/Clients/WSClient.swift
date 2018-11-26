@@ -12,6 +12,8 @@ import Starscream
 
 protocol WSClientDelegate: class {
     func didReceiveDataUpdate(data: [WSMapPayload])
+    func didReceiveDataUpdate(data: WSOfferRideAccepted)
+    func didSendMessage(type: MessageType)
 }
 
 
@@ -20,7 +22,8 @@ class WSClient {
     weak var delegate: WSClientDelegate?
     
     let socket: WebSocket
-    
+    let encoder = JSONEncoder()
+
     init() {
         var request = URLRequest(url: URL(string: "ws://localhost:8000/stream")!)
         if let token = KeyChain.getJWTToken() {
@@ -44,23 +47,30 @@ class WSClient {
             course: location.course,
             speed: location.speed
         )
-
-        let encoder = JSONEncoder()
         
-        do {
-            let data = try encoder.encode(WSLocation(data: payload))
-            socket.write(data: data)
-        } catch {
+        guard let data = try? encoder.encode(WSLocation(data: payload)) else {
             print("CANT ENCODE LOCATION")
+            return
         }
+
+        socket.write(data: data)
+        delegate?.didSendMessage(type: MessageType.location)
     }
     
     func offerRide(uid: String) {
-        print("OFFER RIDE TO \(uid)!!!")
+        let payload = WSOfferRidePayload(uid: uid)
+        
+        guard let data = try? encoder.encode(WSOfferRide(data: payload)) else {
+            print("CANT ENCODE OFFER RIDE")
+            return
+        }
+        
+        socket.write(data: data)
+        delegate?.didSendMessage(type: MessageType.offerRide)
     }
     
     func requestRide(uid: String) {
-        print("REQUEST RIDE TO \(uid)!!!")
+        print("REQUEST RIDE \(uid)")
     }
     
 }
@@ -79,11 +89,17 @@ extension WSClient: WebSocketDelegate {
         switch message.type {
         case .map:
             guard let wsMap = try? decoder.decode(WSMap.self, from: data) else {
-                fallthrough
+                break
             }
             delegate?.didReceiveDataUpdate(data: wsMap.data)
+        case .offerRideAccepted:
+            guard let wsOfferRideAccepted = try? decoder.decode(WSOfferRideAccepted.self, from: data) else {
+                print("FAILED")
+                break
+            }
+            delegate?.didReceiveDataUpdate(data: wsOfferRideAccepted)
         default:
-            print("NO MESSAGE TYPE")
+            print("NO MESSAGE TYPE \(message.type.rawValue)")
             break
         }
     }

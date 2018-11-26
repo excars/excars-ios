@@ -71,7 +71,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Offer a Ride"/>
                     <connections>
-                        <action selector="offerRide" destination="-1" eventType="touchUpInside" id="bsv-uz-IHJ"/>
+                        <action selector="submit" destination="-1" eventType="touchUpInside" id="X89-FS-0tr"/>
                     </connections>
                 </button>
             </subviews>

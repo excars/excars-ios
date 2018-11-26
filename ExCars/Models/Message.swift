@@ -12,6 +12,8 @@ import Foundation
 enum MessageType: String, Codable {
     case location = "LOCATION"
     case map = "MAP"
+    case offerRide = "OFFER_FOR_A_RIDE"
+    case offerRideAccepted = "OFFER_FOR_A_RIDE_ACCEPTED"
 }
 
 
@@ -45,4 +47,21 @@ struct WSMapPayload: Codable {
     let latitude: Double
     let longitude: Double
     let role: Role
+}
+
+
+struct WSOfferRide: Codable {
+    let type = MessageType.offerRide
+    let data: WSOfferRidePayload
+}
+
+
+struct WSOfferRidePayload: Codable {
+    let uid: String
+}
+
+
+struct WSOfferRideAccepted: Codable {
+    let type = MessageType.offerRideAccepted
+    let data: WSOfferRidePayload
 }

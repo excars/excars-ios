@@ -11,7 +11,7 @@ import UIKit
 import SDWebImage
 
 
-@IBDesignable class ProfileView: XibView {
+class ProfileView: XibView {
 
     override var nibName : String {
         get { return "ProfileView" }

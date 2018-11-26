@@ -26,6 +26,16 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iVo-pQ-VtJ" customClass="WaitingView" customModule="ExCars" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="450" width="375" height="217"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bDb-i6-1ZI" customClass="SuccessView" customModule="ExCars" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="450" width="375" height="217"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -39,6 +49,8 @@
                     <connections>
                         <outlet property="mapView" destination="AKS-yC-gQ3" id="dV9-nh-CZy"/>
                         <outlet property="profileView" destination="QHb-5F-TGz" id="0Tk-mk-WvT"/>
+                        <outlet property="successView" destination="bDb-i6-1ZI" id="lXI-ab-bJK"/>
+                        <outlet property="waitingView" destination="iVo-pQ-VtJ" id="Qp6-Iz-bFh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

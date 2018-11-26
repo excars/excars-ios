@@ -14,11 +14,13 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var profileView: ProfileView!
+    @IBOutlet weak var waitingView: WaitingView!
+    @IBOutlet weak var successView: SuccessView!
     
     var locationManager = CLLocationManager()
     let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
     let zoomLevel: Float = 15.0
-    
+
     let wsClient = WSClient()
 
     override func viewDidLoad() {
@@ -39,6 +41,9 @@ class ViewController: UIViewController {
         
         profileView.hide()
         profileView.wsClient = wsClient
+        
+        waitingView.hide()
+        successView.hide()
     }
 
 }
@@ -101,12 +106,23 @@ extension ViewController: GMSMapViewDelegate {
 
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         profileView.hide()
+        successView.hide()
     }
 
 }
 
 
 extension ViewController: WSClientDelegate {
+
+    func didSendMessage(type: MessageType) {
+        switch type {
+        case .offerRide:
+            waitingView.show()
+            profileView.hide()
+        default:
+            break
+        }
+    }
 
     func didReceiveDataUpdate(data: [WSMapPayload]) {
         mapView.clear()
@@ -128,6 +144,12 @@ extension ViewController: WSClientDelegate {
             marker.userData = item
             marker.map = mapView
         }
+    }
+
+    func didReceiveDataUpdate(data: WSOfferRideAccepted) {
+        waitingView.hide()
+        successView.show(text: "Offer for a ride accepted!")
+        print("OFFER ACCEPTED")
     }
 
 }
