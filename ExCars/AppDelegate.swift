@@ -12,7 +12,7 @@ import GoogleSignIn
 import Alamofire
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -21,18 +21,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         // Initialize sign-in
         GIDSignIn.sharedInstance().clientID = GOOGLE_OAUTH2_CLIENT_ID
-        GIDSignIn.sharedInstance().delegate = self
+//        GIDSignIn.sharedInstance().delegate = self
         
         if GIDSignIn.sharedInstance().hasAuthInKeychain() {
             print("user is signed in")
             GIDSignIn.sharedInstance()?.signInSilently()
-        } else {
-            print("user is NOT signed in")
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            if let vc = sb.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
-                window!.rootViewController = vc
-            }
         }
+//        } else {
+//            print("user is NOT signed in")
+//            let sb = UIStoryboard(name: "Main", bundle: nil)
+//            if let vc = sb.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+//                window!.rootViewController = vc
+//            }
+//        }
         
         return true
     }
@@ -44,26 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             annotation: options[UIApplication.OpenURLOptionsKey.annotation]
         )
     }
-    
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print("\(error.localizedDescription)")
-        } else {
-            Alamofire.request(ExCarsRouter.auth(user.authentication.idToken))
-                .responseJSON { response in
-                    if let result = response.result.value {
-                        let data = result as? [String:String]
-                        KeyChain.setJWTToken(token: data!["access_token"]!)
 
-                        if self.window?.rootViewController is LoginViewController {
-                            let sb = UIStoryboard(name: "Main", bundle: nil)
-                            if let vc = sb.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
-                                self.window!.rootViewController = vc
-                            }
-                        }
-                    }
-                }
-        }
-    }
 }
 

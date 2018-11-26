@@ -8,18 +8,18 @@
 
 import UIKit
 import GoogleMaps
-import Alamofire
+
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var hitchhikerInfoView: HitchhikerInfoView!
+    @IBOutlet weak var profileView: ProfileView!
     
     var locationManager = CLLocationManager()
     let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
     let zoomLevel: Float = 15.0
     
-    let stream = ExCarsStream()
+    let wsClient = WSClient()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +35,10 @@ class ViewController: UIViewController {
         mapView.isHidden = true
         mapView.delegate = self
 
-        stream.delegate = self
+        wsClient.delegate = self
         
-        hitchhikerInfoView.isHidden = true
-        hitchhikerInfoView.stream = stream
+        profileView.hide()
+        profileView.wsClient = wsClient
     }
 
 }
@@ -62,7 +62,7 @@ extension ViewController: CLLocationManagerDelegate {
             mapView.animate(to: camera)
         }
         
-        stream.sendLocation(location: location)
+        wsClient.sendLocation(location: location)
 
     }
 
@@ -84,66 +84,47 @@ extension ViewController: CLLocationManagerDelegate {
 extension ViewController: GMSMapViewDelegate {
 
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        Alamofire.request(ExCarsRouter.userInfo)
-            .responseJSON { response in
-                if let data = response.result.value as? [String: Any]{
-                    let hitchhiker = Hitchhiker(data: data)
-                    self.hitchhikerInfoView.setInfo(hitchhiker: hitchhiker)
-                    self.hitchhikerInfoView.isHidden = false
+        if let userData = marker.userData as? WSMapPayload {
+            APIClient.profile(uid: userData.uid) { result in
+                switch result {
+                case .success(let profile):
+                    self.profileView.show(profile: profile)
+                case .failure(let error):
+                    print("ERROR")
+                    print(error)
                 }
+            }
         }
 
         return false
     }
 
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        hitchhikerInfoView.isHidden = true
+        profileView.hide()
     }
 
 }
 
 
-extension ViewController: ExCarsStreamDelegate {
+extension ViewController: WSClientDelegate {
 
-    func didRecieveDataUpdate(type: String, data: [[String : Any]]) {
-        switch type {
-        case "MAP":
-            drawMarkers(data: data)
-        default:
-            print("Unknown type: \(type)")
-        }
-    }
-
-    func didRecieveDataUpdate(type: String, data: [String : Any]) {
-
-    }
-
-    func drawMarkers(data: [[String: Any]]) {
+    func didReceiveDataUpdate(data: [WSMapPayload]) {
         mapView.clear()
-
+        
         let carIcon = UIImage(named: "car")
         let hitchhikerIcon = UIImage(named: "hitchhiker")
         
         for item in data {
-            guard let latitude = (item["latitude"] as? NSString)?.doubleValue else {
-                continue
-            }
-            guard let longitude = (item["longitude"] as? NSString)?.doubleValue else {
-                continue
-            }
-
-            let position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            let position = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude)
             let marker = GMSMarker(position: position)
-
-            switch item["role"] as? String {
-            case "driver":
+            
+            switch item.role {
+            case .driver:
                 marker.icon = carIcon
-            case "hitchhiker":
+            case .hitchhiker:
                 marker.icon = hitchhikerIcon
-            default:
-                break
             }
-
+            
             marker.userData = item
             marker.map = mapView
         }
