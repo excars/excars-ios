@@ -9,7 +9,7 @@
 
 import Alamofire
 
-public enum ExCarsRouter: URLRequestConvertible {
+public enum APIRouter: URLRequestConvertible {
 
     enum Constants {
         static let baseURLPath = "http://localhost:8000"
@@ -17,7 +17,7 @@ public enum ExCarsRouter: URLRequestConvertible {
 
     case auth(String)
     case me
-    case userInfo
+    case profile(String)
     
     var method: HTTPMethod {
         switch self {
@@ -25,7 +25,7 @@ public enum ExCarsRouter: URLRequestConvertible {
             return .post
         case .me:
             return .get
-        case .userInfo:
+        case .profile:
             return .get
         }
     }
@@ -36,8 +36,8 @@ public enum ExCarsRouter: URLRequestConvertible {
             return "/auth/"
         case .me:
             return "/auth/me/"
-        case .userInfo:
-            return "/user_info/"
+        case .profile(let uid):
+            return "/api/profiles/\(uid)"
         }
     }
     

@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
 
 target :'ExCars' do
@@ -8,8 +8,8 @@ target :'ExCars' do
     pod 'GoogleSignIn'
     pod 'GoogleMaps'
     pod 'GooglePlaces'
-    pod 'Alamofire', '~> 4.7'
     pod 'KeychainAccess'
     pod 'Starscream'
     pod 'SDWebImage'
+    pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
 end

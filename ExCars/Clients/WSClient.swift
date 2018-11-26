@@ -10,15 +10,15 @@ import CoreLocation
 import Starscream
 
 
-protocol ExCarsStreamDelegate: class {
+protocol WSClientDelegate: class {
     func didRecieveDataUpdate(type: String, data: [String: Any])
     func didRecieveDataUpdate(type: String, data: [[String: Any]])
 }
 
 
-class ExCarsStream {
+class WSClient {
     
-    weak var delegate: ExCarsStreamDelegate?
+    weak var delegate: WSClientDelegate?
     
     let socket: WebSocket
     
@@ -58,10 +58,14 @@ class ExCarsStream {
         print("OFFER RIDE TO \(uid)!!!")
     }
     
+    func requestRide(uid: String) {
+        print("REQUEST RIDE TO \(uid)!!!")
+    }
+    
 }
 
 
-extension ExCarsStream: WebSocketDelegate {
+extension WSClient: WebSocketDelegate {
     
     func websocketDidConnect(socket: WebSocketClient) {
         

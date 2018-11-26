@@ -14,14 +14,17 @@
 		7400C75221A153F500DFD5A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7400C75021A153F500DFD5A3 /* LaunchScreen.storyboard */; };
 		7400C75D21A153F500DFD5A3 /* ExCarsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400C75C21A153F500DFD5A3 /* ExCarsTests.swift */; };
 		7400C76821A153F500DFD5A3 /* ExCarsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400C76721A153F500DFD5A3 /* ExCarsUITests.swift */; };
-		7415AEDC21A5D1660042674A /* ExCarsStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415AEDB21A5D1660042674A /* ExCarsStream.swift */; };
+		7415AEDC21A5D1660042674A /* WSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415AEDB21A5D1660042674A /* WSClient.swift */; };
 		7415AEDE21A5D83B0042674A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415AEDD21A5D83B0042674A /* Secrets.swift */; };
-		7442FD4321A7386600D311F8 /* Hitchhiker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7442FD4221A7386600D311F8 /* Hitchhiker.swift */; };
-		745418ED21A35BCA00EF3F09 /* ExCarsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EC21A35BCA00EF3F09 /* ExCarsRouter.swift */; };
+		745418ED21A35BCA00EF3F09 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EC21A35BCA00EF3F09 /* APIRouter.swift */; };
 		745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EE21A360EA00EF3F09 /* KeyChain.swift */; };
 		747FDFEF21A19B8E00BD8D75 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */; };
-		74A21CB821A605A500982247 /* HitchhikerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74A21CB721A605A500982247 /* HitchhikerInfoView.xib */; };
-		74A21CBA21A605B600982247 /* HitchhikerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A21CB921A605B600982247 /* HitchhikerInfoView.swift */; };
+		74A21CB821A605A500982247 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74A21CB721A605A500982247 /* ProfileView.xib */; };
+		74A21CBA21A605B600982247 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A21CB921A605B600982247 /* ProfileView.swift */; };
+		74E2F0C821AC0E550092FEEF /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0C721AC0E550092FEEF /* Profile.swift */; };
+		74E2F0CC21AC17650092FEEF /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0CB21AC17650092FEEF /* APIClient.swift */; };
+		74E2F0CE21AC2EFF0092FEEF /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0CD21AC2EFF0092FEEF /* Auth.swift */; };
+		74E2F0D021AC37470092FEEF /* XibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0CF21AC37470092FEEF /* XibView.swift */; };
 		BD2E4109E5C82AAC0AC7AD28 /* Pods_ExCars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA4426F5266D8890A9B1B9D /* Pods_ExCars.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,14 +61,17 @@
 		7400C76321A153F500DFD5A3 /* ExCarsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExCarsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7400C76721A153F500DFD5A3 /* ExCarsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCarsUITests.swift; sourceTree = "<group>"; };
 		7400C76921A153F500DFD5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7415AEDB21A5D1660042674A /* ExCarsStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCarsStream.swift; sourceTree = "<group>"; };
+		7415AEDB21A5D1660042674A /* WSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSClient.swift; sourceTree = "<group>"; };
 		7415AEDD21A5D83B0042674A /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
-		7442FD4221A7386600D311F8 /* Hitchhiker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hitchhiker.swift; sourceTree = "<group>"; };
-		745418EC21A35BCA00EF3F09 /* ExCarsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCarsRouter.swift; sourceTree = "<group>"; };
+		745418EC21A35BCA00EF3F09 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		745418EE21A360EA00EF3F09 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		74A21CB721A605A500982247 /* HitchhikerInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HitchhikerInfoView.xib; sourceTree = "<group>"; };
-		74A21CB921A605B600982247 /* HitchhikerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerInfoView.swift; sourceTree = "<group>"; };
+		74A21CB721A605A500982247 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		74A21CB921A605B600982247 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		74E2F0C721AC0E550092FEEF /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		74E2F0CB21AC17650092FEEF /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		74E2F0CD21AC2EFF0092FEEF /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		74E2F0CF21AC37470092FEEF /* XibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibView.swift; sourceTree = "<group>"; };
 		C4F3098860B17DAC3D4991BC /* Pods_ExCarsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCarsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3E7380E57D919B93268712 /* Pods_ExCarsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCarsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA4426F5266D8890A9B1B9D /* Pods_ExCars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,9 +138,9 @@
 		7400C74621A153F200DFD5A3 /* ExCars */ = {
 			isa = PBXGroup;
 			children = (
+				7442FD4421A74D2D00D311F8 /* Clients */,
 				7442FD4121A7385100D311F8 /* Models */,
 				74A21CA721A5F5DE00982247 /* Views */,
-				7415AED821A5C9B30042674A /* DataModels */,
 				7415AED521A5C8F60042674A /* Controllers */,
 				7400C74721A153F200DFD5A3 /* AppDelegate.swift */,
 				7400C74B21A153F200DFD5A3 /* Main.storyboard */,
@@ -174,28 +180,31 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		7415AED821A5C9B30042674A /* DataModels */ = {
-			isa = PBXGroup;
-			children = (
-				745418EC21A35BCA00EF3F09 /* ExCarsRouter.swift */,
-				7415AEDB21A5D1660042674A /* ExCarsStream.swift */,
-			);
-			path = DataModels;
-			sourceTree = "<group>";
-		};
 		7442FD4121A7385100D311F8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7442FD4221A7386600D311F8 /* Hitchhiker.swift */,
+				74E2F0C721AC0E550092FEEF /* Profile.swift */,
+				74E2F0CD21AC2EFF0092FEEF /* Auth.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		7442FD4421A74D2D00D311F8 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				745418EC21A35BCA00EF3F09 /* APIRouter.swift */,
+				7415AEDB21A5D1660042674A /* WSClient.swift */,
+				74E2F0CB21AC17650092FEEF /* APIClient.swift */,
+			);
+			path = Clients;
 			sourceTree = "<group>";
 		};
 		74A21CA721A5F5DE00982247 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				74A21CB721A605A500982247 /* HitchhikerInfoView.xib */,
-				74A21CB921A605B600982247 /* HitchhikerInfoView.swift */,
+				74A21CB721A605A500982247 /* ProfileView.xib */,
+				74A21CB921A605B600982247 /* ProfileView.swift */,
+				74E2F0CF21AC37470092FEEF /* XibView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,7 +327,7 @@
 			files = (
 				7400C75221A153F500DFD5A3 /* LaunchScreen.storyboard in Resources */,
 				7400C74F21A153F500DFD5A3 /* Assets.xcassets in Resources */,
-				74A21CB821A605A500982247 /* HitchhikerInfoView.xib in Resources */,
+				74A21CB821A605A500982247 /* ProfileView.xib in Resources */,
 				7400C74D21A153F200DFD5A3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,14 +438,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				745418ED21A35BCA00EF3F09 /* ExCarsRouter.swift in Sources */,
+				74E2F0CE21AC2EFF0092FEEF /* Auth.swift in Sources */,
+				745418ED21A35BCA00EF3F09 /* APIRouter.swift in Sources */,
+				74E2F0C821AC0E550092FEEF /* Profile.swift in Sources */,
 				747FDFEF21A19B8E00BD8D75 /* LoginViewController.swift in Sources */,
-				74A21CBA21A605B600982247 /* HitchhikerInfoView.swift in Sources */,
+				74A21CBA21A605B600982247 /* ProfileView.swift in Sources */,
 				7415AEDE21A5D83B0042674A /* Secrets.swift in Sources */,
+				74E2F0CC21AC17650092FEEF /* APIClient.swift in Sources */,
 				745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */,
-				7442FD4321A7386600D311F8 /* Hitchhiker.swift in Sources */,
-				7415AEDC21A5D1660042674A /* ExCarsStream.swift in Sources */,
+				7415AEDC21A5D1660042674A /* WSClient.swift in Sources */,
 				7400C74A21A153F200DFD5A3 /* ViewController.swift in Sources */,
+				74E2F0D021AC37470092FEEF /* XibView.swift in Sources */,
 				7400C74821A153F200DFD5A3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
