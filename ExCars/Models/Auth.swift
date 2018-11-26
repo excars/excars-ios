@@ -15,7 +15,7 @@ struct Auth: Codable {
 
 
 extension Auth {
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case jwtToken = "access_token"
     }
 }

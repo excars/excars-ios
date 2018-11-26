@@ -11,8 +11,7 @@ import Starscream
 
 
 protocol WSClientDelegate: class {
-    func didRecieveDataUpdate(type: String, data: [String: Any])
-    func didRecieveDataUpdate(type: String, data: [[String: Any]])
+    func didReceiveDataUpdate(data: [WSMapPayload])
 }
 
 
@@ -39,18 +38,20 @@ class WSClient {
     }
     
     func sendLocation(location: CLLocation) {
+        let payload = WSLocationPayload(
+            latitude: location.coordinate.latitude,
+            longitude: location.coordinate.longitude,
+            course: location.course,
+            speed: location.speed
+        )
+
+        let encoder = JSONEncoder()
+        
         do {
-            socket.write(data: try JSONSerialization.data(withJSONObject: [
-                "type": "LOCATION",
-                "data": [
-                    "latitude": location.coordinate.latitude,
-                    "longitude": location.coordinate.longitude,
-                    "course": location.course,
-                    "speed": location.speed
-                ]
-            ]))
+            let data = try encoder.encode(WSLocation(data: payload))
+            socket.write(data: data)
         } catch {
-            print("[ERROR]: Can't encode JSON")
+            print("CANT ENCODE LOCATION")
         }
     }
     
@@ -67,6 +68,26 @@ class WSClient {
 
 extension WSClient: WebSocketDelegate {
     
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        let decoder = JSONDecoder()
+        
+        guard let data = text.data(using: .utf8),
+            let message = try? decoder.decode(WSMessage.self, from: data) else {
+                return
+        }
+        
+        switch message.type {
+        case .map:
+            guard let wsMap = try? decoder.decode(WSMap.self, from: data) else {
+                fallthrough
+            }
+            delegate?.didReceiveDataUpdate(data: wsMap.data)
+        default:
+            print("NO MESSAGE TYPE")
+            break
+        }
+    }
+
     func websocketDidConnect(socket: WebSocketClient) {
         
     }
@@ -75,21 +96,8 @@ extension WSClient: WebSocketDelegate {
         
     }
     
-    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        guard let data = text.data(using: .utf16),
-            let jsonData = try? JSONSerialization.jsonObject(with: data),
-            let jsonDict = jsonData as? [String: Any],
-            let messageType = jsonDict["type"] as? String else {
-                return
-        }
-        
-        if messageType == "MAP",
-            let messageData = jsonDict["data"] as? [[String: Any]] {
-            delegate?.didRecieveDataUpdate(type: messageType, data: messageData)
-        }
-    }
-    
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         
     }
+
 }

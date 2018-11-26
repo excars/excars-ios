@@ -23,7 +23,7 @@ import SDWebImage
     @IBOutlet weak var destination: UILabel!
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var plate: UILabel!
-    @IBOutlet weak var submit: UIButton!
+    @IBOutlet weak var submitButton: UIButton!
     
     var wsClient: WSClient?
     var profile: Profile?
@@ -39,10 +39,10 @@ import SDWebImage
         switch profile.role {
         case .driver:
             plate.text = profile.plate
-            submit.setTitle("Request a Ride", for: UIControl.State.normal)
+            submitButton.setTitle("Request a Ride", for: UIControl.State.normal)
         case .hitchhiker:
             plate.text = ""
-            submit.setTitle("Offer a Ride", for: UIControl.State.normal)
+            submitButton.setTitle("Offer a Ride", for: UIControl.State.normal)
         }
 
         self.isHidden = false
@@ -52,7 +52,7 @@ import SDWebImage
         self.isHidden = true
     }
 
-    @IBAction func offerRide() {
+    @IBAction func submit() {
         if let profile = profile {
             switch profile.role {
             case .driver:

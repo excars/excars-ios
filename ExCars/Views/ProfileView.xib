@@ -16,7 +16,7 @@
                 <outlet property="distance" destination="QZc-ef-CnV" id="il6-2b-5rL"/>
                 <outlet property="name" destination="etZ-Pp-QJ2" id="Caw-wx-v2Q"/>
                 <outlet property="plate" destination="Syy-yu-xeH" id="FeT-T3-bGN"/>
-                <outlet property="submit" destination="ilp-iV-Ppy" id="jNc-jm-cb2"/>
+                <outlet property="submitButton" destination="ilp-iV-Ppy" id="jNc-jm-cb2"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

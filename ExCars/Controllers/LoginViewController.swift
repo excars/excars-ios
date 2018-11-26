@@ -28,20 +28,24 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
             APIClient.auth(idToken: user.authentication.idToken) { result in
                 switch result {
                 case .success(let response):
-                    KeyChain.setJWTToken(token: response.jwtToken)
-                    
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    
-                    if appDelegate.window?.rootViewController is LoginViewController {
-                        let sb = UIStoryboard(name: "Main", bundle: nil)
-                        if let vc = sb.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
-                            appDelegate.window!.rootViewController = vc
-                        }
-                    }
+                    self.login(jwtToken: response.jwtToken)
                 case .failure(let error):
                     print("AUTH ERROR")
                     print(error)
                 }
+            }
+        }
+    }
+    
+    private func login(jwtToken: String) {
+        KeyChain.setJWTToken(token: jwtToken)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        if appDelegate.window?.rootViewController is LoginViewController {
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            if let vc = sb.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
+                appDelegate.window!.rootViewController = vc
             }
         }
     }

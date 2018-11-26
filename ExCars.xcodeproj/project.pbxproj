@@ -25,6 +25,7 @@
 		74E2F0CC21AC17650092FEEF /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0CB21AC17650092FEEF /* APIClient.swift */; };
 		74E2F0CE21AC2EFF0092FEEF /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0CD21AC2EFF0092FEEF /* Auth.swift */; };
 		74E2F0D021AC37470092FEEF /* XibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0CF21AC37470092FEEF /* XibView.swift */; };
+		74E2F0D421AC59C10092FEEF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0D321AC59C10092FEEF /* Message.swift */; };
 		BD2E4109E5C82AAC0AC7AD28 /* Pods_ExCars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA4426F5266D8890A9B1B9D /* Pods_ExCars.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		74E2F0CB21AC17650092FEEF /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		74E2F0CD21AC2EFF0092FEEF /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		74E2F0CF21AC37470092FEEF /* XibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibView.swift; sourceTree = "<group>"; };
+		74E2F0D321AC59C10092FEEF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C4F3098860B17DAC3D4991BC /* Pods_ExCarsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCarsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3E7380E57D919B93268712 /* Pods_ExCarsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCarsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA4426F5266D8890A9B1B9D /* Pods_ExCars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +187,7 @@
 			children = (
 				74E2F0C721AC0E550092FEEF /* Profile.swift */,
 				74E2F0CD21AC2EFF0092FEEF /* Auth.swift */,
+				74E2F0D321AC59C10092FEEF /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				74E2F0CC21AC17650092FEEF /* APIClient.swift in Sources */,
 				745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */,
 				7415AEDC21A5D1660042674A /* WSClient.swift in Sources */,
+				74E2F0D421AC59C10092FEEF /* Message.swift in Sources */,
 				7400C74A21A153F200DFD5A3 /* ViewController.swift in Sources */,
 				74E2F0D021AC37470092FEEF /* XibView.swift in Sources */,
 				7400C74821A153F200DFD5A3 /* AppDelegate.swift in Sources */,

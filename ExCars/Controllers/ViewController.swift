@@ -37,7 +37,7 @@ class ViewController: UIViewController {
 
         wsClient.delegate = self
         
-        profileView.isHidden = true
+        profileView.hide()
         profileView.wsClient = wsClient
     }
 
@@ -84,8 +84,8 @@ extension ViewController: CLLocationManagerDelegate {
 extension ViewController: GMSMapViewDelegate {
 
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        if let userData = marker.userData as? [String:Any] {
-            APIClient.profile(uid: userData["uid"] as! String) { result in
+        if let userData = marker.userData as? WSMapPayload {
+            APIClient.profile(uid: userData.uid) { result in
                 switch result {
                 case .success(let profile):
                     self.profileView.show(profile: profile)
@@ -108,45 +108,23 @@ extension ViewController: GMSMapViewDelegate {
 
 extension ViewController: WSClientDelegate {
 
-    func didRecieveDataUpdate(type: String, data: [[String : Any]]) {
-        switch type {
-        case "MAP":
-            drawMarkers(data: data)
-        default:
-            print("Unknown type: \(type)")
-        }
-    }
-
-    func didRecieveDataUpdate(type: String, data: [String : Any]) {
-
-    }
-
-    func drawMarkers(data: [[String: Any]]) {
+    func didReceiveDataUpdate(data: [WSMapPayload]) {
         mapView.clear()
-
+        
         let carIcon = UIImage(named: "car")
         let hitchhikerIcon = UIImage(named: "hitchhiker")
         
         for item in data {
-            guard let latitude = (item["latitude"] as? NSString)?.doubleValue else {
-                continue
-            }
-            guard let longitude = (item["longitude"] as? NSString)?.doubleValue else {
-                continue
-            }
-
-            let position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            let position = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude)
             let marker = GMSMarker(position: position)
-
-            switch item["role"] as? String {
-            case "driver":
+            
+            switch item.role {
+            case .driver:
                 marker.icon = carIcon
-            case "hitchhiker":
+            case .hitchhiker:
                 marker.icon = hitchhikerIcon
-            default:
-                break
             }
-
+            
             marker.userData = item
             marker.map = mapView
         }
