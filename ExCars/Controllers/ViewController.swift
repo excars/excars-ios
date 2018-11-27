@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var profileView: ProfileView!
     @IBOutlet weak var waitingView: WaitingView!
     @IBOutlet weak var successView: SuccessView!
+    @IBOutlet weak var notificationView: NotificationView!
     
     var locationManager = CLLocationManager()
     let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
@@ -44,6 +45,9 @@ class ViewController: UIViewController {
         
         waitingView.hide()
         successView.hide()
+        
+        notificationView.hide()
+        notificationView.wsClient = wsClient
     }
 
 }
@@ -150,6 +154,18 @@ extension ViewController: WSClientDelegate {
         waitingView.hide()
         successView.show(text: "Offer for a ride accepted!")
         print("OFFER ACCEPTED")
+    }
+    
+    func didReceiveDataUpdate(data: WSRideOffer) {
+        APIClient.profile(uid: data.data.uid) { result in
+            switch result {
+            case .success(let profile):
+                self.notificationView.show(profile: profile)
+            case .failure(let error):
+                print("ERROR")
+                print(error)
+            }
+        }
     }
 
 }

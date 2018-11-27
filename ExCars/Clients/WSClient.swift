@@ -13,6 +13,7 @@ import Starscream
 protocol WSClientDelegate: class {
     func didReceiveDataUpdate(data: [WSMapPayload])
     func didReceiveDataUpdate(data: WSOfferRideAccepted)
+    func didReceiveDataUpdate(data: WSRideOffer)
     func didSendMessage(type: MessageType)
 }
 
@@ -69,6 +70,18 @@ class WSClient {
         delegate?.didSendMessage(type: MessageType.offerRide)
     }
     
+    func acceptOffer(uid: String) {
+        let payload = WSRideOfferPayload(uid: uid)
+        
+        guard let data = try? encoder.encode(WSAcceptOfferRide(data: payload)) else {
+            print("CANT ENCODE OFFER RIDE ACCEPTED")
+            return
+        }
+        
+        socket.write(data: data)
+        delegate?.didSendMessage(type: MessageType.acceptOfferRide)
+    }
+    
     func requestRide(uid: String) {
         print("REQUEST RIDE \(uid)")
     }
@@ -89,15 +102,20 @@ extension WSClient: WebSocketDelegate {
         switch message.type {
         case .map:
             guard let wsMap = try? decoder.decode(WSMap.self, from: data) else {
+                print("MAP FAILED TO DECODE")
                 break
             }
             delegate?.didReceiveDataUpdate(data: wsMap.data)
         case .offerRideAccepted:
             guard let wsOfferRideAccepted = try? decoder.decode(WSOfferRideAccepted.self, from: data) else {
-                print("FAILED")
                 break
             }
             delegate?.didReceiveDataUpdate(data: wsOfferRideAccepted)
+        case .rideOffer:
+            guard let wsRideOffer = try? decoder.decode(WSRideOffer.self, from: data) else {
+                break
+            }
+            delegate?.didReceiveDataUpdate(data: wsRideOffer)
         default:
             print("NO MESSAGE TYPE \(message.type.rawValue)")
             break

@@ -13,7 +13,9 @@ enum MessageType: String, Codable {
     case location = "LOCATION"
     case map = "MAP"
     case offerRide = "OFFER_FOR_A_RIDE"
+    case acceptOfferRide = "ACCEPT_OFFER_FOR_A_RIDE"
     case offerRideAccepted = "OFFER_FOR_A_RIDE_ACCEPTED"
+    case rideOffer = "RIDE_OFFER"
 }
 
 
@@ -64,4 +66,21 @@ struct WSOfferRidePayload: Codable {
 struct WSOfferRideAccepted: Codable {
     let type = MessageType.offerRideAccepted
     let data: WSOfferRidePayload
+}
+
+
+struct WSRideOffer: Codable {
+    let type = MessageType.rideOffer
+    let data: WSRideOfferPayload
+}
+
+
+struct WSRideOfferPayload: Codable {
+    let uid: String
+}
+
+
+struct WSAcceptOfferRide: Codable {
+    let type = MessageType.acceptOfferRide
+    let data: WSRideOfferPayload
 }

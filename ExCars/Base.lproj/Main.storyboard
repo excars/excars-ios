@@ -36,6 +36,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pKp-eB-Gw5" customClass="NotificationView" customModule="ExCars" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="429" width="375" height="238"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -48,6 +53,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="AKS-yC-gQ3" id="dV9-nh-CZy"/>
+                        <outlet property="notificationView" destination="pKp-eB-Gw5" id="JNu-wP-ku4"/>
                         <outlet property="profileView" destination="QHb-5F-TGz" id="0Tk-mk-WvT"/>
                         <outlet property="successView" destination="bDb-i6-1ZI" id="lXI-ab-bJK"/>
                         <outlet property="waitingView" destination="iVo-pQ-VtJ" id="Qp6-Iz-bFh"/>
