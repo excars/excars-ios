@@ -14,11 +14,15 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var profileView: ProfileView!
+    @IBOutlet weak var waitingView: WaitingView!
+    @IBOutlet weak var successView: SuccessView!
+    @IBOutlet weak var notificationView: NotificationView!
+    @IBOutlet weak var roleView: RoleView!
     
     var locationManager = CLLocationManager()
     let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
     let zoomLevel: Float = 15.0
-    
+
     let wsClient = WSClient()
 
     override func viewDidLoad() {
@@ -33,12 +37,17 @@ class ViewController: UIViewController {
         mapView.camera = GMSCameraPosition(target: defaultLocation, zoom: zoomLevel, bearing: 0, viewingAngle: 0)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isHidden = true
+        mapView.padding = UIEdgeInsets(top: self.view.safeAreaInsets.top, left: 0, bottom: 52, right: 0)
         mapView.delegate = self
 
         wsClient.delegate = self
         
         profileView.hide()
-        profileView.wsClient = wsClient
+        waitingView.hide()
+        successView.hide()
+        notificationView.hide()
+
+        roleView.show()
     }
 
 }
@@ -101,12 +110,17 @@ extension ViewController: GMSMapViewDelegate {
 
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         profileView.hide()
+        successView.hide()
     }
 
 }
 
 
 extension ViewController: WSClientDelegate {
+
+    func didSendMessage(type: MessageType) {
+
+    }
 
     func didReceiveDataUpdate(data: [WSMapPayload]) {
         mapView.clear()
@@ -128,6 +142,17 @@ extension ViewController: WSClientDelegate {
             marker.userData = item
             marker.map = mapView
         }
+    }
+
+    func didReceiveDataUpdate(data: WSOfferRideAccepted) {
+        waitingView.hide()
+        successView.show(text: "Offer for a ride accepted!")
+        print("OFFER ACCEPTED")
+    }
+    
+    func didReceiveDataUpdate(data: WSRideOffer) {
+        print("SHOW RIDE OFFER")
+        self.notificationView.show(rideOffer: data.data)
     }
 
 }

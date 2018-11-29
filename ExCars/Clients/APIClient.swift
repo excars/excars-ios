@@ -28,5 +28,22 @@ class APIClient {
     static func profile(uid: String, completion: @escaping (Result<Profile>)->Void) {
         performRequest(route: APIRouter.profile(uid), completion: completion)
     }
+    
+    static func join(role: Role, destination: Destination, completion: @escaping (Result<EmptyResponse>)->Void) {
+        performRequest(route: APIRouter.join(role, destination), completion: completion)
+    }
 
+    static func ride(to: String, completion: @escaping (Result<EmptyResponse>)->Void) {
+        performRequest(route: APIRouter.rides(to), completion: completion)
+    }
+    
+    static func acceptRide(uid: String, completion: @escaping (Result<EmptyResponse>)->Void) {
+        performRequest(route: APIRouter.updateRide(uid, "accept"), completion: completion)
+    }
+
+}
+
+
+struct EmptyResponse: Codable {
+    let status: String
 }
