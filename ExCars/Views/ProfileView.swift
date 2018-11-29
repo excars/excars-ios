@@ -24,8 +24,7 @@ class ProfileView: XibView {
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var plate: UILabel!
     @IBOutlet weak var submitButton: UIButton!
-    
-    var wsClient: WSClient?
+
     var profile: Profile?
     
     func show(profile: Profile) {
@@ -33,7 +32,9 @@ class ProfileView: XibView {
 
         name.text = profile.name
         destination.text = profile.destination?.name.uppercased()
-        distance.text = "\(profile.distance) km away"
+        if distance != nil {
+            distance.text = "\(profile.distance) km away"
+        }
         avatar?.sd_setImage(with: profile.avatar, placeholderImage: UIImage(named: profile.role.rawValue))
         
         switch profile.role {
@@ -54,12 +55,15 @@ class ProfileView: XibView {
 
     @IBAction func submit() {
         if let profile = profile {
-            switch profile.role {
-            case .driver:
-                wsClient?.requestRide(uid: profile.uid)
-            case .hitchhiker:
-                wsClient?.offerRide(uid: profile.uid)
+            APIClient.ride(to: profile.uid) { result in
+                switch result {
+                case .success(_):
+                    break
+                case .failure(let error):
+                    print("RIDE REQUEST ERROR: \(error)")
+                }
             }
+
         }
     }
 

@@ -43,16 +43,11 @@ class ViewController: UIViewController {
         wsClient.delegate = self
         
         profileView.hide()
-        profileView.wsClient = wsClient
-        
         waitingView.hide()
         successView.hide()
-        
         notificationView.hide()
-        notificationView.wsClient = wsClient
-        
+
         roleView.show()
-        roleView.wsClient = wsClient
     }
 
 }
@@ -124,15 +119,7 @@ extension ViewController: GMSMapViewDelegate {
 extension ViewController: WSClientDelegate {
 
     func didSendMessage(type: MessageType) {
-        switch type {
-        case .offerRide:
-            waitingView.show()
-            profileView.hide()
-        case .role:
-            roleView.hide()
-        default:
-            break
-        }
+
     }
 
     func didReceiveDataUpdate(data: [WSMapPayload]) {
@@ -164,15 +151,8 @@ extension ViewController: WSClientDelegate {
     }
     
     func didReceiveDataUpdate(data: WSRideOffer) {
-        APIClient.profile(uid: data.data.uid) { result in
-            switch result {
-            case .success(let profile):
-                self.notificationView.show(profile: profile)
-            case .failure(let error):
-                print("ERROR")
-                print(error)
-            }
-        }
+        print("SHOW RIDE OFFER")
+        self.notificationView.show(rideOffer: data.data)
     }
 
 }

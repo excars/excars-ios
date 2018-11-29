@@ -40,19 +40,7 @@ class WSClient {
         socket.disconnect(forceTimeout: 0)
         socket.delegate = nil
     }
-    
-    func selectRole(role: Role) {
-        let payload = WSRolePayload(role: role)
-        
-        guard let data = try? encoder.encode(WSRole(data: payload)) else {
-            print("CANT ENCODE ROLE")
-            return
-        }
-        
-        socket.write(data: data)
-        delegate?.didSendMessage(type: MessageType.role)
-    }
-    
+
     func sendLocation(location: CLLocation) {
         let payload = WSLocationPayload(
             latitude: location.coordinate.latitude,
@@ -68,30 +56,6 @@ class WSClient {
 
         socket.write(data: data)
         delegate?.didSendMessage(type: MessageType.location)
-    }
-    
-    func offerRide(uid: String) {
-        let payload = WSOfferRidePayload(uid: uid)
-        
-        guard let data = try? encoder.encode(WSOfferRide(data: payload)) else {
-            print("CANT ENCODE OFFER RIDE")
-            return
-        }
-        
-        socket.write(data: data)
-        delegate?.didSendMessage(type: MessageType.offerRide)
-    }
-    
-    func acceptOffer(uid: String) {
-        let payload = WSRideOfferPayload(uid: uid)
-        
-        guard let data = try? encoder.encode(WSAcceptOfferRide(data: payload)) else {
-            print("CANT ENCODE OFFER RIDE ACCEPTED")
-            return
-        }
-        
-        socket.write(data: data)
-        delegate?.didSendMessage(type: MessageType.acceptOfferRide)
     }
     
     func requestRide(uid: String) {
@@ -114,17 +78,19 @@ extension WSClient: WebSocketDelegate {
         switch message.type {
         case .map:
             guard let wsMap = try? decoder.decode(WSMap.self, from: data) else {
-                print("MAP FAILED TO DECODE")
+                print("MAP FAILED TO DECODE: \(data)")
                 break
             }
             delegate?.didReceiveDataUpdate(data: wsMap.data)
         case .offerRideAccepted:
             guard let wsOfferRideAccepted = try? decoder.decode(WSOfferRideAccepted.self, from: data) else {
+                print("FAILED TO DECODE RIDE ACCEPTED")
                 break
             }
             delegate?.didReceiveDataUpdate(data: wsOfferRideAccepted)
         case .rideOffer:
             guard let wsRideOffer = try? decoder.decode(WSRideOffer.self, from: data) else {
+                print("FAILED TO RIDE OFFER")
                 break
             }
             delegate?.didReceiveDataUpdate(data: wsRideOffer)
@@ -135,7 +101,7 @@ extension WSClient: WebSocketDelegate {
     }
 
     func websocketDidConnect(socket: WebSocketClient) {
-        
+
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {

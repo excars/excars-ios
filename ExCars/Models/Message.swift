@@ -10,31 +10,16 @@ import Foundation
 
 
 enum MessageType: String, Codable {
-    case role = "ROLE"
     case location = "LOCATION"
     case map = "MAP"
 
-    case offerRide = "OFFER_FOR_A_RIDE"
-    case acceptOfferRide = "ACCEPT_OFFER_FOR_A_RIDE"
-
-    case offerRideAccepted = "OFFER_FOR_A_RIDE_ACCEPTED"
+    case offerRideAccepted = "RIDE_ACCEPTED"
     case rideOffer = "RIDE_OFFER"
 }
 
 
 struct WSMessage: Codable {
     let type: MessageType
-}
-
-
-struct WSRole: Codable {
-    let type = MessageType.role
-    let data: WSRolePayload
-}
-
-
-struct WSRolePayload: Codable {
-    let role: Role
 }
 
 
@@ -66,14 +51,12 @@ struct WSMapPayload: Codable {
 }
 
 
-struct WSOfferRide: Codable {
-    let type = MessageType.offerRide
-    let data: WSOfferRidePayload
-}
-
-
 struct WSOfferRidePayload: Codable {
     let uid: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case uid = "ride_uid"
+    }
 }
 
 
@@ -91,10 +74,12 @@ struct WSRideOffer: Codable {
 
 struct WSRideOfferPayload: Codable {
     let uid: String
-}
-
-
-struct WSAcceptOfferRide: Codable {
-    let type = MessageType.acceptOfferRide
-    let data: WSRideOfferPayload
+    let from: String
+    let to: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case uid = "ride_uid"
+        case from
+        case to
+    }
 }

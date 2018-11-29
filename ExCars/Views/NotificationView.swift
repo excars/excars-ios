@@ -23,24 +23,35 @@ class NotificationView: XibView {
     @IBOutlet weak var destination: UILabel!
     
     var profile: Profile?
-    var wsClient: WSClient?
+    var rideOffer: WSRideOfferPayload?
     
-    func show(profile: Profile) {
-        self.profile = profile
-        
+    func show(rideOffer: WSRideOfferPayload) {
+        self.rideOffer = rideOffer
+
+        APIClient.profile(uid: rideOffer.from) { result in
+            switch result {
+            case .success(let profile):
+                self.profile = profile
+                self.renderProfile(profile: profile)
+                self.isHidden = false
+            case .failure(let error):
+                print("ERROR \(error)")
+            }
+        }
+    }
+    
+    private func renderProfile(profile: Profile) {
         name.text = profile.name
         destination.text = profile.destination?.name.uppercased()
         distance.text = "\(profile.distance) km away"
         avatar?.sd_setImage(with: profile.avatar, placeholderImage: UIImage(named: profile.role.rawValue))
-        
+
         switch profile.role {
         case .driver:
             plate.text = profile.plate
         case .hitchhiker:
             plate.text = ""
         }
-        
-        isHidden = false
     }
     
     func hide() {
@@ -48,12 +59,14 @@ class NotificationView: XibView {
     }
     
     @IBAction func accept() {
-        if profile != nil {
-            // TODO: wrong profile UID here.
-            wsClient?.acceptOffer(uid: profile!.uid)
+        APIClient.acceptRide(uid: rideOffer!.uid) { result in
+            switch result {
+            case .success:
+                self.isHidden = true
+            case .failure(let error):
+                print ("ACCEPT RIDE ERROR \(error)")
+            }
         }
-        
-        isHidden = true
     }
     
     @IBAction func decline() {

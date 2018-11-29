@@ -15,13 +15,15 @@ struct Profile: Codable {
     let avatar: URL
     let role: Role
     let destination: Destination?
-    let distance: Double
+    let distance: Double?
     let plate: String
 }
 
 
 struct Destination: Codable {
     let name: String
+    let latitude: Double
+    let longitude: Double
 }
 
 
