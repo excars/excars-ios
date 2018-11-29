@@ -41,6 +41,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="io7-kS-eRi" customClass="RoleView" customModule="ExCars" customModuleProvider="target">
+                                <rect key="frame" x="-0.31500000000005457" y="615" width="375.00000000000017" height="52.000000000000014"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -55,6 +60,7 @@
                         <outlet property="mapView" destination="AKS-yC-gQ3" id="dV9-nh-CZy"/>
                         <outlet property="notificationView" destination="pKp-eB-Gw5" id="JNu-wP-ku4"/>
                         <outlet property="profileView" destination="QHb-5F-TGz" id="0Tk-mk-WvT"/>
+                        <outlet property="roleView" destination="io7-kS-eRi" id="h7x-ai-yM2"/>
                         <outlet property="successView" destination="bDb-i6-1ZI" id="lXI-ab-bJK"/>
                         <outlet property="waitingView" destination="iVo-pQ-VtJ" id="Qp6-Iz-bFh"/>
                     </connections>

@@ -10,10 +10,13 @@ import Foundation
 
 
 enum MessageType: String, Codable {
+    case role = "ROLE"
     case location = "LOCATION"
     case map = "MAP"
+
     case offerRide = "OFFER_FOR_A_RIDE"
     case acceptOfferRide = "ACCEPT_OFFER_FOR_A_RIDE"
+
     case offerRideAccepted = "OFFER_FOR_A_RIDE_ACCEPTED"
     case rideOffer = "RIDE_OFFER"
 }
@@ -21,6 +24,17 @@ enum MessageType: String, Codable {
 
 struct WSMessage: Codable {
     let type: MessageType
+}
+
+
+struct WSRole: Codable {
+    let type = MessageType.role
+    let data: WSRolePayload
+}
+
+
+struct WSRolePayload: Codable {
+    let role: Role
 }
 
 

@@ -41,6 +41,18 @@ class WSClient {
         socket.delegate = nil
     }
     
+    func selectRole(role: Role) {
+        let payload = WSRolePayload(role: role)
+        
+        guard let data = try? encoder.encode(WSRole(data: payload)) else {
+            print("CANT ENCODE ROLE")
+            return
+        }
+        
+        socket.write(data: data)
+        delegate?.didSendMessage(type: MessageType.role)
+    }
+    
     func sendLocation(location: CLLocation) {
         let payload = WSLocationPayload(
             latitude: location.coordinate.latitude,

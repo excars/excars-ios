@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var waitingView: WaitingView!
     @IBOutlet weak var successView: SuccessView!
     @IBOutlet weak var notificationView: NotificationView!
+    @IBOutlet weak var roleView: RoleView!
     
     var locationManager = CLLocationManager()
     let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
@@ -36,6 +37,7 @@ class ViewController: UIViewController {
         mapView.camera = GMSCameraPosition(target: defaultLocation, zoom: zoomLevel, bearing: 0, viewingAngle: 0)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isHidden = true
+        mapView.padding = UIEdgeInsets(top: self.view.safeAreaInsets.top, left: 0, bottom: 52, right: 0)
         mapView.delegate = self
 
         wsClient.delegate = self
@@ -48,6 +50,9 @@ class ViewController: UIViewController {
         
         notificationView.hide()
         notificationView.wsClient = wsClient
+        
+        roleView.show()
+        roleView.wsClient = wsClient
     }
 
 }
@@ -123,6 +128,8 @@ extension ViewController: WSClientDelegate {
         case .offerRide:
             waitingView.show()
             profileView.hide()
+        case .role:
+            roleView.hide()
         default:
             break
         }
