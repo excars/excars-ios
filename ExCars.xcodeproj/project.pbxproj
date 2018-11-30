@@ -16,6 +16,8 @@
 		7400C76821A153F500DFD5A3 /* ExCarsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400C76721A153F500DFD5A3 /* ExCarsUITests.swift */; };
 		7415AEDC21A5D1660042674A /* WSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415AEDB21A5D1660042674A /* WSClient.swift */; };
 		7415AEDE21A5D83B0042674A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415AEDD21A5D83B0042674A /* Secrets.swift */; };
+		744E6B8821B12CF4002CC847 /* BottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744E6B8721B12CF4002CC847 /* BottomViewController.swift */; };
+		744E6B8A21B14038002CC847 /* BottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744E6B8921B14038002CC847 /* BottomViewController.xib */; };
 		745418ED21A35BCA00EF3F09 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EC21A35BCA00EF3F09 /* APIRouter.swift */; };
 		745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EE21A360EA00EF3F09 /* KeyChain.swift */; };
 		747FDFEF21A19B8E00BD8D75 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */; };
@@ -32,6 +34,9 @@
 		74E2F0DE21AC9AEA0092FEEF /* SuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74E2F0DD21AC9AEA0092FEEF /* SuccessView.xib */; };
 		74E2F0E021AD3F8D0092FEEF /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74E2F0DF21AD3F8D0092FEEF /* NotificationView.xib */; };
 		74E2F0E221AD3FA10092FEEF /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0E121AD3FA10092FEEF /* NotificationView.swift */; };
+		74F7CD0821B08053003463A9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0721B08053003463A9 /* RootViewController.swift */; };
+		74F7CD0A21B08145003463A9 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0921B08145003463A9 /* LaunchViewController.swift */; };
+		74F7CD0C21B08866003463A9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0B21B08865003463A9 /* MapViewController.swift */; };
 		74FF005221AE9A8D00D588BA /* RoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74FF005121AE9A8D00D588BA /* RoleView.xib */; };
 		74FF005421AE9BC000D588BA /* RoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FF005321AE9BC000D588BA /* RoleView.swift */; };
 		BD2E4109E5C82AAC0AC7AD28 /* Pods_ExCars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA4426F5266D8890A9B1B9D /* Pods_ExCars.framework */; };
@@ -72,6 +77,8 @@
 		7400C76921A153F500DFD5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7415AEDB21A5D1660042674A /* WSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSClient.swift; sourceTree = "<group>"; };
 		7415AEDD21A5D83B0042674A /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		744E6B8721B12CF4002CC847 /* BottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomViewController.swift; sourceTree = "<group>"; };
+		744E6B8921B14038002CC847 /* BottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomViewController.xib; sourceTree = "<group>"; };
 		745418EC21A35BCA00EF3F09 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		745418EE21A360EA00EF3F09 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +95,9 @@
 		74E2F0DD21AC9AEA0092FEEF /* SuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessView.xib; sourceTree = "<group>"; };
 		74E2F0DF21AD3F8D0092FEEF /* NotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
 		74E2F0E121AD3FA10092FEEF /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		74F7CD0721B08053003463A9 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		74F7CD0921B08145003463A9 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		74F7CD0B21B08865003463A9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		74FF005121AE9A8D00D588BA /* RoleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoleView.xib; sourceTree = "<group>"; };
 		74FF005321AE9BC000D588BA /* RoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleView.swift; sourceTree = "<group>"; };
 		C4F3098860B17DAC3D4991BC /* Pods_ExCarsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCarsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,6 +204,11 @@
 			children = (
 				747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */,
 				7400C74921A153F200DFD5A3 /* ViewController.swift */,
+				74F7CD0721B08053003463A9 /* RootViewController.swift */,
+				74F7CD0921B08145003463A9 /* LaunchViewController.swift */,
+				74F7CD0B21B08865003463A9 /* MapViewController.swift */,
+				744E6B8721B12CF4002CC847 /* BottomViewController.swift */,
+				744E6B8921B14038002CC847 /* BottomViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -354,6 +369,7 @@
 			files = (
 				74E2F0DE21AC9AEA0092FEEF /* SuccessView.xib in Resources */,
 				74E2F0E021AD3F8D0092FEEF /* NotificationView.xib in Resources */,
+				744E6B8A21B14038002CC847 /* BottomViewController.xib in Resources */,
 				74FF005221AE9A8D00D588BA /* RoleView.xib in Resources */,
 				74E2F0D621AC91100092FEEF /* WaitingView.xib in Resources */,
 				7400C75221A153F500DFD5A3 /* LaunchScreen.storyboard in Resources */,
@@ -471,6 +487,8 @@
 			files = (
 				74E2F0CE21AC2EFF0092FEEF /* Auth.swift in Sources */,
 				745418ED21A35BCA00EF3F09 /* APIRouter.swift in Sources */,
+				74F7CD0821B08053003463A9 /* RootViewController.swift in Sources */,
+				74F7CD0C21B08866003463A9 /* MapViewController.swift in Sources */,
 				74E2F0D821AC918E0092FEEF /* WaitingView.swift in Sources */,
 				74E2F0E221AD3FA10092FEEF /* NotificationView.swift in Sources */,
 				74E2F0C821AC0E550092FEEF /* Profile.swift in Sources */,
@@ -481,6 +499,8 @@
 				74E2F0CC21AC17650092FEEF /* APIClient.swift in Sources */,
 				745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */,
 				7415AEDC21A5D1660042674A /* WSClient.swift in Sources */,
+				744E6B8821B12CF4002CC847 /* BottomViewController.swift in Sources */,
+				74F7CD0A21B08145003463A9 /* LaunchViewController.swift in Sources */,
 				74E2F0D421AC59C10092FEEF /* Message.swift in Sources */,
 				7400C74A21A153F200DFD5A3 /* ViewController.swift in Sources */,
 				74E2F0D021AC37470092FEEF /* XibView.swift in Sources */,
