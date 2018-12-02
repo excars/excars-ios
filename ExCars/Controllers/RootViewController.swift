@@ -11,6 +11,7 @@ import UIKit
 class RootViewController: UIViewController {
 
     private var current: UIViewController
+    private var currentUser: User?
     
     init() {
         current = LaunchViewController()
@@ -18,8 +19,7 @@ class RootViewController: UIViewController {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        current = LaunchViewController()
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -36,7 +36,16 @@ class RootViewController: UIViewController {
     }
 
     func toMap() {
-        toController(controller: MapViewController())
+        APIClient.me() { result in
+            switch result {
+            case .success(let me):
+                self.currentUser = me.me
+                self.toController(controller: MapViewController(currentUser: me.me))
+            case .failure(let error):
+                print("ME ERROR \(error)")
+                return
+            }
+        }
     }
 
     private func toController(controller: UIViewController) {

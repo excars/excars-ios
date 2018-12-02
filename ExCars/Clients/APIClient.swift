@@ -25,6 +25,10 @@ class APIClient {
         performRequest(route: APIRouter.auth(idToken), completion: completion)
     }
     
+    static func me(completion: @escaping (Result<Me>)->Void) {
+        performRequest(route: APIRouter.me, completion: completion)
+    }
+    
     static func profile(uid: String, completion: @escaping (Result<Profile>)->Void) {
         performRequest(route: APIRouter.profile(uid), completion: completion)
     }

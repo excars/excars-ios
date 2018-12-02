@@ -1,40 +1,39 @@
 //
-//  BottomViewController.swift
+//  BottomeViewController.swift
 //  ExCars
 //
-//  Created by Леша on 30/11/2018.
+//  Created by Леша on 02/12/2018.
 //  Copyright © 2018 Леша. All rights reserved.
 //
 
 import UIKit
 
 class BottomViewController: UIViewController {
-    let Num = [
-        Destination(name: "Eleftherias", latitude: 34.674297, longitude: 33.039742),
-        Destination(name: "Porto Bello", latitude: 34.6709681, longitude: 33.0396582),
-        Destination(name: "Ellinon", latitude: 34.673039, longitude: 33.039255),
-    ]
 
-    @IBOutlet weak var officeChoices: UIPickerView!
+    private var _fullHeight: CGFloat = 0
+    var fullHeight: CGFloat {
+        get { return _fullHeight }
+        set { _fullHeight = newValue }
+    }
+    
+    private var _height: CGFloat = 0
+    var height: CGFloat {
+        get { return _height }
+        set { _height = newValue }
+    }
     
     var fullView: CGFloat {
-        return UIScreen.main.bounds.height - 250
+        return UIScreen.main.bounds.height - fullHeight
     }
     var partialView: CGFloat {
-        return UIScreen.main.bounds.height - 80
+        return UIScreen.main.bounds.height - height
     }
-    
+
+    var allowDismiss = false
+    var openFullView = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
-        
-        let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomViewController.panGesture))
-        self.view.addGestureRecognizer(gesture)
-        
-        officeChoices.dataSource = self
-        officeChoices.delegate = self
-        officeChoices.selectRow(1, inComponent: 0, animated: true)
-        
     }
 
     @objc func panGesture(_ recognizer: UIPanGestureRecognizer) {
@@ -52,13 +51,19 @@ class BottomViewController: UIViewController {
             duration = duration > 1.3 ? 1 : duration
             
             UIView.animate(withDuration: duration, delay: 0.0, options: [.allowUserInteraction], animations: {
-                if  velocity.y >= 0 {
+                if velocity.y >= 0 {
                     self.view.frame = CGRect(x: 0, y: self.partialView, width: self.view.frame.width, height: self.view.frame.height)
                 } else {
                     self.view.frame = CGRect(x: 0, y: self.fullView, width: self.view.frame.width, height: self.view.frame.height)
                 }
                 
-            }, completion: nil)
+            }, completion: {_ in
+                if velocity.y >= 0 && self.allowDismiss {
+                    self.willMove(toParent: nil)
+                    self.view.removeFromSuperview()
+                    self.removeFromParent()
+                }
+            })
         }
     }
     
@@ -72,11 +77,11 @@ class BottomViewController: UIViewController {
         
         UIView.animate(withDuration: 0.6, animations: { [weak self] in
             let frame = self?.view.frame
-            let yComponent = self?.partialView
+            let yComponent = (self?.openFullView ?? false) ? self?.fullView : self?.partialView
             self?.view.frame = CGRect(x: 0, y: yComponent!, width: frame!.width, height: frame!.height)
         })
     }
-
+    
     func prepareBackgroundView(){
         let blurEffect = UIBlurEffect.init(style: .light)
         let visualEffect = UIVisualEffectView.init(effect: blurEffect)
@@ -89,15 +94,10 @@ class BottomViewController: UIViewController {
         view.insertSubview(bluredView, at: 0)
     }
     
-    @IBAction func drive() {
-        print(officeChoices.selectedRow(inComponent: 0))
+    func render() {
+        let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomViewController.panGesture))
+        self.view.addGestureRecognizer(gesture)
+        self.viewWillAppear(true)
     }
-    
-}
 
-
-extension BottomViewController: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {return 1}
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {return Num.count}
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {return Num[row].name}
 }

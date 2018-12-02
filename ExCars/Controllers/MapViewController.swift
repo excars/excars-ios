@@ -17,8 +17,20 @@ class MapViewController: UIViewController {
     let zoomLevel: Float = 15.0
 
     var mapView = GMSMapView()
-    var roleView: RoleView?
     
+    let currentUser: User!
+    
+    let wsClient = WSClient()
+
+    init(currentUser: User) {
+        self.currentUser = currentUser
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,21 +42,30 @@ class MapViewController: UIViewController {
 
         let height = view.frame.height
         let width  = view.frame.width
+
         mapView.frame = CGRect(x: 0, y: 0, width: width, height: height)
         mapView.camera = GMSCameraPosition(target: defaultLocation, zoom: zoomLevel, bearing: 0, viewingAngle: 0)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isHidden = true
         mapView.padding = UIEdgeInsets(top: self.view.safeAreaInsets.top, left: 0, bottom: 80, right: 0)
+        mapView.delegate = self
         
         view.addSubview(mapView)
-        self.view.backgroundColor = UIColor.red
 
-        let bottomVC = BottomViewController()
-        self.addChild(bottomVC)
-        self.view.addSubview(bottomVC.view)
-        bottomVC.didMove(toParent: self)
-        bottomVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
+        let roleVC = RoleViewController(user: currentUser)
+        presentController(vc: roleVC)
+        
+        wsClient.delegate = self
+    }
+    
+    private func presentController(vc: UIViewController) {
+        let height = view.frame.height
+        let width  = view.frame.width
 
+        self.addChild(vc)
+        self.view.addSubview(vc.view)
+        vc.didMove(toParent: self)
+        vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
     }
 
 }
@@ -67,6 +88,8 @@ extension MapViewController: CLLocationManagerDelegate {
         } else {
             mapView.animate(to: camera)
         }
+        
+        wsClient.sendLocation(location: location)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -81,4 +104,60 @@ extension MapViewController: CLLocationManagerDelegate {
         }
     }
 
+}
+
+
+extension MapViewController: GMSMapViewDelegate {
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        guard let userData = marker.userData as? WSMapPayload else {
+            return false
+        }
+        
+        let profileVC = ProfileViewController(uid: userData.uid, wsClient: wsClient)
+        presentController(vc: profileVC)
+
+        return false
+    }
+    
+}
+
+
+extension MapViewController: WSClientDelegate {
+    
+    func didSendMessage(type: MessageType) {
+        
+    }
+    
+    func didReceiveDataUpdate(data: [WSMapPayload]) {
+        mapView.clear()
+        
+        let carIcon = UIImage(named: "car")
+        let hitchhikerIcon = UIImage(named: "hitchhiker")
+        
+        for item in data {
+            let position = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude)
+            let marker = GMSMarker(position: position)
+            
+            switch item.role {
+            case .driver:
+                marker.icon = carIcon
+            case .hitchhiker:
+                marker.icon = hitchhikerIcon
+            }
+            
+            marker.userData = item
+            marker.map = mapView
+        }
+    }
+    
+    func didReceiveDataUpdate(data: WSOfferRideAccepted) {
+    }
+    
+    func didReceiveDataUpdate(data: WSRideOffer) {
+        print("RIDE OFFER!")
+        let notificationVC = NotificationViewController(rideOffer: data.data)
+        presentController(vc: notificationVC)
+    }
+    
 }

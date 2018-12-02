@@ -25,9 +25,3 @@ struct Destination: Codable {
     let latitude: Double
     let longitude: Double
 }
-
-
-enum Role: String, Codable {
-    case driver = "driver"
-    case hitchhiker = "hitchhiker"
-}

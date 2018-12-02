@@ -23,21 +23,16 @@ class NotificationView: XibView {
     @IBOutlet weak var destination: UILabel!
     
     var profile: Profile?
-    var rideOffer: WSRideOfferPayload?
+    var rideUid: String
     
-    func show(rideOffer: WSRideOfferPayload) {
-        self.rideOffer = rideOffer
-
-        APIClient.profile(uid: rideOffer.from) { result in
-            switch result {
-            case .success(let profile):
-                self.profile = profile
-                self.renderProfile(profile: profile)
-                self.isHidden = false
-            case .failure(let error):
-                print("ERROR \(error)")
-            }
-        }
+    init(profile: Profile, rideUid: String, frame: CGRect) {
+        self.rideUid = rideUid
+        super.init(frame: frame)
+        self.renderProfile(profile: profile)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func renderProfile(profile: Profile) {
@@ -59,7 +54,7 @@ class NotificationView: XibView {
     }
     
     @IBAction func accept() {
-        APIClient.acceptRide(uid: rideOffer!.uid) { result in
+        APIClient.acceptRide(uid: rideUid) { result in
             switch result {
             case .success:
                 self.isHidden = true

@@ -8,30 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		7400C74821A153F200DFD5A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400C74721A153F200DFD5A3 /* AppDelegate.swift */; };
-		7400C74A21A153F200DFD5A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400C74921A153F200DFD5A3 /* ViewController.swift */; };
-		7400C74D21A153F200DFD5A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7400C74B21A153F200DFD5A3 /* Main.storyboard */; };
 		7400C74F21A153F500DFD5A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7400C74E21A153F500DFD5A3 /* Assets.xcassets */; };
-		7400C75221A153F500DFD5A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7400C75021A153F500DFD5A3 /* LaunchScreen.storyboard */; };
 		7400C75D21A153F500DFD5A3 /* ExCarsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400C75C21A153F500DFD5A3 /* ExCarsTests.swift */; };
 		7400C76821A153F500DFD5A3 /* ExCarsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400C76721A153F500DFD5A3 /* ExCarsUITests.swift */; };
 		7415AEDC21A5D1660042674A /* WSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415AEDB21A5D1660042674A /* WSClient.swift */; };
 		7415AEDE21A5D83B0042674A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415AEDD21A5D83B0042674A /* Secrets.swift */; };
-		744E6B8821B12CF4002CC847 /* BottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744E6B8721B12CF4002CC847 /* BottomViewController.swift */; };
-		744E6B8A21B14038002CC847 /* BottomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744E6B8921B14038002CC847 /* BottomViewController.xib */; };
+		744E6B8821B12CF4002CC847 /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744E6B8721B12CF4002CC847 /* RoleViewController.swift */; };
 		745418ED21A35BCA00EF3F09 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EC21A35BCA00EF3F09 /* APIRouter.swift */; };
 		745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EE21A360EA00EF3F09 /* KeyChain.swift */; };
+		7462254521B48144001E3C40 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462254421B48144001E3C40 /* NotificationViewController.swift */; };
+		746E42BB21B40E2500F083C3 /* InRoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746E42BA21B40E2500F083C3 /* InRoleView.xib */; };
+		746E42BD21B40E3F00F083C3 /* InRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E42BC21B40E3F00F083C3 /* InRoleView.swift */; };
+		746E42BF21B4142100F083C3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E42BE21B4142100F083C3 /* ProfileViewController.swift */; };
+		746E42C121B4321A00F083C3 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E42C021B4321A00F083C3 /* Role.swift */; };
+		746E42C321B4352100F083C3 /* BottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E42C221B4352100F083C3 /* BottomViewController.swift */; };
 		747FDFEF21A19B8E00BD8D75 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */; };
 		74A21CB821A605A500982247 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74A21CB721A605A500982247 /* ProfileView.xib */; };
 		74A21CBA21A605B600982247 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A21CB921A605B600982247 /* ProfileView.swift */; };
+		74D3240B21B1779B0096963E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D3240A21B1779B0096963E /* User.swift */; };
 		74E2F0C821AC0E550092FEEF /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0C721AC0E550092FEEF /* Profile.swift */; };
 		74E2F0CC21AC17650092FEEF /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0CB21AC17650092FEEF /* APIClient.swift */; };
 		74E2F0CE21AC2EFF0092FEEF /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0CD21AC2EFF0092FEEF /* Auth.swift */; };
 		74E2F0D021AC37470092FEEF /* XibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0CF21AC37470092FEEF /* XibView.swift */; };
 		74E2F0D421AC59C10092FEEF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0D321AC59C10092FEEF /* Message.swift */; };
-		74E2F0D621AC91100092FEEF /* WaitingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74E2F0D521AC91100092FEEF /* WaitingView.xib */; };
-		74E2F0D821AC918E0092FEEF /* WaitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0D721AC918E0092FEEF /* WaitingView.swift */; };
-		74E2F0DA21AC98390092FEEF /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0D921AC98390092FEEF /* SuccessView.swift */; };
-		74E2F0DE21AC9AEA0092FEEF /* SuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74E2F0DD21AC9AEA0092FEEF /* SuccessView.xib */; };
 		74E2F0E021AD3F8D0092FEEF /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74E2F0DF21AD3F8D0092FEEF /* NotificationView.xib */; };
 		74E2F0E221AD3FA10092FEEF /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0E121AD3FA10092FEEF /* NotificationView.swift */; };
 		74F7CD0821B08053003463A9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0721B08053003463A9 /* RootViewController.swift */; };
@@ -64,10 +63,7 @@
 		3CDDA33E29E2D5384CF7A66C /* Pods-ExCars.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExCars.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExCars/Pods-ExCars.debug.xcconfig"; sourceTree = "<group>"; };
 		7400C74421A153F200DFD5A3 /* ExCars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExCars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7400C74721A153F200DFD5A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7400C74921A153F200DFD5A3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7400C74C21A153F200DFD5A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7400C74E21A153F500DFD5A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7400C75121A153F500DFD5A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7400C75321A153F500DFD5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7400C75821A153F500DFD5A3 /* ExCarsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExCarsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7400C75C21A153F500DFD5A3 /* ExCarsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCarsTests.swift; sourceTree = "<group>"; };
@@ -77,22 +73,24 @@
 		7400C76921A153F500DFD5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7415AEDB21A5D1660042674A /* WSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSClient.swift; sourceTree = "<group>"; };
 		7415AEDD21A5D83B0042674A /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
-		744E6B8721B12CF4002CC847 /* BottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomViewController.swift; sourceTree = "<group>"; };
-		744E6B8921B14038002CC847 /* BottomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomViewController.xib; sourceTree = "<group>"; };
+		744E6B8721B12CF4002CC847 /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
 		745418EC21A35BCA00EF3F09 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		745418EE21A360EA00EF3F09 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
+		7462254421B48144001E3C40 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		746E42BA21B40E2500F083C3 /* InRoleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InRoleView.xib; sourceTree = "<group>"; };
+		746E42BC21B40E3F00F083C3 /* InRoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InRoleView.swift; sourceTree = "<group>"; };
+		746E42BE21B4142100F083C3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		746E42C021B4321A00F083C3 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
+		746E42C221B4352100F083C3 /* BottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomViewController.swift; sourceTree = "<group>"; };
 		747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		74A21CB721A605A500982247 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		74A21CB921A605B600982247 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		74D3240A21B1779B0096963E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		74E2F0C721AC0E550092FEEF /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		74E2F0CB21AC17650092FEEF /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		74E2F0CD21AC2EFF0092FEEF /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		74E2F0CF21AC37470092FEEF /* XibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibView.swift; sourceTree = "<group>"; };
 		74E2F0D321AC59C10092FEEF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		74E2F0D521AC91100092FEEF /* WaitingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaitingView.xib; sourceTree = "<group>"; };
-		74E2F0D721AC918E0092FEEF /* WaitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingView.swift; sourceTree = "<group>"; };
-		74E2F0D921AC98390092FEEF /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
-		74E2F0DD21AC9AEA0092FEEF /* SuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuccessView.xib; sourceTree = "<group>"; };
 		74E2F0DF21AD3F8D0092FEEF /* NotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
 		74E2F0E121AD3FA10092FEEF /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		74F7CD0721B08053003463A9 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -171,9 +169,7 @@
 				74A21CA721A5F5DE00982247 /* Views */,
 				7415AED521A5C8F60042674A /* Controllers */,
 				7400C74721A153F200DFD5A3 /* AppDelegate.swift */,
-				7400C74B21A153F200DFD5A3 /* Main.storyboard */,
 				7400C74E21A153F500DFD5A3 /* Assets.xcassets */,
-				7400C75021A153F500DFD5A3 /* LaunchScreen.storyboard */,
 				7400C75321A153F500DFD5A3 /* Info.plist */,
 				745418EE21A360EA00EF3F09 /* KeyChain.swift */,
 				7415AEDD21A5D83B0042674A /* Secrets.swift */,
@@ -203,12 +199,13 @@
 			isa = PBXGroup;
 			children = (
 				747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */,
-				7400C74921A153F200DFD5A3 /* ViewController.swift */,
 				74F7CD0721B08053003463A9 /* RootViewController.swift */,
 				74F7CD0921B08145003463A9 /* LaunchViewController.swift */,
 				74F7CD0B21B08865003463A9 /* MapViewController.swift */,
-				744E6B8721B12CF4002CC847 /* BottomViewController.swift */,
-				744E6B8921B14038002CC847 /* BottomViewController.xib */,
+				744E6B8721B12CF4002CC847 /* RoleViewController.swift */,
+				746E42BE21B4142100F083C3 /* ProfileViewController.swift */,
+				746E42C221B4352100F083C3 /* BottomViewController.swift */,
+				7462254421B48144001E3C40 /* NotificationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -219,6 +216,8 @@
 				74E2F0C721AC0E550092FEEF /* Profile.swift */,
 				74E2F0CD21AC2EFF0092FEEF /* Auth.swift */,
 				74E2F0D321AC59C10092FEEF /* Message.swift */,
+				74D3240A21B1779B0096963E /* User.swift */,
+				746E42C021B4321A00F083C3 /* Role.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -239,14 +238,12 @@
 				74A21CB721A605A500982247 /* ProfileView.xib */,
 				74A21CB921A605B600982247 /* ProfileView.swift */,
 				74E2F0CF21AC37470092FEEF /* XibView.swift */,
-				74E2F0D521AC91100092FEEF /* WaitingView.xib */,
-				74E2F0D721AC918E0092FEEF /* WaitingView.swift */,
-				74E2F0D921AC98390092FEEF /* SuccessView.swift */,
-				74E2F0DD21AC9AEA0092FEEF /* SuccessView.xib */,
 				74E2F0DF21AD3F8D0092FEEF /* NotificationView.xib */,
 				74E2F0E121AD3FA10092FEEF /* NotificationView.swift */,
 				74FF005121AE9A8D00D588BA /* RoleView.xib */,
 				74FF005321AE9BC000D588BA /* RoleView.swift */,
+				746E42BA21B40E2500F083C3 /* InRoleView.xib */,
+				746E42BC21B40E3F00F083C3 /* InRoleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -367,15 +364,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74E2F0DE21AC9AEA0092FEEF /* SuccessView.xib in Resources */,
+				746E42BB21B40E2500F083C3 /* InRoleView.xib in Resources */,
 				74E2F0E021AD3F8D0092FEEF /* NotificationView.xib in Resources */,
-				744E6B8A21B14038002CC847 /* BottomViewController.xib in Resources */,
 				74FF005221AE9A8D00D588BA /* RoleView.xib in Resources */,
-				74E2F0D621AC91100092FEEF /* WaitingView.xib in Resources */,
-				7400C75221A153F500DFD5A3 /* LaunchScreen.storyboard in Resources */,
 				7400C74F21A153F500DFD5A3 /* Assets.xcassets in Resources */,
 				74A21CB821A605A500982247 /* ProfileView.xib in Resources */,
-				7400C74D21A153F200DFD5A3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,20 +482,23 @@
 				745418ED21A35BCA00EF3F09 /* APIRouter.swift in Sources */,
 				74F7CD0821B08053003463A9 /* RootViewController.swift in Sources */,
 				74F7CD0C21B08866003463A9 /* MapViewController.swift in Sources */,
-				74E2F0D821AC918E0092FEEF /* WaitingView.swift in Sources */,
 				74E2F0E221AD3FA10092FEEF /* NotificationView.swift in Sources */,
+				746E42BF21B4142100F083C3 /* ProfileViewController.swift in Sources */,
 				74E2F0C821AC0E550092FEEF /* Profile.swift in Sources */,
 				747FDFEF21A19B8E00BD8D75 /* LoginViewController.swift in Sources */,
+				746E42C121B4321A00F083C3 /* Role.swift in Sources */,
 				74A21CBA21A605B600982247 /* ProfileView.swift in Sources */,
+				7462254521B48144001E3C40 /* NotificationViewController.swift in Sources */,
 				7415AEDE21A5D83B0042674A /* Secrets.swift in Sources */,
-				74E2F0DA21AC98390092FEEF /* SuccessView.swift in Sources */,
+				74D3240B21B1779B0096963E /* User.swift in Sources */,
 				74E2F0CC21AC17650092FEEF /* APIClient.swift in Sources */,
+				746E42BD21B40E3F00F083C3 /* InRoleView.swift in Sources */,
 				745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */,
+				746E42C321B4352100F083C3 /* BottomViewController.swift in Sources */,
 				7415AEDC21A5D1660042674A /* WSClient.swift in Sources */,
-				744E6B8821B12CF4002CC847 /* BottomViewController.swift in Sources */,
+				744E6B8821B12CF4002CC847 /* RoleViewController.swift in Sources */,
 				74F7CD0A21B08145003463A9 /* LaunchViewController.swift in Sources */,
 				74E2F0D421AC59C10092FEEF /* Message.swift in Sources */,
-				7400C74A21A153F200DFD5A3 /* ViewController.swift in Sources */,
 				74E2F0D021AC37470092FEEF /* XibView.swift in Sources */,
 				74FF005421AE9BC000D588BA /* RoleView.swift in Sources */,
 				7400C74821A153F200DFD5A3 /* AppDelegate.swift in Sources */,
@@ -539,25 +535,6 @@
 			targetProxy = 7400C76421A153F500DFD5A3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		7400C74B21A153F200DFD5A3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7400C74C21A153F200DFD5A3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		7400C75021A153F500DFD5A3 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7400C75121A153F500DFD5A3 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		7400C76A21A153F500DFD5A3 /* Debug */ = {
