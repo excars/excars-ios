@@ -7,45 +7,93 @@
 //
 
 import Foundation
+import UIKit
 
 
 class RoleView: XibView {
+
+    @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var officePicker: UIPickerView!
 
     override var nibName: String {
         get { return "RoleView" }
         set { }
     }
 
-    let destination = Destination(
-        name: "Porto Bello",
-        latitude: 34.6709681,
-        longitude: 33.0396582
-    )
+    let offices = [
+        Destination(name: "Eleftherias", latitude: 34.674297, longitude: 33.039742),
+        Destination(name: "Porto Bello", latitude: 34.6709681, longitude: 33.0396582),
+        Destination(name: "Ellinon", latitude: 34.673039, longitude: 33.039255),
+    ]
     
-    @IBAction func selectDriver() {
-        selectRole(role: Role.driver)
+    var user: User!
+
+    init(user: User, frame: CGRect) {
+        self.user = user
+        
+        super.init(frame: frame)
+        
+        officePicker.dataSource = self
+        officePicker.delegate = self
+        officePicker.selectRow(1, inComponent: 0, animated: true)
+        
+        welcomeLabel.text = "Welcome, \(user.firstName)!"
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        user = nil
+        
+        officePicker.dataSource = self
+        officePicker.delegate = self
+        officePicker.selectRow(1, inComponent: 0, animated: true)
     }
 
-    @IBAction func selectHitchhiker() {
-        selectRole(role: Role.hitchhiker)
+    @IBAction func drive() {
+        join(role: Role.driver)
     }
 
-    private func selectRole(role: Role) {
-        APIClient.join(role: role, destination: destination) { result in
+    @IBAction func hitchhike() {
+        join(role: Role.hitchhiker)
+    }
+
+    private func join(role: Role) {
+        
+        let destination = officePicker.selectedRow(inComponent: 0)
+        APIClient.join(role: role, destination: offices[destination]) { result in
             switch result {
             case .success(_):
-                self.isHidden = true
+                self.user.role = role
+//                self.isHidden = true
             case .failure(let error):
                 print("JOIN ERROR \(error)")
             }
         }
     }
 
-    func show() {
-        isHidden = false
-    }
+//    func show(name: String) {
+//        welcomeLabel.text = "Welcome, \(name)!"
+//        isHidden = false
+//    }
+//
+//    func hide() {
+//        isHidden = true
+//    }
 
-    func hide() {
-        isHidden = true
+}
+
+
+extension RoleView: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return offices.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return offices[row].name
     }
 }

@@ -18,23 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey(GMS_API_KEY)
-        
-        // Initialize sign-in
+
         GIDSignIn.sharedInstance().clientID = GOOGLE_OAUTH2_CLIENT_ID
-//        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().delegate = self
         
-        if GIDSignIn.sharedInstance().hasAuthInKeychain() {
-            print("user is signed in")
-            GIDSignIn.sharedInstance()?.signInSilently()
-        }
-//        } else {
-//            print("user is NOT signed in")
-//            let sb = UIStoryboard(name: "Main", bundle: nil)
-//            if let vc = sb.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
-//                window!.rootViewController = vc
-//            }
-//        }
-        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = RootViewController()
+        window?.makeKeyAndVisible()
+
         return true
     }
     
@@ -48,3 +39,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+extension AppDelegate {
+
+    static var shared: AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
+
+    var rootViewController: RootViewController {
+        return window!.rootViewController as! RootViewController
+    }
+
+}
+
+
+extension AppDelegate: GIDSignInDelegate {
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("GOOGLE SIGNIN ERROR: \(error)")
+            return
+        }
+        
+        APIClient.auth(idToken: user.authentication.idToken) { result in
+            switch result {
+            case .success(let response):
+                KeyChain.setJWTToken(token: response.jwtToken)
+                AppDelegate.shared.rootViewController.toMap()
+            case .failure(let error):
+                print("AUTH ERROR \(error)")
+            }
+        }
+    }
+
+}

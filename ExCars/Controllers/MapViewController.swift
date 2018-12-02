@@ -10,20 +10,26 @@ import UIKit
 import GoogleMaps
 
 
-class ViewController: UIViewController {
+class MapViewController: UIViewController {
 
-    @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var profileView: ProfileView!
-    @IBOutlet weak var waitingView: WaitingView!
-    @IBOutlet weak var successView: SuccessView!
-    @IBOutlet weak var notificationView: NotificationView!
-    @IBOutlet weak var roleView: RoleView!
-    
     var locationManager = CLLocationManager()
     let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
     let zoomLevel: Float = 15.0
 
+    var mapView = GMSMapView()
+    
+    let currentUser: User!
+    
     let wsClient = WSClient()
+
+    init(currentUser: User) {
+        self.currentUser = currentUser
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,26 +40,38 @@ class ViewController: UIViewController {
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
 
+        let height = view.frame.height
+        let width  = view.frame.width
+
+        mapView.frame = CGRect(x: 0, y: 0, width: width, height: height)
         mapView.camera = GMSCameraPosition(target: defaultLocation, zoom: zoomLevel, bearing: 0, viewingAngle: 0)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isHidden = true
-        mapView.padding = UIEdgeInsets(top: self.view.safeAreaInsets.top, left: 0, bottom: 52, right: 0)
+        mapView.padding = UIEdgeInsets(top: self.view.safeAreaInsets.top, left: 0, bottom: 80, right: 0)
         mapView.delegate = self
-
-        wsClient.delegate = self
         
-        profileView.hide()
-        waitingView.hide()
-        successView.hide()
-        notificationView.hide()
+        view.addSubview(mapView)
 
-        roleView.show()
+        let roleVC = RoleViewController(user: currentUser)
+        presentController(vc: roleVC)
+        
+        wsClient.delegate = self
+    }
+    
+    private func presentController(vc: UIViewController) {
+        let height = view.frame.height
+        let width  = view.frame.width
+
+        self.addChild(vc)
+        self.view.addSubview(vc.view)
+        vc.didMove(toParent: self)
+        vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
     }
 
 }
 
 
-extension ViewController: CLLocationManagerDelegate {
+extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
@@ -72,9 +90,8 @@ extension ViewController: CLLocationManagerDelegate {
         }
         
         wsClient.sendLocation(location: location)
-
     }
-
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .restricted, .denied, .notDetermined:
@@ -90,38 +107,28 @@ extension ViewController: CLLocationManagerDelegate {
 }
 
 
-extension ViewController: GMSMapViewDelegate {
-
+extension MapViewController: GMSMapViewDelegate {
+    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        if let userData = marker.userData as? WSMapPayload {
-            APIClient.profile(uid: userData.uid) { result in
-                switch result {
-                case .success(let profile):
-                    self.profileView.show(profile: profile)
-                case .failure(let error):
-                    print("ERROR")
-                    print(error)
-                }
-            }
+        guard let userData = marker.userData as? WSMapPayload else {
+            return false
         }
+        
+        let profileVC = ProfileViewController(uid: userData.uid, wsClient: wsClient)
+        presentController(vc: profileVC)
 
         return false
     }
-
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        profileView.hide()
-        successView.hide()
-    }
-
+    
 }
 
 
-extension ViewController: WSClientDelegate {
-
+extension MapViewController: WSClientDelegate {
+    
     func didSendMessage(type: MessageType) {
-
+        
     }
-
+    
     func didReceiveDataUpdate(data: [WSMapPayload]) {
         mapView.clear()
         
@@ -143,16 +150,14 @@ extension ViewController: WSClientDelegate {
             marker.map = mapView
         }
     }
-
+    
     func didReceiveDataUpdate(data: WSOfferRideAccepted) {
-        waitingView.hide()
-        successView.show(text: "Offer for a ride accepted!")
-        print("OFFER ACCEPTED")
     }
     
     func didReceiveDataUpdate(data: WSRideOffer) {
-        print("SHOW RIDE OFFER")
-        self.notificationView.show(rideOffer: data.data)
+        print("RIDE OFFER!")
+        let notificationVC = NotificationViewController(rideOffer: data.data)
+        presentController(vc: notificationVC)
     }
-
+    
 }

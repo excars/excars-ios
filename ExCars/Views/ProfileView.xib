@@ -9,8 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileView">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileView" customModule="ExCars" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="stu-hb-1wA" id="YsM-GN-Sk9"/>
+                <outlet property="activityLabel" destination="OIa-8E-V5V" id="j9l-dF-r7i"/>
                 <outlet property="avatar" destination="poo-1X-Xqd" id="LKE-px-1zs"/>
                 <outlet property="destination" destination="D76-Fa-oQm" id="iHZ-4d-mYM"/>
                 <outlet property="distance" destination="QZc-ef-CnV" id="il6-2b-5rL"/>
@@ -74,8 +76,18 @@
                         <action selector="submit" destination="-1" eventType="touchUpInside" id="X89-FS-0tr"/>
                     </connections>
                 </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="stu-hb-1wA">
+                    <rect key="frame" x="131" y="172" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Waiting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIa-8E-V5V">
+                    <rect key="frame" x="164" y="171" width="76" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="72.799999999999997" y="53.523238380809602"/>

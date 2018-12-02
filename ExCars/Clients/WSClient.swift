@@ -18,9 +18,15 @@ protocol WSClientDelegate: class {
 }
 
 
+protocol WSClientRideDelegate: class {
+    func didReceiveDataUpdate(data: WSOfferRideAccepted)
+}
+
+
 class WSClient {
     
     weak var delegate: WSClientDelegate?
+    weak var rideDelegate: WSClientRideDelegate?
     
     let socket: WebSocket
     let encoder = JSONEncoder()
@@ -88,6 +94,7 @@ extension WSClient: WebSocketDelegate {
                 break
             }
             delegate?.didReceiveDataUpdate(data: wsOfferRideAccepted)
+            rideDelegate?.didReceiveDataUpdate(data: wsOfferRideAccepted)
         case .rideOffer:
             guard let wsRideOffer = try? decoder.decode(WSRideOffer.self, from: data) else {
                 print("FAILED TO RIDE OFFER")

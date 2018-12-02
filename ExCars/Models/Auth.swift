@@ -19,3 +19,8 @@ extension Auth {
         case jwtToken = "access_token"
     }
 }
+
+
+struct Me: Codable {
+    let me: User
+}
