@@ -26,19 +26,16 @@ class ProfileView: XibView {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
+
     var profile: Profile
-    let wsClient: WSClient
     
-    init(profile: Profile, wsClient: WSClient, frame: CGRect) {
+    init(profile: Profile, frame: CGRect = CGRect.zero) {
         self.profile = profile
-        self.wsClient = wsClient
         super.init(frame: frame)
-        
-        self.wsClient.rideDelegate = self
-        
+
         activityLabel.isHidden = true
         activityIndicator.isHidden = true
+
         render()
     }
     
@@ -46,7 +43,15 @@ class ProfileView: XibView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func render() {
+    deinit {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: NSNotification.Name(rawValue: didAcceptRide),
+            object: self
+        )
+    }
+    
+    private func render() {
         name.text = profile.name
         destination.text = profile.destination?.name.uppercased()
         if distance != nil {
@@ -65,31 +70,31 @@ class ProfileView: XibView {
     }
 
     @IBAction func submit() {
-        self.submitButton.isHidden = true
-        self.activityLabel.isHidden = false
-        self.activityIndicator.isHidden = false
-        self.activityIndicator.startAnimating()
+        submitButton.isHidden = true
+        activityLabel.isHidden = false
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
 
         APIClient.ride(to: profile.uid) { result in
             switch result {
             case .success(_):
-                break
+                // there is chance this notification will be another ride request/offer
+                NotificationCenter.default.addObserver(
+                    self,
+                    selector: #selector(self.rideAccepted),
+                    name: NSNotification.Name(rawValue: didAcceptRide),
+                    object: nil
+                )
             case .failure(let error):
                 print("RIDE REQUEST ERROR: \(error)")
             }
         }
     }
-
-}
-
-
-extension ProfileView: WSClientRideDelegate {
-
-    func didReceiveDataUpdate(data: WSOfferRideAccepted) {
-        print("DID RECEIVER DATA UPDATE")
-        self.activityIndicator.stopAnimating()
-        self.activityIndicator.isHidden = true
-        self.activityLabel.text = "Accepted"
+    
+    @objc private func rideAccepted() {
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+        activityLabel.text = "Accepted"
     }
 
 }

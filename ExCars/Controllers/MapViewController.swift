@@ -17,9 +17,12 @@ class MapViewController: UIViewController {
     let zoomLevel: Float = 15.0
 
     var mapView = GMSMapView()
+    var currentMarker: GMSMarker?
     
-    let currentUser: User!
+    let currentUser: User
     
+    lazy var exclusivePresenter = ExclusivePresenter(to: self)
+
     let wsClient = WSClient()
 
     init(currentUser: User) {
@@ -40,32 +43,18 @@ class MapViewController: UIViewController {
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
 
-        let height = view.frame.height
-        let width  = view.frame.width
-
-        mapView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        mapView.frame = view.bounds
         mapView.camera = GMSCameraPosition(target: defaultLocation, zoom: zoomLevel, bearing: 0, viewingAngle: 0)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isHidden = true
         mapView.padding = UIEdgeInsets(top: self.view.safeAreaInsets.top, left: 0, bottom: 80, right: 0)
         mapView.delegate = self
-        
         view.addSubview(mapView)
 
         let roleVC = RoleViewController(user: currentUser)
-        presentController(vc: roleVC)
+        Presenter.present(roleVC, to: self)
         
         wsClient.delegate = self
-    }
-    
-    private func presentController(vc: UIViewController) {
-        let height = view.frame.height
-        let width  = view.frame.width
-
-        self.addChild(vc)
-        self.view.addSubview(vc.view)
-        vc.didMove(toParent: self)
-        vc.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
     }
 
 }
@@ -113,13 +102,21 @@ extension MapViewController: GMSMapViewDelegate {
         guard let userData = marker.userData as? WSMapPayload else {
             return false
         }
+
+        let currentUserData = currentMarker?.userData as? WSMapPayload
         
-        let profileVC = ProfileViewController(uid: userData.uid, wsClient: wsClient)
-        presentController(vc: profileVC)
+        if userData.uid != currentUserData?.uid {
+            let profileVC = ProfileViewController(uid: userData.uid)
+            exclusivePresenter.present(profileVC)
+            currentMarker = marker
+        } else {
+            exclusivePresenter.dismiss()
+            currentMarker = nil
+        }
 
         return false
     }
-    
+
 }
 
 
@@ -150,14 +147,10 @@ extension MapViewController: WSClientDelegate {
             marker.map = mapView
         }
     }
-    
-    func didReceiveDataUpdate(data: WSOfferRideAccepted) {
-    }
-    
+
     func didReceiveDataUpdate(data: WSRideOffer) {
-        print("RIDE OFFER!")
         let notificationVC = NotificationViewController(rideOffer: data.data)
-        presentController(vc: notificationVC)
+        exclusivePresenter.present(notificationVC)
     }
-    
+
 }
