@@ -10,23 +10,19 @@ import CoreLocation
 import Starscream
 
 
+let didAcceptRide = "didAcceptRide"
+
+
 protocol WSClientDelegate: class {
     func didReceiveDataUpdate(data: [WSMapPayload])
-    func didReceiveDataUpdate(data: WSOfferRideAccepted)
     func didReceiveDataUpdate(data: WSRideOffer)
     func didSendMessage(type: MessageType)
-}
-
-
-protocol WSClientRideDelegate: class {
-    func didReceiveDataUpdate(data: WSOfferRideAccepted)
 }
 
 
 class WSClient {
     
     weak var delegate: WSClientDelegate?
-    weak var rideDelegate: WSClientRideDelegate?
     
     let socket: WebSocket
     let encoder = JSONEncoder()
@@ -93,8 +89,10 @@ extension WSClient: WebSocketDelegate {
                 print("FAILED TO DECODE RIDE ACCEPTED")
                 break
             }
-            delegate?.didReceiveDataUpdate(data: wsOfferRideAccepted)
-            rideDelegate?.didReceiveDataUpdate(data: wsOfferRideAccepted)
+            NotificationCenter.default.post(
+                name: NSNotification.Name(rawValue: didAcceptRide),
+                object: nil
+            )
         case .rideOffer:
             guard let wsRideOffer = try? decoder.decode(WSRideOffer.self, from: data) else {
                 print("FAILED TO RIDE OFFER")
