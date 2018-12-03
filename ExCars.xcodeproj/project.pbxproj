@@ -11,6 +11,8 @@
 		7400C74F21A153F500DFD5A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7400C74E21A153F500DFD5A3 /* Assets.xcassets */; };
 		7400C75D21A153F500DFD5A3 /* ExCarsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400C75C21A153F500DFD5A3 /* ExCarsTests.swift */; };
 		7400C76821A153F500DFD5A3 /* ExCarsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400C76721A153F500DFD5A3 /* ExCarsUITests.swift */; };
+		740F6ABC21B5CEDF00A955A4 /* ExclusivePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740F6ABB21B5CEDF00A955A4 /* ExclusivePresenter.swift */; };
+		740F6ABE21B5DAB500A955A4 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740F6ABD21B5DAB500A955A4 /* Presenter.swift */; };
 		7415AEDC21A5D1660042674A /* WSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415AEDB21A5D1660042674A /* WSClient.swift */; };
 		7415AEDE21A5D83B0042674A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415AEDD21A5D83B0042674A /* Secrets.swift */; };
 		744E6B8821B12CF4002CC847 /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744E6B8721B12CF4002CC847 /* RoleViewController.swift */; };
@@ -71,6 +73,8 @@
 		7400C76321A153F500DFD5A3 /* ExCarsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExCarsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7400C76721A153F500DFD5A3 /* ExCarsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExCarsUITests.swift; sourceTree = "<group>"; };
 		7400C76921A153F500DFD5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		740F6ABB21B5CEDF00A955A4 /* ExclusivePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusivePresenter.swift; sourceTree = "<group>"; };
+		740F6ABD21B5DAB500A955A4 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		7415AEDB21A5D1660042674A /* WSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSClient.swift; sourceTree = "<group>"; };
 		7415AEDD21A5D83B0042674A /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		744E6B8721B12CF4002CC847 /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 		7400C74621A153F200DFD5A3 /* ExCars */ = {
 			isa = PBXGroup;
 			children = (
+				740F6ABA21B5CECA00A955A4 /* Presenters */,
 				7442FD4421A74D2D00D311F8 /* Clients */,
 				7442FD4121A7385100D311F8 /* Models */,
 				74A21CA721A5F5DE00982247 /* Views */,
@@ -193,6 +198,15 @@
 				7400C76921A153F500DFD5A3 /* Info.plist */,
 			);
 			path = ExCarsUITests;
+			sourceTree = "<group>";
+		};
+		740F6ABA21B5CECA00A955A4 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				740F6ABB21B5CEDF00A955A4 /* ExclusivePresenter.swift */,
+				740F6ABD21B5DAB500A955A4 /* Presenter.swift */,
+			);
+			path = Presenters;
 			sourceTree = "<group>";
 		};
 		7415AED521A5C8F60042674A /* Controllers */ = {
@@ -480,7 +494,9 @@
 			files = (
 				74E2F0CE21AC2EFF0092FEEF /* Auth.swift in Sources */,
 				745418ED21A35BCA00EF3F09 /* APIRouter.swift in Sources */,
+				740F6ABE21B5DAB500A955A4 /* Presenter.swift in Sources */,
 				74F7CD0821B08053003463A9 /* RootViewController.swift in Sources */,
+				740F6ABC21B5CEDF00A955A4 /* ExclusivePresenter.swift in Sources */,
 				74F7CD0C21B08866003463A9 /* MapViewController.swift in Sources */,
 				74E2F0E221AD3FA10092FEEF /* NotificationView.swift in Sources */,
 				746E42BF21B4142100F083C3 /* ProfileViewController.swift in Sources */,

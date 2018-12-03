@@ -9,12 +9,11 @@
 import UIKit
 
 class RootViewController: UIViewController {
-
-    private var current: UIViewController
+    
     private var currentUser: User?
+    private lazy var presenter = ExclusivePresenter(to: self)
     
     init() {
-        current = LaunchViewController()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -25,14 +24,12 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addChild(current)
-        current.view.frame = view.bounds
-        view.addSubview(current.view)
-        current.didMove(toParent: self)
+        let launchVC = LaunchViewController()
+        presenter.present(launchVC, isBounded: true)
     }
     
     func toLogin() {
-        toController(controller: LoginViewController())
+        presenter.present(LoginViewController(), isBounded: true)
     }
 
     func toMap() {
@@ -40,7 +37,7 @@ class RootViewController: UIViewController {
             switch result {
             case .success(let me):
                 self.currentUser = me.me
-                self.toController(controller: MapViewController(currentUser: me.me))
+                self.presenter.present(MapViewController(currentUser: me.me), isBounded: true)
             case .failure(let error):
                 print("ME ERROR \(error)")
                 return
@@ -48,15 +45,4 @@ class RootViewController: UIViewController {
         }
     }
 
-    private func toController(controller: UIViewController) {
-        addChild(controller)
-        controller.view.frame = view.bounds
-        view.addSubview(controller.view)
-        controller.didMove(toParent: self)
-
-        current.willMove(toParent: nil)
-        current.view.removeFromSuperview()
-        current.removeFromParent()
-        current = controller
-    }
 }

@@ -19,7 +19,8 @@ class LaunchViewController: UIViewController {
         view.backgroundColor = UIColor.white
         view.addSubview(activityIndicator)
         activityIndicator.frame = view.bounds
-        
+        activityIndicator.color = UIColor.gray
+
         if GIDSignIn.sharedInstance().hasAuthInKeychain() {
             activityIndicator.startAnimating()
             GIDSignIn.sharedInstance().signInSilently()

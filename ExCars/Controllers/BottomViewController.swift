@@ -32,8 +32,15 @@ class BottomViewController: UIViewController {
     var allowDismiss = false
     var openFullView = false
 
+    override func loadView() {
+        view = UIView(frame: CGRect(x: 0, y: fullHeight, width: UIScreen.main.bounds.width, height: fullHeight))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomViewController.panGesture))
+        self.view.addGestureRecognizer(gesture)
     }
 
     @objc func panGesture(_ recognizer: UIPanGestureRecognizer) {
@@ -59,9 +66,7 @@ class BottomViewController: UIViewController {
                 
             }, completion: {_ in
                 if velocity.y >= 0 && self.allowDismiss {
-                    self.willMove(toParent: nil)
-                    self.view.removeFromSuperview()
-                    self.removeFromParent()
+                    Presenter.dismiss(self)
                 }
             })
         }
