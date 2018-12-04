@@ -22,7 +22,7 @@ class ProfileView: XibView {
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
-    var profile: Profile
+    private var profile: Profile
     
     init(profile: Profile, frame: CGRect = CGRect.zero) {
         self.profile = profile

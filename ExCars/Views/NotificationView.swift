@@ -16,12 +16,12 @@ class NotificationView: XibView {
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var plate: UILabel!
     @IBOutlet weak var destination: UILabel!
-    
-    var profile: Profile?
-    var rideUid: String
-    
+
+    private var profile: Profile?
+    private let rideUid: String
+
     var onDidAccept: (() -> Void)?
-    
+
     init(profile: Profile, rideUid: String, frame: CGRect = CGRect.zero) {
         self.rideUid = rideUid
         super.init(nibName: "NotificationView", frame: frame)

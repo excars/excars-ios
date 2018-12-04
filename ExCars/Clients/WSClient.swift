@@ -88,7 +88,7 @@ extension WSClient: WebSocketDelegate {
             NotificationCenter.default.post(
                 name: didAcceptRide,
                 object: nil
-            )j
+            )
         case .rideOffer:
             guard let wsRideOffer = try? decoder.decode(WSRideOffer.self, from: data) else {
                 print("FAILED TO RIDE OFFER")

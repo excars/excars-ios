@@ -15,15 +15,15 @@ class RoleView: XibView {
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var officePicker: UIPickerView!
 
-    let offices = [
+    private let offices = [
         Destination(name: "Eleftherias", latitude: 34.674297, longitude: 33.039742),
         Destination(name: "Porto Bello", latitude: 34.6709681, longitude: 33.0396582),
         Destination(name: "Ellinon", latitude: 34.673039, longitude: 33.039255),
     ]
 
-    var user: User!
+    private let user: User
 
-    init(user: User, frame: CGRect) {
+    init(user: User, frame: CGRect = CGRect.zero) {
         self.user = user
         
         super.init(nibName: "RoleView", frame: frame)
@@ -36,13 +36,7 @@ class RoleView: XibView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-
-        user = nil
-        
-        officePicker.dataSource = self
-        officePicker.delegate = self
-        officePicker.selectRow(1, inComponent: 0, animated: true)
+        fatalError("init(coder:) has not been implemented")
     }
 
     @IBAction func drive() {
@@ -60,26 +54,17 @@ class RoleView: XibView {
             switch result {
             case .success(_):
                 self.user.role = role
-//                self.isHidden = true
             case .failure(let error):
                 print("JOIN ERROR \(error)")
             }
         }
     }
 
-//    func show(name: String) {
-//        welcomeLabel.text = "Welcome, \(name)!"
-//        isHidden = false
-//    }
-//
-//    func hide() {
-//        isHidden = true
-//    }
-
 }
 
 
 extension RoleView: UIPickerViewDataSource, UIPickerViewDelegate {
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -91,4 +76,5 @@ extension RoleView: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return offices[row].name
     }
+
 }

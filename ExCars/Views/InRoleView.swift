@@ -14,7 +14,7 @@ class InRoleView: XibView {
     
     @IBOutlet weak var roleLabel: UILabel!
 
-    init (user: User, frame: CGRect) {
+    init (user: User, frame: CGRect = CGRect.zero) {
         super.init(nibName: "InRoleView", frame: frame)
         
         switch user.role {

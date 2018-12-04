@@ -51,7 +51,7 @@ class User: Codable {
         try container.encode(avatar, forKey: .avatar)
         try container.encode(role, forKey: .role)
     }
-    
+
     private enum CodingKeys: String, CodingKey {
         case uid
         case firstName = "first_name"

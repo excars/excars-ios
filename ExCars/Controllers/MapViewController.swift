@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MapViewController.swift
 //  ExCars
 //
 //  Created by Леша on 18/11/2018.
@@ -22,6 +22,7 @@ class MapViewController: UIViewController {
     let currentUser: User
     
     lazy var exclusivePresenter = ExclusivePresenter(to: self)
+    lazy var rolePresenter = ExclusivePresenter(to: self)
 
     let wsClient = WSClient()
 
@@ -50,11 +51,11 @@ class MapViewController: UIViewController {
         mapView.padding = UIEdgeInsets(top: self.view.safeAreaInsets.top, left: 0, bottom: 80, right: 0)
         mapView.delegate = self
         view.addSubview(mapView)
-
-        let roleVC = RoleViewController(user: currentUser)
-        Presenter.present(roleVC, to: self)
         
         wsClient.delegate = self
+        
+        currentUser.delegate = self
+        didChangeRole(role: currentUser.role)
     }
 
 }
@@ -151,6 +152,23 @@ extension MapViewController: WSClientDelegate {
     func didReceiveDataUpdate(data: WSRideOffer) {
         let notificationVC = NotificationViewController(rideOffer: data.data)
         exclusivePresenter.present(notificationVC)
+    }
+
+}
+
+
+extension MapViewController: UserDelegate {
+
+    func didChangeRole(role: Role?) {
+        let roleVC: UIViewController
+
+        if role == nil {
+            roleVC = RoleViewController(user: currentUser)
+        } else {
+            roleVC = InRoleViewController(user: currentUser)
+        }
+        
+        rolePresenter.present(roleVC)
     }
 
 }
