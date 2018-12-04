@@ -15,8 +15,7 @@ class RoleViewController: BottomViewController {
     init(user: User) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
-//        self.user.delegate = self
-        
+
         fullHeight = 256
         height = 80
     }
@@ -35,27 +34,5 @@ class RoleViewController: BottomViewController {
         roleView.frame = view.bounds
         view.addSubview(roleView)
     }
-    
-//    func render(role: Role?) {
-//        if role != nil {
-//            self.view = InRoleView(user: user, frame: CGRect(x: 0, y: 0, width: 375, height: 52))
-//            self.fullHeight = 52
-//            self.height = 52
-//        } else {
-//            self.view = RoleView(user: user, frame: CGRect(x: 0, y: 0, width: 375, height: 256))
-//        }
-//
-//        super.render()
-//        viewDidAppear(true)
-//    }
 
 }
-//
-//
-//extension RoleViewController: UserDelegate {
-//
-//    func didChangeRole(role: Role?) {
-//        render(role: role)
-//    }
-//
-//}

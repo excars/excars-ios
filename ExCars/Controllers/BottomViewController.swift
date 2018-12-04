@@ -10,27 +10,18 @@ import UIKit
 
 class BottomViewController: UIViewController {
 
-    private var _fullHeight: CGFloat = 0
-    var fullHeight: CGFloat {
-        get { return _fullHeight }
-        set { _fullHeight = newValue }
-    }
-    
-    private var _height: CGFloat = 0
-    var height: CGFloat {
-        get { return _height }
-        set { _height = newValue }
-    }
-    
-    var fullView: CGFloat {
-        return UIScreen.main.bounds.height - fullHeight
-    }
-    var partialView: CGFloat {
-        return UIScreen.main.bounds.height - height
-    }
-
     var allowDismiss = false
     var openFullView = false
+    
+    var fullHeight: CGFloat = 0
+    var height: CGFloat = 0
+
+    private var fullView: CGFloat {
+        return UIScreen.main.bounds.height - fullHeight
+    }
+    private var partialView: CGFloat {
+        return UIScreen.main.bounds.height - height
+    }
 
     override func loadView() {
         view = UIView(frame: CGRect(x: 0, y: fullHeight, width: UIScreen.main.bounds.width, height: fullHeight))
@@ -41,6 +32,8 @@ class BottomViewController: UIViewController {
 
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomViewController.panGesture))
         self.view.addGestureRecognizer(gesture)
+        
+        setupHoldView()
     }
 
     @objc func panGesture(_ recognizer: UIPanGestureRecognizer) {
@@ -87,22 +80,28 @@ class BottomViewController: UIViewController {
         })
     }
     
-    func prepareBackgroundView(){
+    private func prepareBackgroundView(){
         let blurEffect = UIBlurEffect.init(style: .light)
         let visualEffect = UIVisualEffectView.init(effect: blurEffect)
-        let bluredView = UIVisualEffectView.init(effect: blurEffect)
-        bluredView.contentView.addSubview(visualEffect)
+        let blurredView = UIVisualEffectView.init(effect: blurEffect)
+        blurredView.contentView.addSubview(visualEffect)
         
         visualEffect.frame = UIScreen.main.bounds
-        bluredView.frame = UIScreen.main.bounds
+        blurredView.frame = UIScreen.main.bounds
         
-        view.insertSubview(bluredView, at: 0)
+        view.insertSubview(blurredView, at: 0)
     }
-    
-    func render() {
-        let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomViewController.panGesture))
-        self.view.addGestureRecognizer(gesture)
-        self.viewWillAppear(true)
+
+    private func setupHoldView() {
+        let holdView = UIView()
+        holdView.layer.cornerRadius = 1.5
+        holdView.backgroundColor = UIColor.lightGray
+        holdView.center = view.center
+        
+        let width: CGFloat = 30
+        holdView.frame = CGRect(x: view.center.x - (width / 2), y: 8, width: width, height: 3)
+        
+        view.addSubview(holdView)
     }
 
 }
