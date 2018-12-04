@@ -10,7 +10,7 @@ import CoreLocation
 import Starscream
 
 
-let didAcceptRide = "didAcceptRide"
+let didAcceptRide = NSNotification.Name("didAcceptRide")
 
 
 protocol WSClientDelegate: class {
@@ -85,12 +85,8 @@ extension WSClient: WebSocketDelegate {
             }
             delegate?.didReceiveDataUpdate(data: wsMap.data)
         case .offerRideAccepted:
-            guard let wsOfferRideAccepted = try? decoder.decode(WSOfferRideAccepted.self, from: data) else {
-                print("FAILED TO DECODE RIDE ACCEPTED")
-                break
-            }
             NotificationCenter.default.post(
-                name: NSNotification.Name(rawValue: didAcceptRide),
+                name: didAcceptRide,
                 object: nil
             )
         case .rideOffer:

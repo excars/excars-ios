@@ -11,25 +11,14 @@ import UIKit
 class NotificationViewController: BottomViewController {
 
     let rideOffer: WSRideOfferPayload
-    var profile: Profile!
+    var profile: Profile?
     
     init(rideOffer: WSRideOfferPayload) {
         self.rideOffer = rideOffer
 
         super.init(nibName: nil, bundle: nil)
-        
-        APIClient.profile(uid: rideOffer.from) { result in
-            switch result {
-            case .success(let profile):
-                self.profile = profile
-                self.view = NotificationView(profile: profile, rideUid: rideOffer.uid, frame: CGRect(x: 0, y: 238, width: 375, height: 238))
-                self.viewDidAppear(true)
-            case .failure(let error):
-                print("NOTIFICATION PROFILE ERROR \(error)")
-            }
-        }
-        
-        self.fullHeight = 217
+
+        self.fullHeight = 238
         self.height = 238
     }
     
@@ -37,8 +26,29 @@ class NotificationViewController: BottomViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func loadView() {
-        self.view = UIView()
+    override func viewDidLoad() {
+        APIClient.profile(uid: rideOffer.from) { result in
+            switch result {
+            case .success(let profile):
+                self.profile = profile
+                self.setupNotificationView()
+            case .failure(let error):
+                print("NOTIFICATION PROFILE ERROR \(error)")
+            }
+        }
+    }
+
+    private func setupNotificationView() {
+        guard let profile = profile else { return }
+
+        let notificationView = NotificationView(profile: profile, rideUid: rideOffer.uid)
+        notificationView.onDidAccept = { [weak self] in
+            guard let self = self else { return }
+            Presenter.dismiss(self)
+        }
+        notificationView.frame = view.bounds
+        
+        view.addSubview(notificationView)
     }
 
 }

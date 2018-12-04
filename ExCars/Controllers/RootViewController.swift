@@ -10,10 +10,11 @@ import UIKit
 
 class RootViewController: UIViewController {
     
+    private var current: UIViewController
     private var currentUser: User?
-    private lazy var presenter = ExclusivePresenter(to: self)
     
     init() {
+        current = LaunchViewController()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -23,26 +24,33 @@ class RootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let launchVC = LaunchViewController()
-        presenter.present(launchVC, isBounded: true)
+
+        addChild(current)
+        current.view.frame = view.bounds
+        view.addSubview(current.view)
+        current.didMove(toParent: self)
     }
     
     func toLogin() {
-        presenter.present(LoginViewController(), isBounded: true)
+        toController(controller: LoginViewController())
     }
-
+    
     func toMap() {
         APIClient.me() { result in
             switch result {
             case .success(let me):
                 self.currentUser = me.me
-                self.presenter.present(MapViewController(currentUser: me.me), isBounded: true)
+                self.toController(controller: MapViewController(currentUser: me.me))
             case .failure(let error):
                 print("ME ERROR \(error)")
                 return
             }
         }
     }
-
+    
+    private func toController(controller: UIViewController) {
+        Presenter.present(controller, to: self, isBounded: true)
+        Presenter.dismiss(current)
+        current = controller
+    }
 }
