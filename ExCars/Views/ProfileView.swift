@@ -13,11 +13,6 @@ import SDWebImage
 
 class ProfileView: XibView {
 
-    override var nibName : String {
-        get { return "ProfileView" }
-        set { }
-    }
-
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var destination: UILabel!
@@ -31,7 +26,7 @@ class ProfileView: XibView {
     
     init(profile: Profile, frame: CGRect = CGRect.zero) {
         self.profile = profile
-        super.init(frame: frame)
+        super.init(nibName: "ProfileView", frame: frame)
 
         activityLabel.isHidden = true
         activityIndicator.isHidden = true
@@ -46,11 +41,11 @@ class ProfileView: XibView {
     deinit {
         NotificationCenter.default.removeObserver(
             self,
-            name: NSNotification.Name(rawValue: didAcceptRide),
+            name: didAcceptRide,
             object: self
         )
     }
-    
+
     private func render() {
         name.text = profile.name
         destination.text = profile.destination?.name.uppercased()
@@ -78,11 +73,11 @@ class ProfileView: XibView {
         APIClient.ride(to: profile.uid) { result in
             switch result {
             case .success(_):
-                // there is chance this notification will be another ride request/offer
+                // there is chance notification will be from another ride request/offer
                 NotificationCenter.default.addObserver(
                     self,
                     selector: #selector(self.rideAccepted),
-                    name: NSNotification.Name(rawValue: didAcceptRide),
+                    name: didAcceptRide,
                     object: nil
                 )
             case .failure(let error):

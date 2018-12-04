@@ -15,23 +15,18 @@ class RoleView: XibView {
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var officePicker: UIPickerView!
 
-    override var nibName: String {
-        get { return "RoleView" }
-        set { }
-    }
-
     let offices = [
         Destination(name: "Eleftherias", latitude: 34.674297, longitude: 33.039742),
         Destination(name: "Porto Bello", latitude: 34.6709681, longitude: 33.0396582),
         Destination(name: "Ellinon", latitude: 34.673039, longitude: 33.039255),
     ]
-    
+
     var user: User!
 
     init(user: User, frame: CGRect) {
         self.user = user
         
-        super.init(frame: frame)
+        super.init(nibName: "RoleView", frame: frame)
         
         officePicker.dataSource = self
         officePicker.delegate = self

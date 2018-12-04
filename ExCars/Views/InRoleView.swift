@@ -13,14 +13,9 @@ import UIKit
 class InRoleView: XibView {
     
     @IBOutlet weak var roleLabel: UILabel!
-    
-    override var nibName: String {
-        get { return "InRoleView" }
-        set { }
-    }
-    
+
     init (user: User, frame: CGRect) {
-        super.init(frame: frame)
+        super.init(nibName: "InRoleView", frame: frame)
         
         switch user.role {
         case .driver?:

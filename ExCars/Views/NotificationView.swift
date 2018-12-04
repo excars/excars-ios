@@ -11,11 +11,6 @@ import UIKit
 
 class NotificationView: XibView {
 
-    override var nibName: String {
-        get { return "NotificationView" }
-        set { }
-    }
-    
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var distance: UILabel!
@@ -25,12 +20,14 @@ class NotificationView: XibView {
     var profile: Profile?
     var rideUid: String
     
-    init(profile: Profile, rideUid: String, frame: CGRect) {
+    var onDidAccept: (() -> Void)?
+    
+    init(profile: Profile, rideUid: String, frame: CGRect = CGRect.zero) {
         self.rideUid = rideUid
-        super.init(frame: frame)
+        super.init(nibName: "NotificationView", frame: frame)
         self.renderProfile(profile: profile)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -48,23 +45,19 @@ class NotificationView: XibView {
             plate.text = ""
         }
     }
-    
-    func hide() {
-        isHidden = true
-    }
-    
+
     @IBAction func accept() {
         APIClient.acceptRide(uid: rideUid) { result in
             switch result {
             case .success:
-                self.isHidden = true
+                self.onDidAccept?()
             case .failure(let error):
                 print ("ACCEPT RIDE ERROR \(error)")
             }
         }
     }
-    
+
     @IBAction func decline() {
-        isHidden = true
     }
+
 }
