@@ -26,11 +26,15 @@ class Presenter {
         }
     }
 
-    
     static func dismiss(_ vc: UIViewController) {
-        vc.willMove(toParent: nil)
-        vc.view.removeFromSuperview()
-        vc.removeFromParent()
+        UIView.animate(withDuration: 0.3, animations: {
+            let frame = vc.view.frame
+            vc.view.frame = CGRect(x: 0, y: frame.height, width: frame.width, height: frame.height)
+        }) {_ in
+            vc.willMove(toParent: nil)
+            vc.view.removeFromSuperview()
+            vc.removeFromParent()
+        }
     }
 
 }
