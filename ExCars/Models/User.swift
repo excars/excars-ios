@@ -18,7 +18,6 @@ class User: Codable {
     weak var delegate: UserDelegate?
 
     let uid: String
-    let firstName: String
     let name: String
     let avatar: URL
     
@@ -30,7 +29,6 @@ class User: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case uid
-        case firstName = "first_name"
         case name
         case avatar
         case role

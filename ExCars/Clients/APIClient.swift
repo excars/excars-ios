@@ -25,7 +25,7 @@ class APIClient {
         performRequest(route: APIRouter.auth(idToken), completion: completion)
     }
     
-    static func me(completion: @escaping (Result<Me>)->Void) {
+    static func me(completion: @escaping (Result<User>)->Void) {
         performRequest(route: APIRouter.me, completion: completion)
     }
     
@@ -33,7 +33,7 @@ class APIClient {
         performRequest(route: APIRouter.profile(uid), completion: completion)
     }
     
-    static func join(role: Role, destination: Destination, completion: @escaping (Result<EmptyResponse>)->Void) {
+    static func join(role: Role, destination: Destination, completion: @escaping (Result<Profile>)->Void) {
         performRequest(route: APIRouter.join(role, destination), completion: completion)
     }
 

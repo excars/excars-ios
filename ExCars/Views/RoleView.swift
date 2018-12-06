@@ -32,7 +32,7 @@ class RoleView: XibView {
         officePicker.delegate = self
         officePicker.selectRow(1, inComponent: 0, animated: true)
         
-        welcomeLabel.text = "Welcome, \(user.firstName)!"
+        welcomeLabel.text = "Welcome, \(user.name)!"
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -52,8 +52,8 @@ class RoleView: XibView {
         let destination = officePicker.selectedRow(inComponent: 0)
         APIClient.join(role: role, destination: offices[destination]) { result in
             switch result {
-            case .success(_):
-                self.user.role = role
+            case .success(let profile):
+                self.user.role = profile.role
             case .failure(let error):
                 print("JOIN ERROR \(error)")
             }

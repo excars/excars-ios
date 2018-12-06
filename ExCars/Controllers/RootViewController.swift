@@ -39,8 +39,8 @@ class RootViewController: UIViewController {
         APIClient.me() { result in
             switch result {
             case .success(let me):
-                self.currentUser = me.me
-                self.toController(controller: MapViewController(currentUser: me.me))
+                self.currentUser = me
+                self.toController(controller: MapViewController(currentUser: me))
             case .failure(let error):
                 print("ME ERROR \(error)")
                 return
