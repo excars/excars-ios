@@ -21,7 +21,8 @@ class ProfileView: XibView {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    @IBOutlet weak var icon: UIImageView!
+    
     private var profile: Profile
     
     init(profile: Profile, frame: CGRect = CGRect.zero) {
@@ -30,6 +31,7 @@ class ProfileView: XibView {
 
         activityLabel.isHidden = true
         activityIndicator.isHidden = true
+        icon.isHidden = true
 
         render()
     }
@@ -39,11 +41,7 @@ class ProfileView: XibView {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(
-            self,
-            name: didAcceptRide,
-            object: self
-        )
+        NotificationCenter.default.removeObserver(self)
     }
 
     private func render() {
@@ -75,10 +73,10 @@ class ProfileView: XibView {
             case .success(_):
                 // there is chance notification will be from another ride request/offer
                 NotificationCenter.default.addObserver(
-                    self,
-                    selector: #selector(self.rideAccepted),
-                    name: didAcceptRide,
-                    object: nil
+                    forName: didUpdateRide,
+                    object: nil,
+                    queue: nil,
+                    using: self.rideUpdated
                 )
             case .failure(let error):
                 print("RIDE REQUEST ERROR: \(error)")
@@ -86,10 +84,26 @@ class ProfileView: XibView {
         }
     }
     
-    @objc private func rideAccepted() {
+    private func rideUpdated(notification: Notification) {
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
-        activityLabel.text = "Accepted"
+        icon.isHidden = false
+        
+        guard let messageType = notification.userInfo?["messageType"] as? MessageType else { return }
+        
+        switch(messageType) {
+        case .rideAccepted:
+            activityLabel.text = "Accepted"
+            activityLabel.textColor = UIColor(red:0.18, green:0.80, blue:0.44, alpha:1.0)
+            icon.image = UIImage(named: "check")!
+        case .rideDeclined:
+            activityLabel.text = "Declined"
+            activityLabel.textColor = UIColor(red:0.91, green:0.30, blue:0.24, alpha:1.0)
+            icon.image = UIImage(named: "close")!
+        default:
+            break
+        }
+
     }
 
 }

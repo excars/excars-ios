@@ -37,12 +37,16 @@ class APIClient {
         performRequest(route: APIRouter.join(role, destination), completion: completion)
     }
 
-    static func ride(to: String, completion: @escaping (Result<EmptyResponse>)->Void) {
+    static func ride(to: String, completion: @escaping (Result<RideAPIResponse>)->Void) {
         performRequest(route: APIRouter.rides(to), completion: completion)
     }
-    
-    static func acceptRide(uid: String, completion: @escaping (Result<EmptyResponse>)->Void) {
+
+    static func acceptRide(uid: String, completion: @escaping (Result<RideAPIResponse>)->Void) {
         performRequest(route: APIRouter.updateRide(uid, "accept"), completion: completion)
+    }
+    
+    static func declineRide(uid: String, completion: @escaping (Result<RideAPIResponse>)->Void) {
+        performRequest(route: APIRouter.updateRide(uid, "decline"), completion: completion)
     }
 
 }

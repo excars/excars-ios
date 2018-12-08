@@ -71,7 +71,7 @@ enum APIRouter: URLRequestConvertible {
             ]
         case .rides(let uid):
             return [
-                "to": uid
+                "receiver": uid
             ]
         case .updateRide(_, let status):
             return [

@@ -14,6 +14,7 @@
                 <outlet property="avatar" destination="OPO-ko-4lE" id="6A8-fD-yE4"/>
                 <outlet property="destination" destination="7em-9w-erh" id="ck0-06-oYJ"/>
                 <outlet property="distance" destination="Rbp-Vc-PX6" id="pjh-XX-hQT"/>
+                <outlet property="header" destination="Nde-DR-0Ip" id="Q7x-a4-Xn2"/>
                 <outlet property="name" destination="Kap-zx-2Ob" id="pGw-Oz-KuI"/>
                 <outlet property="plate" destination="Y16-jF-xUh" id="Cgp-UZ-h0y"/>
             </connections>

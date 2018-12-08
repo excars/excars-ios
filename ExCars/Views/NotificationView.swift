@@ -11,21 +11,22 @@ import UIKit
 
 class NotificationView: XibView {
 
+    @IBOutlet weak var header: UILabel!
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var plate: UILabel!
     @IBOutlet weak var destination: UILabel!
 
-    private var profile: Profile?
-    private let rideUid: String
+    private let ride: Ride
 
     var onDidAccept: (() -> Void)?
+    var onDidDecline: (() -> Void)?
 
-    init(profile: Profile, rideUid: String, frame: CGRect = CGRect.zero) {
-        self.rideUid = rideUid
+    init(ride: Ride, frame: CGRect = CGRect.zero) {
+        self.ride = ride
         super.init(nibName: "NotificationView", frame: frame)
-        self.renderProfile(profile: profile)
+        self.renderProfile(profile: ride.sender)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -40,16 +41,18 @@ class NotificationView: XibView {
 
         switch profile.role {
         case .driver:
+            header.text = "Someone offers to pick you"
             plate.text = profile.plate
         case .hitchhiker:
+            header.text = "Someone ask you for a ride"
             plate.text = ""
         }
     }
 
     @IBAction func accept() {
-        APIClient.acceptRide(uid: rideUid) { result in
+        APIClient.acceptRide(uid: ride.uid) { result in
             switch result {
-            case .success:
+            case .success(_):
                 self.onDidAccept?()
             case .failure(let error):
                 print ("ACCEPT RIDE ERROR \(error)")
@@ -58,6 +61,14 @@ class NotificationView: XibView {
     }
 
     @IBAction func decline() {
+        APIClient.declineRide(uid: ride.uid) { result in
+            switch result {
+            case .success(_):
+                self.onDidAccept?()
+            case .failure(let error):
+                print ("DECLINE RIDE ERROR \(error)")
+            }
+        }
     }
 
 }

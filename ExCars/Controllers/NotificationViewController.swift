@@ -10,11 +10,10 @@ import UIKit
 
 class NotificationViewController: BottomViewController {
 
-    let rideOffer: WSRideOfferPayload
-    var profile: Profile?
-    
-    init(rideOffer: WSRideOfferPayload) {
-        self.rideOffer = rideOffer
+    let ride: Ride
+
+    init(ride: Ride) {
+        self.ride = ride
 
         super.init(nibName: nil, bundle: nil)
 
@@ -27,25 +26,19 @@ class NotificationViewController: BottomViewController {
     }
 
     override func viewDidLoad() {
-        APIClient.profile(uid: rideOffer.from) { result in
-            switch result {
-            case .success(let profile):
-                self.profile = profile
-                self.setupNotificationView()
-            case .failure(let error):
-                print("NOTIFICATION PROFILE ERROR \(error)")
-            }
-        }
+        setupNotificationView()
     }
 
     private func setupNotificationView() {
-        guard let profile = profile else { return }
+        let notificationView = NotificationView(ride: ride)
 
-        let notificationView = NotificationView(profile: profile, rideUid: rideOffer.uid)
-        notificationView.onDidAccept = { [weak self] in
+        let dismiss = { [weak self] in
             guard let self = self else { return }
             Presenter.dismiss(self)
         }
+        notificationView.onDidAccept = dismiss
+        notificationView.onDidDecline = dismiss
+
         notificationView.frame = view.bounds
         
         view.addSubview(notificationView)
