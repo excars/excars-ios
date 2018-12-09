@@ -25,6 +25,7 @@
 		746E42BF21B4142100F083C3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E42BE21B4142100F083C3 /* ProfileViewController.swift */; };
 		746E42C121B4321A00F083C3 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E42C021B4321A00F083C3 /* Role.swift */; };
 		746E42C321B4352100F083C3 /* BottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E42C221B4352100F083C3 /* BottomViewController.swift */; };
+		746E7ECA21BC2D7D0041ACAD /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E7EC921BC2D7D0041ACAD /* Ride.swift */; };
 		747FDFEF21A19B8E00BD8D75 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */; };
 		74A21CB821A605A500982247 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74A21CB721A605A500982247 /* ProfileView.xib */; };
 		74A21CBA21A605B600982247 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A21CB921A605B600982247 /* ProfileView.swift */; };
@@ -88,6 +89,7 @@
 		746E42BE21B4142100F083C3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		746E42C021B4321A00F083C3 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		746E42C221B4352100F083C3 /* BottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomViewController.swift; sourceTree = "<group>"; };
+		746E7EC921BC2D7D0041ACAD /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 		747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		74A21CB721A605A500982247 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		74A21CB921A605B600982247 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				74E2F0D321AC59C10092FEEF /* Message.swift */,
 				74D3240A21B1779B0096963E /* User.swift */,
 				746E42C021B4321A00F083C3 /* Role.swift */,
+				746E7EC921BC2D7D0041ACAD /* Ride.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				746E42C121B4321A00F083C3 /* Role.swift in Sources */,
 				740F6AC021B6F31E00A955A4 /* InRoleViewController.swift in Sources */,
 				74A21CBA21A605B600982247 /* ProfileView.swift in Sources */,
+				746E7ECA21BC2D7D0041ACAD /* Ride.swift in Sources */,
 				7462254521B48144001E3C40 /* NotificationViewController.swift in Sources */,
 				7415AEDE21A5D83B0042674A /* Secrets.swift in Sources */,
 				74D3240B21B1779B0096963E /* User.swift in Sources */,

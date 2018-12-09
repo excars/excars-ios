@@ -10,12 +10,12 @@ import CoreLocation
 import Starscream
 
 
-let didAcceptRide = NSNotification.Name("didAcceptRide")
+let didUpdateRide = NSNotification.Name("didUpdateRide")
 
 
 protocol WSClientDelegate: class {
     func didReceiveDataUpdate(data: [WSMapPayload])
-    func didReceiveDataUpdate(data: WSRideOffer)
+    func didReceiveDataUpdate(data: WSRide)
     func didSendMessage(type: MessageType)
 }
 
@@ -60,10 +60,6 @@ class WSClient {
         delegate?.didSendMessage(type: MessageType.location)
     }
     
-    func requestRide(uid: String) {
-        print("REQUEST RIDE \(uid)")
-    }
-    
 }
 
 
@@ -84,17 +80,18 @@ extension WSClient: WebSocketDelegate {
                 break
             }
             delegate?.didReceiveDataUpdate(data: wsMap.data)
-        case .offerRideAccepted:
-            NotificationCenter.default.post(
-                name: didAcceptRide,
-                object: nil
-            )
-        case .rideOffer:
-            guard let wsRideOffer = try? decoder.decode(WSRideOffer.self, from: data) else {
+        case .rideRequested:
+            guard let wsRide = try? decoder.decode(WSRide.self, from: data) else {
                 print("FAILED TO RIDE OFFER")
                 break
             }
-            delegate?.didReceiveDataUpdate(data: wsRideOffer)
+            delegate?.didReceiveDataUpdate(data: wsRide)
+        case .rideAccepted, .rideDeclined:
+            NotificationCenter.default.post(
+                name: didUpdateRide,
+                object: nil,
+                userInfo: ["messageType": message.type]
+            )
         default:
             print("NO MESSAGE TYPE \(message.type.rawValue)")
             break
@@ -106,7 +103,7 @@ extension WSClient: WebSocketDelegate {
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        
+
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {

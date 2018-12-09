@@ -44,7 +44,7 @@ enum APIRouter: URLRequestConvertible {
         case .auth:
             return "/auth/"
         case .me:
-            return "/auth/me/"
+            return "/api/profiles/me/"
         case .profile(let uid):
             return "/api/profiles/\(uid)"
         case .join:
@@ -71,7 +71,7 @@ enum APIRouter: URLRequestConvertible {
             ]
         case .rides(let uid):
             return [
-                "to": uid
+                "receiver": uid
             ]
         case .updateRide(_, let status):
             return [

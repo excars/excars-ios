@@ -25,7 +25,7 @@ class APIClient {
         performRequest(route: APIRouter.auth(idToken), completion: completion)
     }
     
-    static func me(completion: @escaping (Result<Me>)->Void) {
+    static func me(completion: @escaping (Result<User>)->Void) {
         performRequest(route: APIRouter.me, completion: completion)
     }
     
@@ -33,16 +33,20 @@ class APIClient {
         performRequest(route: APIRouter.profile(uid), completion: completion)
     }
     
-    static func join(role: Role, destination: Destination, completion: @escaping (Result<EmptyResponse>)->Void) {
+    static func join(role: Role, destination: Destination, completion: @escaping (Result<Profile>)->Void) {
         performRequest(route: APIRouter.join(role, destination), completion: completion)
     }
 
-    static func ride(to: String, completion: @escaping (Result<EmptyResponse>)->Void) {
+    static func ride(to: String, completion: @escaping (Result<RideAPIResponse>)->Void) {
         performRequest(route: APIRouter.rides(to), completion: completion)
     }
-    
-    static func acceptRide(uid: String, completion: @escaping (Result<EmptyResponse>)->Void) {
+
+    static func acceptRide(uid: String, completion: @escaping (Result<RideAPIResponse>)->Void) {
         performRequest(route: APIRouter.updateRide(uid, "accept"), completion: completion)
+    }
+    
+    static func declineRide(uid: String, completion: @escaping (Result<RideAPIResponse>)->Void) {
+        performRequest(route: APIRouter.updateRide(uid, "decline"), completion: completion)
     }
 
 }

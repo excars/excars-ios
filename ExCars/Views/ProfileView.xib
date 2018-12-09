@@ -16,6 +16,7 @@
                 <outlet property="avatar" destination="poo-1X-Xqd" id="LKE-px-1zs"/>
                 <outlet property="destination" destination="D76-Fa-oQm" id="iHZ-4d-mYM"/>
                 <outlet property="distance" destination="QZc-ef-CnV" id="il6-2b-5rL"/>
+                <outlet property="icon" destination="NnP-xt-phu" id="y7s-76-Gqj"/>
                 <outlet property="name" destination="etZ-Pp-QJ2" id="Caw-wx-v2Q"/>
                 <outlet property="plate" destination="Syy-yu-xeH" id="FeT-T3-bGN"/>
                 <outlet property="submitButton" destination="ilp-iV-Ppy" id="jNc-jm-cb2"/>
@@ -87,6 +88,10 @@
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NnP-xt-phu">
+                    <rect key="frame" x="131" y="172" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

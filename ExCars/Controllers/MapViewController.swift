@@ -149,8 +149,8 @@ extension MapViewController: WSClientDelegate {
         }
     }
 
-    func didReceiveDataUpdate(data: WSRideOffer) {
-        let notificationVC = NotificationViewController(rideOffer: data.data)
+    func didReceiveDataUpdate(data: WSRide) {
+        let notificationVC = NotificationViewController(ride: data.data)
         exclusivePresenter.present(notificationVC)
     }
 
