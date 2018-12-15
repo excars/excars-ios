@@ -132,18 +132,18 @@ extension MapViewController: WSClientDelegate {
         
         let carIcon = UIImage(named: "car")
         let hitchhikerIcon = UIImage(named: "hitchhiker")
-        
+
         for item in data {
-            let position = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude)
+            let position = CLLocationCoordinate2D(latitude: item.location.latitude, longitude: item.location.longitude)
             let marker = GMSMarker(position: position)
-            
+
             switch item.role {
             case .driver:
                 marker.icon = carIcon
             case .hitchhiker:
                 marker.icon = hitchhikerIcon
             }
-            
+
             marker.userData = item
             marker.map = mapView
         }

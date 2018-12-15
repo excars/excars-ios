@@ -13,11 +13,15 @@ struct Ride: Codable {
     let uid: String
     let sender: Profile
     let receiver: Profile
+    
+    private enum CodingKeys: String, CodingKey {
+        case uid = "ride_uid"
+        case sender
+        case receiver
+    }
 }
 
 
 struct RideAPIResponse: Codable {
     let uid: String
-    let sender: String
-    let receiver: String
 }

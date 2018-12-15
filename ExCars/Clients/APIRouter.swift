@@ -20,7 +20,7 @@ enum APIRouter: URLRequestConvertible {
     case profile(String)
     case join(Role, Destination)
     case rides(String)
-    case updateRide(String, String)
+    case updateRide(String, String, Profile)
     
     var method: HTTPMethod {
         switch self {
@@ -51,7 +51,7 @@ enum APIRouter: URLRequestConvertible {
             return "/api/rides/join"
         case .rides:
             return "/api/rides"
-        case .updateRide(let uid, _):
+        case .updateRide(let uid, _, _):
             return "/api/rides/\(uid)"
         }
     }
@@ -73,9 +73,10 @@ enum APIRouter: URLRequestConvertible {
             return [
                 "receiver": uid
             ]
-        case .updateRide(_, let status):
+        case .updateRide(_, let status, let profile):
             return [
-                "status": status
+                "status": status,
+                "passenger_uid": profile.uid,
             ]
         default:
             return nil

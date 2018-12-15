@@ -94,7 +94,7 @@ class ProfileView: XibView {
         switch(messageType) {
         case .rideAccepted:
             activityLabel.text = "Accepted"
-            activityLabel.textColor = UIColor(red:0.18, green:0.80, blue:0.44, alpha:1.0)
+            activityLabel.textColor = UIColor(red:0.15, green:0.68, blue:0.38, alpha:1.0)
             icon.image = UIImage(named: "check")!
         case .rideDeclined:
             activityLabel.text = "Declined"

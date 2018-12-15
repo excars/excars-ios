@@ -70,6 +70,7 @@ extension WSClient: WebSocketDelegate {
         
         guard let data = text.data(using: .utf8),
             let message = try? decoder.decode(WSMessage.self, from: data) else {
+                print("MESSAGE FAILED TO DECODE \(text)")
                 return
         }
         
@@ -87,6 +88,7 @@ extension WSClient: WebSocketDelegate {
             }
             delegate?.didReceiveDataUpdate(data: wsRide)
         case .rideAccepted, .rideDeclined:
+            print("RIDE: \(message.type)")
             NotificationCenter.default.post(
                 name: didUpdateRide,
                 object: nil,

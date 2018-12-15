@@ -46,9 +46,22 @@ struct WSMap: Codable {
 
 struct WSMapPayload: Codable {
     let uid: String
+    let role: Role
+    let hasSameRide: Bool
+    let location: WSMapLocation
+    
+    private enum CodingKeys: String, CodingKey {
+        case uid = "user_uid"
+        case role
+        case hasSameRide = "has_same_ride"
+        case location
+    }
+}
+
+
+struct WSMapLocation: Codable {
     let latitude: Double
     let longitude: Double
-    let role: Role
 }
 
 

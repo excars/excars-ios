@@ -50,7 +50,7 @@ class NotificationView: XibView {
     }
 
     @IBAction func accept() {
-        APIClient.acceptRide(uid: ride.uid) { result in
+        APIClient.acceptRide(uid: ride.uid, passenger: getPassenger()) { result in
             switch result {
             case .success(_):
                 self.onDidAccept?()
@@ -61,7 +61,7 @@ class NotificationView: XibView {
     }
 
     @IBAction func decline() {
-        APIClient.declineRide(uid: ride.uid) { result in
+        APIClient.declineRide(uid: ride.uid, passenger: getPassenger()) { result in
             switch result {
             case .success(_):
                 self.onDidAccept?()
@@ -69,6 +69,14 @@ class NotificationView: XibView {
                 print ("DECLINE RIDE ERROR \(error)")
             }
         }
+    }
+    
+    private func getPassenger() -> Profile {
+        print("IS: \(ride.sender.role == Role.driver)")
+        if ride.sender.role == Role.driver {
+            return ride.receiver
+        }
+        return ride.sender
     }
 
 }
