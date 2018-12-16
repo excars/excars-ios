@@ -67,5 +67,5 @@ struct WSMapLocation: Codable {
 
 struct WSRide: Codable {
     let type = MessageType.rideRequested
-    let data: Ride
+    let data: RideRequest
 }

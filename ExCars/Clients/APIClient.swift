@@ -49,6 +49,10 @@ class APIClient {
         performRequest(route: APIRouter.updateRide(uid, "declined", passenger), completion: completion)
     }
 
+    static func currentRide(completion: @escaping (Result<Ride>)->Void) {
+        performRequest(route: APIRouter.currentRide, completion: completion)
+    }
+
 }
 
 

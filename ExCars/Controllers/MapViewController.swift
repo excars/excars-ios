@@ -51,7 +51,7 @@ class MapViewController: UIViewController {
         mapView.padding = UIEdgeInsets(top: self.view.safeAreaInsets.top, left: 0, bottom: 80, right: 0)
         mapView.delegate = self
         view.addSubview(mapView)
-        
+
         wsClient.delegate = self
         
         currentUser.delegate = self
@@ -150,7 +150,7 @@ extension MapViewController: WSClientDelegate {
     }
 
     func didReceiveDataUpdate(data: WSRide) {
-        let notificationVC = NotificationViewController(ride: data.data)
+        let notificationVC = NotificationViewController(rideRequest: data.data)
         exclusivePresenter.present(notificationVC)
     }
 

@@ -15,7 +15,7 @@ class InRoleViewController: BottomViewController {
         self.user = user
         super.init(nibName: nil, bundle: nil)
         
-        fullHeight = 52
+        fullHeight = 352
         height = 52
     }
     
@@ -25,11 +25,19 @@ class InRoleViewController: BottomViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupRoleView()
+        
+        APIClient.currentRide() { result in
+            switch result {
+            case .success(let ride):
+                self.setupRoleView(ride: ride)
+            case .failure(let error):
+                print("IN ROLE RIDE FAILURE \(error)")
+            }
+        }
     }
     
-    private func setupRoleView() {
-        let inRoleView = InRoleView(user: user)
+    private func setupRoleView(ride: Ride) {
+        let inRoleView = InRoleView(user: user, ride: ride)
         inRoleView.frame = view.bounds
         view.addSubview(inRoleView)
     }

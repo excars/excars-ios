@@ -22,9 +22,9 @@ class ProfileView: XibView {
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var icon: UIImageView!
-    
+
     private var profile: Profile
-    
+
     init(profile: Profile, frame: CGRect = CGRect.zero) {
         self.profile = profile
         super.init(nibName: "ProfileView", frame: frame)
@@ -95,11 +95,11 @@ class ProfileView: XibView {
         case .rideAccepted:
             activityLabel.text = "Accepted"
             activityLabel.textColor = UIColor(red:0.15, green:0.68, blue:0.38, alpha:1.0)
-            icon.image = UIImage(named: "check")!
+            icon.image = UIImage(named: "acepted")!
         case .rideDeclined:
             activityLabel.text = "Declined"
             activityLabel.textColor = UIColor(red:0.91, green:0.30, blue:0.24, alpha:1.0)
-            icon.image = UIImage(named: "close")!
+            icon.image = UIImage(named: "declined")!
         default:
             break
         }
