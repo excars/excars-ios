@@ -18,15 +18,15 @@ class NotificationView: XibView {
     @IBOutlet weak var plate: UILabel!
     @IBOutlet weak var destination: UILabel!
 
-    private let ride: Ride
+    private let rideRequest: RideRequest
 
     var onDidAccept: (() -> Void)?
     var onDidDecline: (() -> Void)?
 
-    init(ride: Ride, frame: CGRect = CGRect.zero) {
-        self.ride = ride
+    init(rideRequest: RideRequest, frame: CGRect = CGRect.zero) {
+        self.rideRequest = rideRequest
         super.init(nibName: "NotificationView", frame: frame)
-        self.renderProfile(profile: ride.sender)
+        self.renderProfile(profile: rideRequest.sender)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -50,7 +50,7 @@ class NotificationView: XibView {
     }
 
     @IBAction func accept() {
-        APIClient.acceptRide(uid: ride.uid, passenger: getPassenger()) { result in
+        APIClient.acceptRide(uid: rideRequest.uid, passenger: getPassenger()) { result in
             switch result {
             case .success(_):
                 self.onDidAccept?()
@@ -61,7 +61,7 @@ class NotificationView: XibView {
     }
 
     @IBAction func decline() {
-        APIClient.declineRide(uid: ride.uid, passenger: getPassenger()) { result in
+        APIClient.declineRide(uid: rideRequest.uid, passenger: getPassenger()) { result in
             switch result {
             case .success(_):
                 self.onDidAccept?()
@@ -72,11 +72,11 @@ class NotificationView: XibView {
     }
     
     private func getPassenger() -> Profile {
-        print("IS: \(ride.sender.role == Role.driver)")
-        if ride.sender.role == Role.driver {
-            return ride.receiver
+        print("IS: \(rideRequest.sender.role == Role.driver)")
+        if rideRequest.sender.role == Role.driver {
+            return rideRequest.receiver
         }
-        return ride.sender
+        return rideRequest.sender
     }
 
 }

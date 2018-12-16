@@ -10,10 +10,10 @@ import UIKit
 
 class NotificationViewController: BottomViewController {
 
-    let ride: Ride
+    let rideRequest: RideRequest
 
-    init(ride: Ride) {
-        self.ride = ride
+    init(rideRequest: RideRequest) {
+        self.rideRequest = rideRequest
 
         super.init(nibName: nil, bundle: nil)
 
@@ -30,7 +30,7 @@ class NotificationViewController: BottomViewController {
     }
 
     private func setupNotificationView() {
-        let notificationView = NotificationView(ride: ride)
+        let notificationView = NotificationView(rideRequest: rideRequest)
 
         let dismiss = { [weak self] in
             guard let self = self else { return }
