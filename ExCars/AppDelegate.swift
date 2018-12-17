@@ -68,6 +68,17 @@ extension AppDelegate: GIDSignInDelegate {
                 AppDelegate.shared.rootViewController.toMap()
             case .failure(let error):
                 print("AUTH ERROR \(error)")
+                
+                let alertController = UIAlertController(
+                    title: "Cannot connect to server",
+                    message: "",
+                    preferredStyle: UIAlertController.Style.alert
+                )
+                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+                alertController.addAction(okAction)
+                self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+
+                AppDelegate.shared.rootViewController.toLogin()
             }
         }
     }

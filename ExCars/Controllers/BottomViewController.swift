@@ -16,11 +16,13 @@ class BottomViewController: UIViewController {
     var fullHeight: CGFloat = 0
     var height: CGFloat = 0
 
+    let bottomSafeAreaInsets = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? CGFloat(0.0)
+    
     private var fullView: CGFloat {
-        return UIScreen.main.bounds.height - fullHeight
+        return UIScreen.main.bounds.height - (fullHeight + bottomSafeAreaInsets)
     }
     private var partialView: CGFloat {
-        return UIScreen.main.bounds.height - height
+        return UIScreen.main.bounds.height - (height + bottomSafeAreaInsets)
     }
 
     override func loadView() {
