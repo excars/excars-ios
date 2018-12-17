@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginView" customModule="ExCars" customModuleProvider="target">
+            <connections>
+                <outlet property="image" destination="45q-sv-Xwj" id="G9C-sS-3IC"/>
+                <outlet property="signInButton" destination="e4E-xZ-GnU" id="Pal-Bg-f33"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="45q-sv-Xwj">
+                    <rect key="frame" x="38" y="184" width="299" height="299"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="45q-sv-Xwj" secondAttribute="height" multiplier="1:1" id="nSA-H7-bx8"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4E-xZ-GnU" customClass="GIDSignInButton">
+                    <rect key="frame" x="67.5" y="491" width="240" height="44"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="4pw-5I-9r2"/>
+                        <constraint firstAttribute="width" constant="240" id="lAx-dk-ek1"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When You pick Colleagues" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMx-qk-T7o">
+                    <rect key="frame" x="86" y="155" width="203" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="203" id="YNM-cQ-ZPP"/>
+                        <constraint firstAttribute="height" constant="21" id="lgd-B2-wWb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ExCars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZi-2e-wYs">
+                    <rect key="frame" x="132.5" y="104" width="110" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="pHh-hc-UbA"/>
+                        <constraint firstAttribute="width" constant="110" id="v7W-0Q-US3"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="pZi-2e-wYs" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="AQi-Ol-4RL"/>
+                <constraint firstItem="45q-sv-Xwj" firstAttribute="top" secondItem="xMx-qk-T7o" secondAttribute="bottom" constant="8" id="Vti-eh-ZTJ"/>
+                <constraint firstItem="45q-sv-Xwj" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="aeI-x9-DYZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="45q-sv-Xwj" secondAttribute="trailing" constant="38" id="cQP-Mf-fT5"/>
+                <constraint firstItem="xMx-qk-T7o" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="d8k-sX-nKK"/>
+                <constraint firstItem="45q-sv-Xwj" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pHY-oG-pUh"/>
+                <constraint firstItem="e4E-xZ-GnU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qYB-HC-9qb"/>
+                <constraint firstItem="e4E-xZ-GnU" firstAttribute="top" secondItem="45q-sv-Xwj" secondAttribute="bottom" constant="8" id="tZp-vQ-uub"/>
+                <constraint firstItem="xMx-qk-T7o" firstAttribute="top" secondItem="pZi-2e-wYs" secondAttribute="bottom" constant="8" id="uhX-RO-LwU"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>
+        </view>
+    </objects>
+</document>
