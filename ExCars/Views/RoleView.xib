@@ -42,7 +42,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mNs-hN-bCS" customClass="DesignableButton" customModule="ExCars" customModuleProvider="target">
-                    <rect key="frame" x="191.5" y="206" width="167.5" height="30"/>
+                    <rect key="frame" x="205" y="206" width="140" height="30"/>
                     <color key="backgroundColor" red="0.2008331341" green="0.43026510909999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="MQN-RS-ICF"/>
@@ -65,7 +65,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4i-mk-PzK" customClass="DesignableButton" customModule="ExCars" customModuleProvider="target">
-                    <rect key="frame" x="16" y="206" width="167.5" height="30"/>
+                    <rect key="frame" x="30" y="206" width="140" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="i3v-uW-WxP"/>
                     </constraints>
@@ -100,13 +100,13 @@
                 <constraint firstItem="qjE-1V-RUJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="GIN-16-iiM"/>
                 <constraint firstItem="kNk-47-1AP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="HbU-Ky-Dib"/>
                 <constraint firstItem="E4i-mk-PzK" firstAttribute="top" secondItem="0Mc-Dr-ZmF" secondAttribute="bottom" constant="8" id="Lio-lL-lnO"/>
-                <constraint firstItem="E4i-mk-PzK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="NaA-fW-C4p"/>
+                <constraint firstItem="E4i-mk-PzK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="NaA-fW-C4p"/>
                 <constraint firstItem="mNs-hN-bCS" firstAttribute="width" secondItem="E4i-mk-PzK" secondAttribute="width" id="Yqn-y2-eZd"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mNs-hN-bCS" secondAttribute="trailing" constant="16" id="hVf-07-UYp"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mNs-hN-bCS" secondAttribute="trailing" constant="30" id="hVf-07-UYp"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="mNs-hN-bCS" secondAttribute="bottom" constant="20" id="kDY-wA-I0B"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="E4i-mk-PzK" secondAttribute="bottom" constant="20" id="nEn-QR-zfU"/>
                 <constraint firstItem="kNk-47-1AP" firstAttribute="top" secondItem="qjE-1V-RUJ" secondAttribute="bottom" constant="8" id="qj7-fc-zvb"/>
-                <constraint firstItem="mNs-hN-bCS" firstAttribute="leading" secondItem="E4i-mk-PzK" secondAttribute="trailing" constant="8" id="xdu-dA-gHc"/>
+                <constraint firstItem="mNs-hN-bCS" firstAttribute="leading" secondItem="E4i-mk-PzK" secondAttribute="trailing" constant="35" id="xdu-dA-gHc"/>
                 <constraint firstItem="0Mc-Dr-ZmF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="y8K-vR-SA1"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
