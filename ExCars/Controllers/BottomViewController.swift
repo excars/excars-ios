@@ -13,8 +13,8 @@ class BottomViewController: UIViewController {
     var allowDismiss = false
     var openFullView = false
     
-    var fullHeight: CGFloat = 0
-    var height: CGFloat = 0
+    var fullHeight: CGFloat = 0.0
+    var height: CGFloat = 0.0
 
     let bottomSafeAreaInsets = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? CGFloat(0.0)
     
