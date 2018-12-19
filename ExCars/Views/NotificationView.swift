@@ -14,8 +14,6 @@ class NotificationView: XibView {
     @IBOutlet weak var header: UILabel!
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var distance: UILabel!
-    @IBOutlet weak var plate: UILabel!
     @IBOutlet weak var destination: UILabel!
 
     private let rideRequest: RideRequest
@@ -35,17 +33,14 @@ class NotificationView: XibView {
     
     private func renderProfile(profile: Profile) {
         name.text = profile.name
-        destination.text = profile.destination?.name.uppercased()
-        distance.text = "\(profile.distance) km away"
+        destination.text = profile.destination?.name
         avatar?.sd_setImage(with: profile.avatar, placeholderImage: UIImage(named: profile.role.rawValue))
 
         switch profile.role {
         case .driver:
             header.text = "Someone offers to pick you"
-            plate.text = profile.plate
         case .hitchhiker:
             header.text = "Someone ask you for a ride"
-            plate.text = ""
         }
     }
 
@@ -72,7 +67,6 @@ class NotificationView: XibView {
     }
     
     private func getPassenger() -> Profile {
-        print("IS: \(rideRequest.sender.role == Role.driver)")
         if rideRequest.sender.role == Role.driver {
             return rideRequest.receiver
         }

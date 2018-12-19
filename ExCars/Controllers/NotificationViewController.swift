@@ -17,10 +17,10 @@ class NotificationViewController: BottomViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        self.fullHeight = 238
-        self.height = 238
+        fullHeight = 211
+        height = fullHeight
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
