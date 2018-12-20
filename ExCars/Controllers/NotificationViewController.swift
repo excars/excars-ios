@@ -17,10 +17,10 @@ class NotificationViewController: BottomViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        self.fullHeight = 238
-        self.height = 238
+        fullHeight = 255
+        height = fullHeight
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -30,7 +30,8 @@ class NotificationViewController: BottomViewController {
     }
 
     private func setupNotificationView() {
-        let notificationView = NotificationView(rideRequest: rideRequest)
+        let frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: fullHeight)
+        let notificationView = NotificationView(rideRequest: rideRequest, frame: frame)
 
         let dismiss = { [weak self] in
             guard let self = self else { return }

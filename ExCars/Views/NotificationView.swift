@@ -12,11 +12,6 @@ import UIKit
 class NotificationView: XibView {
 
     @IBOutlet weak var header: UILabel!
-    @IBOutlet weak var avatar: UIImageView!
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var distance: UILabel!
-    @IBOutlet weak var plate: UILabel!
-    @IBOutlet weak var destination: UILabel!
 
     private let rideRequest: RideRequest
 
@@ -26,31 +21,29 @@ class NotificationView: XibView {
     init(rideRequest: RideRequest, frame: CGRect = CGRect.zero) {
         self.rideRequest = rideRequest
         super.init(nibName: "NotificationView", frame: frame)
-        self.renderProfile(profile: rideRequest.sender)
+        self.setupHeader(role: rideRequest.sender.role)
+
+        let profileView = BaseProfileView(profile: rideRequest.sender)
+        profileView.frame = CGRect(x: 0, y: 48, width: frame.width, height: 142)
+        addSubview(profileView)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func renderProfile(profile: Profile) {
-        name.text = profile.name
-        destination.text = profile.destination?.name.uppercased()
-        distance.text = "\(profile.distance) km away"
-        avatar?.sd_setImage(with: profile.avatar, placeholderImage: UIImage(named: profile.role.rawValue))
-
-        switch profile.role {
+    private func setupHeader(role: Role) {
+        switch role {
         case .driver:
             header.text = "Someone offers to pick you"
-            plate.text = profile.plate
         case .hitchhiker:
             header.text = "Someone ask you for a ride"
-            plate.text = ""
         }
     }
 
     @IBAction func accept() {
-        APIClient.acceptRide(uid: rideRequest.uid, passenger: getPassenger()) { result in
+        APIClient.acceptRide(uid: rideRequest.uid, passenger: getPassenger()) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(_):
                 self.onDidAccept?()
@@ -61,7 +54,8 @@ class NotificationView: XibView {
     }
 
     @IBAction func decline() {
-        APIClient.declineRide(uid: rideRequest.uid, passenger: getPassenger()) { result in
+        APIClient.declineRide(uid: rideRequest.uid, passenger: getPassenger()) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(_):
                 self.onDidAccept?()
@@ -72,7 +66,6 @@ class NotificationView: XibView {
     }
     
     private func getPassenger() -> Profile {
-        print("IS: \(rideRequest.sender.role == Role.driver)")
         if rideRequest.sender.role == Role.driver {
             return rideRequest.receiver
         }
