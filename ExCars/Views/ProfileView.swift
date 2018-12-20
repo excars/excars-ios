@@ -13,9 +13,6 @@ import SDWebImage
 
 class ProfileView: XibView {
 
-    @IBOutlet weak var avatar: UIImageView!
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var destination: UILabel!
     @IBOutlet weak var submitButton: StateButton!
     
     private var profile: Profile
@@ -23,6 +20,10 @@ class ProfileView: XibView {
     init(profile: Profile, frame: CGRect = CGRect.zero) {
         self.profile = profile
         super.init(nibName: "ProfileView", frame: frame)
+        
+        let profileView = BaseProfileView(profile: profile)
+        profileView.frame = CGRect(x: 0, y: 0, width: frame.width, height: 142)
+        addSubview(profileView)
 
         render()
     }
@@ -36,10 +37,6 @@ class ProfileView: XibView {
     }
 
     private func render() {
-        name.text = profile.name
-        destination.text = profile.destination?.name
-        avatar?.sd_setImage(with: profile.avatar, placeholderImage: UIImage(named: profile.role.rawValue))
-        
         switch profile.role {
         case .driver:
             submitButton.setTitle("Request a Ride", for: UIControl.State.normal)

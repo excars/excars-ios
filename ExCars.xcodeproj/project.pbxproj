@@ -36,6 +36,8 @@
 		74A204B421C67365004B8A2D /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A204B321C67365004B8A2D /* Ride.swift */; };
 		74A21CB821A605A500982247 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74A21CB721A605A500982247 /* ProfileView.xib */; };
 		74A21CBA21A605B600982247 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A21CB921A605B600982247 /* ProfileView.swift */; };
+		74D2CC4921CB0258004FD613 /* BaseProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2CC4821CB0258004FD613 /* BaseProfileView.swift */; };
+		74D2CC4B21CB027B004FD613 /* BaseProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74D2CC4A21CB027B004FD613 /* BaseProfileView.xib */; };
 		74D3240B21B1779B0096963E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D3240A21B1779B0096963E /* User.swift */; };
 		74E2F0C821AC0E550092FEEF /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0C721AC0E550092FEEF /* Profile.swift */; };
 		74E2F0CC21AC17650092FEEF /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0CB21AC17650092FEEF /* APIClient.swift */; };
@@ -107,6 +109,8 @@
 		74A204B321C67365004B8A2D /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 		74A21CB721A605A500982247 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		74A21CB921A605B600982247 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		74D2CC4821CB0258004FD613 /* BaseProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProfileView.swift; sourceTree = "<group>"; };
+		74D2CC4A21CB027B004FD613 /* BaseProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseProfileView.xib; sourceTree = "<group>"; };
 		74D3240A21B1779B0096963E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		74E2F0C721AC0E550092FEEF /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		74E2F0CB21AC17650092FEEF /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -293,6 +297,8 @@
 				742BCD7521C652CF00403EBA /* RideViewCell.swift */,
 				7438806921C815D0009C339A /* LoginView.swift */,
 				7438806B21C815DC009C339A /* LoginView.xib */,
+				74D2CC4821CB0258004FD613 /* BaseProfileView.swift */,
+				74D2CC4A21CB027B004FD613 /* BaseProfileView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -416,6 +422,7 @@
 				746E42BB21B40E2500F083C3 /* InRoleView.xib in Resources */,
 				74E2F0E021AD3F8D0092FEEF /* NotificationView.xib in Resources */,
 				742BCD7421C6529500403EBA /* RideViewCell.xib in Resources */,
+				74D2CC4B21CB027B004FD613 /* BaseProfileView.xib in Resources */,
 				7438806C21C815DC009C339A /* LoginView.xib in Resources */,
 				74FF005221AE9A8D00D588BA /* RoleView.xib in Resources */,
 				7400C74F21A153F500DFD5A3 /* Assets.xcassets in Resources */,
@@ -534,6 +541,7 @@
 				740F6ABE21B5DAB500A955A4 /* Presenter.swift in Sources */,
 				74F7CD0821B08053003463A9 /* RootViewController.swift in Sources */,
 				740F6ABC21B5CEDF00A955A4 /* ExclusivePresenter.swift in Sources */,
+				74D2CC4921CB0258004FD613 /* BaseProfileView.swift in Sources */,
 				74F7CD0C21B08866003463A9 /* MapViewController.swift in Sources */,
 				74E2F0E221AD3FA10092FEEF /* NotificationView.swift in Sources */,
 				746E42BF21B4142100F083C3 /* ProfileViewController.swift in Sources */,
