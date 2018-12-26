@@ -113,17 +113,14 @@ extension InRoleView: UITableViewDelegate, UITableViewDataSource {
         guard let ride = ride else { return UITableViewCell() }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "default", for: indexPath) as! RideViewCell
-
-        let profile = (indexPath.section == 0) ? ride.driver : ride.passengers[indexPath.row].profile
         
-        cell.backgroundColor = UIColor(white: 1, alpha: 0)
-        cell.name.text = profile.name
-        cell.avatar?.sd_setImage(with: profile.avatar, placeholderImage: UIImage(named: profile.role.rawValue))
-        
-        if indexPath.section > 0 {
-            cell.status.image = UIImage(named: ride.passengers[indexPath.row].status)
+        if indexPath.section == 0 {
+            cell.render(profile: ride.driver, status: nil)
+        } else {
+            let passenger = ride.passengers[indexPath.row]
+            cell.render(profile: passenger.profile, status: passenger.status)
         }
-        
+
         return cell
     }
 

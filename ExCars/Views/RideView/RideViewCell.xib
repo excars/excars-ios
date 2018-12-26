@@ -61,7 +61,7 @@
             <connections>
                 <outlet property="avatar" destination="iV2-9V-DED" id="I5n-F6-Gm3"/>
                 <outlet property="name" destination="7BA-vI-aUi" id="aK1-ia-hjE"/>
-                <outlet property="status" destination="0bf-Od-6RS" id="Lnk-lX-O6Y"/>
+                <outlet property="statusIcon" destination="0bf-Od-6RS" id="CRz-eW-dCK"/>
             </connections>
             <point key="canvasLocation" x="138.40000000000001" y="-152.92353823088456"/>
         </view>

@@ -292,6 +292,7 @@
 		74A21CA721A5F5DE00982247 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				74F1167F21D4171F00738E59 /* RideView */,
 				74A21CB721A605A500982247 /* ProfileView.xib */,
 				74A21CB921A605B600982247 /* ProfileView.swift */,
 				74E2F0CF21AC37470092FEEF /* XibView.swift */,
@@ -301,18 +302,25 @@
 				74FF005321AE9BC000D588BA /* RoleView.swift */,
 				746E42BA21B40E2500F083C3 /* InRoleView.xib */,
 				746E42BC21B40E3F00F083C3 /* InRoleView.swift */,
-				742BCD7321C6529500403EBA /* RideViewCell.xib */,
-				742BCD7521C652CF00403EBA /* RideViewCell.swift */,
 				7438806921C815D0009C339A /* LoginView.swift */,
 				7438806B21C815DC009C339A /* LoginView.xib */,
 				74D2CC4821CB0258004FD613 /* BaseProfileView.swift */,
 				74D2CC4A21CB027B004FD613 /* BaseProfileView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		74F1167F21D4171F00738E59 /* RideView */ = {
+			isa = PBXGroup;
+			children = (
+				742BCD7321C6529500403EBA /* RideViewCell.xib */,
+				742BCD7521C652CF00403EBA /* RideViewCell.swift */,
 				74F1167721D3F26900738E59 /* HeaderViewCell.xib */,
 				74F1167921D3F37600738E59 /* HeaderViewCell.swift */,
 				74F1167B21D403E300738E59 /* EmptyRideView.xib */,
 				74F1167D21D403F300738E59 /* EmptyRideView.swift */,
 			);
-			path = Views;
+			path = RideView;
 			sourceTree = "<group>";
 		};
 		E13FEF35E88B83973C68D3C3 /* Pods */ = {
