@@ -11,7 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InRoleView" customModule="ExCars" customModuleProvider="target">
             <connections>
-                <outlet property="roleLabel" destination="BpQ-Ff-N0c" id="rDw-ae-gpj"/>
+                <outlet property="destination" destination="BpQ-Ff-N0c" id="9HA-L5-1Az"/>
+                <outlet property="roleIcon" destination="Fop-dQ-iFx" id="dOf-wX-dMw"/>
                 <outlet property="tableView" destination="Mkn-me-mQZ" id="bIo-R8-ESQ"/>
             </connections>
         </placeholder>
@@ -50,10 +51,10 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7LI-cW-DKS">
+                <view alpha="0.10000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7LI-cW-DKS">
                     <rect key="frame" x="0.0" y="54" width="375" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ride Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aM-01-cCD">
                     <rect key="frame" x="16" y="67" width="123" height="29"/>

@@ -48,6 +48,8 @@
 		74F1167621D375A500738E59 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1167521D375A500738E59 /* Secrets.swift */; };
 		74F1167821D3F26900738E59 /* HeaderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F1167721D3F26900738E59 /* HeaderViewCell.xib */; };
 		74F1167A21D3F37600738E59 /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1167921D3F37600738E59 /* HeaderViewCell.swift */; };
+		74F1167C21D403E300738E59 /* EmptyRideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F1167B21D403E300738E59 /* EmptyRideView.xib */; };
+		74F1167E21D403F300738E59 /* EmptyRideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1167D21D403F300738E59 /* EmptyRideView.swift */; };
 		74F7CD0821B08053003463A9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0721B08053003463A9 /* RootViewController.swift */; };
 		74F7CD0A21B08145003463A9 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0921B08145003463A9 /* LaunchViewController.swift */; };
 		74F7CD0C21B08866003463A9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0B21B08865003463A9 /* MapViewController.swift */; };
@@ -123,6 +125,8 @@
 		74F1167521D375A500738E59 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		74F1167721D3F26900738E59 /* HeaderViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderViewCell.xib; sourceTree = "<group>"; };
 		74F1167921D3F37600738E59 /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
+		74F1167B21D403E300738E59 /* EmptyRideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyRideView.xib; sourceTree = "<group>"; };
+		74F1167D21D403F300738E59 /* EmptyRideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRideView.swift; sourceTree = "<group>"; };
 		74F7CD0721B08053003463A9 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		74F7CD0921B08145003463A9 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		74F7CD0B21B08865003463A9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -305,6 +309,8 @@
 				74D2CC4A21CB027B004FD613 /* BaseProfileView.xib */,
 				74F1167721D3F26900738E59 /* HeaderViewCell.xib */,
 				74F1167921D3F37600738E59 /* HeaderViewCell.swift */,
+				74F1167B21D403E300738E59 /* EmptyRideView.xib */,
+				74F1167D21D403F300738E59 /* EmptyRideView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -429,6 +435,7 @@
 				74E2F0E021AD3F8D0092FEEF /* NotificationView.xib in Resources */,
 				742BCD7421C6529500403EBA /* RideViewCell.xib in Resources */,
 				74D2CC4B21CB027B004FD613 /* BaseProfileView.xib in Resources */,
+				74F1167C21D403E300738E59 /* EmptyRideView.xib in Resources */,
 				74F1167821D3F26900738E59 /* HeaderViewCell.xib in Resources */,
 				7438806C21C815DC009C339A /* LoginView.xib in Resources */,
 				74FF005221AE9A8D00D588BA /* RoleView.xib in Resources */,
@@ -567,6 +574,7 @@
 				745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */,
 				746E42C321B4352100F083C3 /* BottomViewController.swift in Sources */,
 				7438806A21C815D0009C339A /* LoginView.swift in Sources */,
+				74F1167E21D403F300738E59 /* EmptyRideView.swift in Sources */,
 				7415AEDC21A5D1660042674A /* WSClient.swift in Sources */,
 				74A204B421C67365004B8A2D /* Ride.swift in Sources */,
 				744E6B8821B12CF4002CC847 /* RoleViewController.swift in Sources */,

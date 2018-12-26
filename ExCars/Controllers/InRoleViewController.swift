@@ -26,17 +26,19 @@ class InRoleViewController: BottomViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        APIClient.currentRide() { result in
+        APIClient.currentRide() { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let ride):
                 self.setupRoleView(ride: ride)
             case .failure(let error):
                 print("IN ROLE RIDE FAILURE \(error)")
+                self.setupRoleView(ride: nil)
             }
         }
     }
     
-    private func setupRoleView(ride: Ride) {
+    private func setupRoleView(ride: Ride?) {
         let inRoleView = InRoleView(user: user, ride: ride)
         inRoleView.frame = view.bounds
         view.addSubview(inRoleView)
