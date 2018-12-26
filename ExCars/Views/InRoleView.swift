@@ -6,38 +6,62 @@
 //  Copyright © 2018 Леша. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 
 class InRoleView: XibView {
     
-    @IBOutlet weak var roleLabel: UILabel!
+    @IBOutlet weak var roleIcon: UIImageView!
+    @IBOutlet weak var destination: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    let ride: Ride
-    
-    init (user: User, ride: Ride, frame: CGRect = CGRect.zero) {
+    private let user: User
+    var ride: Ride? {
+        didSet {
+            setHeaderView()
+            tableView.reloadData()
+        }
+    }
+
+    init (user: User, ride: Ride?, frame: CGRect = CGRect.zero) {
+        self.user = user
         self.ride = ride
         super.init(nibName: "InRoleView", frame: frame)
 
-        switch user.role {
-        case .driver?:
-            self.roleLabel.text = "Driving"
-        case .hitchhiker?:
-            self.roleLabel.text = "Hitchhiking"
-        default:
-            break
-        }
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: "RideViewCell", bundle: nil), forCellReuseIdentifier: "default")
-        tableView.isScrollEnabled = false
+        setupView()
+        setupTableView()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        destination.text = user.destination?.name
+    
+        switch user.role {
+        case .driver?:
+            roleIcon.image = UIImage(named: "wheel")
+        case .hitchhiker?:
+            roleIcon.image = UIImage(named: "wheel")
+        default:
+            break
+        }
+    }
+    
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "HeaderViewCell", bundle: nil), forCellReuseIdentifier: "header")
+        tableView.register(UINib(nibName: "RideViewCell", bundle: nil), forCellReuseIdentifier: "default")
+        tableView.isScrollEnabled = true
+        tableView.separatorStyle = .none
+        
+        setHeaderView()
+    }
+    
+    private func setHeaderView() {
+        tableView.tableHeaderView = (ride != nil) ? nil : EmptyRideView()
     }
 
 }
@@ -50,6 +74,7 @@ extension InRoleView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let ride = ride else { return 0 }
         switch section {
         case 0:
             return 1
@@ -61,32 +86,41 @@ extension InRoleView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 48
+        return 54.0
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard ride != nil else { return UIView() }
+        let header = tableView.dequeueReusableCell(withIdentifier: "header") as! HeaderViewCell
+
         switch section {
         case 0:
-            return "Driver"
+            header.headerText.text = "Driver"
         case 1:
-            return "Passengers"
+            header.headerText.text = "Passengers"
         default:
             return nil
         }
+        
+        return header
     }
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 24.0
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let ride = ride else { return UITableViewCell() }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "default", for: indexPath) as! RideViewCell
-        let profile = (indexPath.section == 0) ? ride.driver : ride.passengers[indexPath.row].profile
         
-        cell.backgroundColor = UIColor(white: 1, alpha: 0)
-        cell.name.text = profile.name
-        cell.avatar?.sd_setImage(with: profile.avatar, placeholderImage: UIImage(named: profile.role.rawValue))
-        
-        if indexPath.section > 0 {
-            cell.status.image = UIImage(named: ride.passengers[indexPath.row].status)
+        if indexPath.section == 0 {
+            cell.render(profile: ride.driver, status: nil)
+        } else {
+            let passenger = ride.passengers[indexPath.row]
+            cell.render(profile: passenger.profile, status: passenger.status)
         }
-        
+
         return cell
     }
 

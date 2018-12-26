@@ -15,7 +15,6 @@
 		740F6ABE21B5DAB500A955A4 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740F6ABD21B5DAB500A955A4 /* Presenter.swift */; };
 		740F6AC021B6F31E00A955A4 /* InRoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740F6ABF21B6F31E00A955A4 /* InRoleViewController.swift */; };
 		7415AEDC21A5D1660042674A /* WSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415AEDB21A5D1660042674A /* WSClient.swift */; };
-		7415AEDE21A5D83B0042674A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415AEDD21A5D83B0042674A /* Secrets.swift */; };
 		742BCD7421C6529500403EBA /* RideViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 742BCD7321C6529500403EBA /* RideViewCell.xib */; };
 		742BCD7621C652CF00403EBA /* RideViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742BCD7521C652CF00403EBA /* RideViewCell.swift */; };
 		7438806A21C815D0009C339A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438806921C815D0009C339A /* LoginView.swift */; };
@@ -46,6 +45,11 @@
 		74E2F0D421AC59C10092FEEF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0D321AC59C10092FEEF /* Message.swift */; };
 		74E2F0E021AD3F8D0092FEEF /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74E2F0DF21AD3F8D0092FEEF /* NotificationView.xib */; };
 		74E2F0E221AD3FA10092FEEF /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0E121AD3FA10092FEEF /* NotificationView.swift */; };
+		74F1167621D375A500738E59 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1167521D375A500738E59 /* Secrets.swift */; };
+		74F1167821D3F26900738E59 /* HeaderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F1167721D3F26900738E59 /* HeaderViewCell.xib */; };
+		74F1167A21D3F37600738E59 /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1167921D3F37600738E59 /* HeaderViewCell.swift */; };
+		74F1167C21D403E300738E59 /* EmptyRideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F1167B21D403E300738E59 /* EmptyRideView.xib */; };
+		74F1167E21D403F300738E59 /* EmptyRideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1167D21D403F300738E59 /* EmptyRideView.swift */; };
 		74F7CD0821B08053003463A9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0721B08053003463A9 /* RootViewController.swift */; };
 		74F7CD0A21B08145003463A9 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0921B08145003463A9 /* LaunchViewController.swift */; };
 		74F7CD0C21B08866003463A9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0B21B08865003463A9 /* MapViewController.swift */; };
@@ -88,7 +92,6 @@
 		740F6ABD21B5DAB500A955A4 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		740F6ABF21B6F31E00A955A4 /* InRoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InRoleViewController.swift; sourceTree = "<group>"; };
 		7415AEDB21A5D1660042674A /* WSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSClient.swift; sourceTree = "<group>"; };
-		7415AEDD21A5D83B0042674A /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		742BCD7321C6529500403EBA /* RideViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RideViewCell.xib; sourceTree = "<group>"; };
 		742BCD7521C652CF00403EBA /* RideViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideViewCell.swift; sourceTree = "<group>"; };
 		7438806921C815D0009C339A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -119,6 +122,11 @@
 		74E2F0D321AC59C10092FEEF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		74E2F0DF21AD3F8D0092FEEF /* NotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
 		74E2F0E121AD3FA10092FEEF /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		74F1167521D375A500738E59 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		74F1167721D3F26900738E59 /* HeaderViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderViewCell.xib; sourceTree = "<group>"; };
+		74F1167921D3F37600738E59 /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
+		74F1167B21D403E300738E59 /* EmptyRideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyRideView.xib; sourceTree = "<group>"; };
+		74F1167D21D403F300738E59 /* EmptyRideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRideView.swift; sourceTree = "<group>"; };
 		74F7CD0721B08053003463A9 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		74F7CD0921B08145003463A9 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		74F7CD0B21B08865003463A9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -200,7 +208,7 @@
 				7400C74E21A153F500DFD5A3 /* Assets.xcassets */,
 				7400C75321A153F500DFD5A3 /* Info.plist */,
 				745418EE21A360EA00EF3F09 /* KeyChain.swift */,
-				7415AEDD21A5D83B0042674A /* Secrets.swift */,
+				74F1167521D375A500738E59 /* Secrets.swift */,
 			);
 			path = ExCars;
 			sourceTree = "<group>";
@@ -284,6 +292,7 @@
 		74A21CA721A5F5DE00982247 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				74F1167F21D4171F00738E59 /* RideView */,
 				74A21CB721A605A500982247 /* ProfileView.xib */,
 				74A21CB921A605B600982247 /* ProfileView.swift */,
 				74E2F0CF21AC37470092FEEF /* XibView.swift */,
@@ -293,14 +302,25 @@
 				74FF005321AE9BC000D588BA /* RoleView.swift */,
 				746E42BA21B40E2500F083C3 /* InRoleView.xib */,
 				746E42BC21B40E3F00F083C3 /* InRoleView.swift */,
-				742BCD7321C6529500403EBA /* RideViewCell.xib */,
-				742BCD7521C652CF00403EBA /* RideViewCell.swift */,
 				7438806921C815D0009C339A /* LoginView.swift */,
 				7438806B21C815DC009C339A /* LoginView.xib */,
 				74D2CC4821CB0258004FD613 /* BaseProfileView.swift */,
 				74D2CC4A21CB027B004FD613 /* BaseProfileView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		74F1167F21D4171F00738E59 /* RideView */ = {
+			isa = PBXGroup;
+			children = (
+				742BCD7321C6529500403EBA /* RideViewCell.xib */,
+				742BCD7521C652CF00403EBA /* RideViewCell.swift */,
+				74F1167721D3F26900738E59 /* HeaderViewCell.xib */,
+				74F1167921D3F37600738E59 /* HeaderViewCell.swift */,
+				74F1167B21D403E300738E59 /* EmptyRideView.xib */,
+				74F1167D21D403F300738E59 /* EmptyRideView.swift */,
+			);
+			path = RideView;
 			sourceTree = "<group>";
 		};
 		E13FEF35E88B83973C68D3C3 /* Pods */ = {
@@ -423,6 +443,8 @@
 				74E2F0E021AD3F8D0092FEEF /* NotificationView.xib in Resources */,
 				742BCD7421C6529500403EBA /* RideViewCell.xib in Resources */,
 				74D2CC4B21CB027B004FD613 /* BaseProfileView.xib in Resources */,
+				74F1167C21D403E300738E59 /* EmptyRideView.xib in Resources */,
+				74F1167821D3F26900738E59 /* HeaderViewCell.xib in Resources */,
 				7438806C21C815DC009C339A /* LoginView.xib in Resources */,
 				74FF005221AE9A8D00D588BA /* RoleView.xib in Resources */,
 				7400C74F21A153F500DFD5A3 /* Assets.xcassets in Resources */,
@@ -541,6 +563,7 @@
 				740F6ABE21B5DAB500A955A4 /* Presenter.swift in Sources */,
 				74F7CD0821B08053003463A9 /* RootViewController.swift in Sources */,
 				740F6ABC21B5CEDF00A955A4 /* ExclusivePresenter.swift in Sources */,
+				74F1167621D375A500738E59 /* Secrets.swift in Sources */,
 				74D2CC4921CB0258004FD613 /* BaseProfileView.swift in Sources */,
 				74F7CD0C21B08866003463A9 /* MapViewController.swift in Sources */,
 				74E2F0E221AD3FA10092FEEF /* NotificationView.swift in Sources */,
@@ -552,7 +575,6 @@
 				74A21CBA21A605B600982247 /* ProfileView.swift in Sources */,
 				746E7ECA21BC2D7D0041ACAD /* RideRequest.swift in Sources */,
 				7462254521B48144001E3C40 /* NotificationViewController.swift in Sources */,
-				7415AEDE21A5D83B0042674A /* Secrets.swift in Sources */,
 				74D3240B21B1779B0096963E /* User.swift in Sources */,
 				74E2F0CC21AC17650092FEEF /* APIClient.swift in Sources */,
 				742BCD7621C652CF00403EBA /* RideViewCell.swift in Sources */,
@@ -560,11 +582,13 @@
 				745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */,
 				746E42C321B4352100F083C3 /* BottomViewController.swift in Sources */,
 				7438806A21C815D0009C339A /* LoginView.swift in Sources */,
+				74F1167E21D403F300738E59 /* EmptyRideView.swift in Sources */,
 				7415AEDC21A5D1660042674A /* WSClient.swift in Sources */,
 				74A204B421C67365004B8A2D /* Ride.swift in Sources */,
 				744E6B8821B12CF4002CC847 /* RoleViewController.swift in Sources */,
 				74F7CD0A21B08145003463A9 /* LaunchViewController.swift in Sources */,
 				7438806F21C9672E009C339A /* DesignableButton.swift in Sources */,
+				74F1167A21D3F37600738E59 /* HeaderViewCell.swift in Sources */,
 				74E2F0D421AC59C10092FEEF /* Message.swift in Sources */,
 				74E2F0D021AC37470092FEEF /* XibView.swift in Sources */,
 				74FF005421AE9BC000D588BA /* RoleView.swift in Sources */,

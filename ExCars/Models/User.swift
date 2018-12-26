@@ -20,7 +20,8 @@ class User: Codable {
     let uid: String
     let name: String
     let avatar: URL
-    
+    let destination: Destination?
+
     var role: Role? {
         didSet {
             delegate?.didChangeRole(role: role)
@@ -32,6 +33,7 @@ class User: Codable {
         case name
         case avatar
         case role
+        case destination
     }
 
 }
