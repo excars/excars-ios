@@ -36,6 +36,7 @@ class BottomViewController: UIViewController {
         self.view.addGestureRecognizer(gesture)
         
         setupHoldView()
+        makeRoundCorners()
     }
 
     @objc func panGesture(_ recognizer: UIPanGestureRecognizer) {
@@ -104,6 +105,11 @@ class BottomViewController: UIViewController {
         holdView.frame = CGRect(x: view.center.x - (width / 2), y: 8, width: width, height: 3)
         
         view.addSubview(holdView)
+    }
+    
+    private func makeRoundCorners() {
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
     }
 
 }

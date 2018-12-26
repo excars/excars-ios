@@ -15,8 +15,8 @@ class InRoleViewController: BottomViewController {
         self.user = user
         super.init(nibName: nil, bundle: nil)
         
-        fullHeight = 352
-        height = 52
+        fullHeight = 354
+        height = 54
     }
     
     required init?(coder aDecoder: NSCoder) {

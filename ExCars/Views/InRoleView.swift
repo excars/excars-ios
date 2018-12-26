@@ -23,7 +23,7 @@ class InRoleView: XibView {
 
         switch user.role {
         case .driver?:
-            self.roleLabel.text = "Driving"
+            self.roleLabel.text = "Porto Bello"
         case .hitchhiker?:
             self.roleLabel.text = "Hitchhiking"
         default:
@@ -32,8 +32,10 @@ class InRoleView: XibView {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(UINib(nibName: "HeaderViewCell", bundle: nil), forCellReuseIdentifier: "header")
         tableView.register(UINib(nibName: "RideViewCell", bundle: nil), forCellReuseIdentifier: "default")
-        tableView.isScrollEnabled = false
+        tableView.isScrollEnabled = true
+        tableView.separatorStyle = .none
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -61,20 +63,28 @@ extension InRoleView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 48
+        return 54.0
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableCell(withIdentifier: "header") as! HeaderViewCell
+        
         switch section {
         case 0:
-            return "Driver"
+            header.headerText.text = "Driver"
         case 1:
-            return "Passengers"
+            header.headerText.text = "Passengers"
         default:
             return nil
         }
+        
+        return header
     }
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 24.0
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "default", for: indexPath) as! RideViewCell
         let profile = (indexPath.section == 0) ? ride.driver : ride.passengers[indexPath.row].profile

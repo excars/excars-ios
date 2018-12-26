@@ -12,31 +12,50 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RideViewCell" customModule="ExCars" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iV2-9V-DED">
-                    <rect key="frame" x="16" y="12" width="24" height="24"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iV2-9V-DED">
+                    <rect key="frame" x="16" y="12" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="8ds-7a-v76"/>
+                        <constraint firstAttribute="width" constant="30" id="ZHd-Z4-RmJ"/>
+                    </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="12"/>
+                            <integer key="value" value="15"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BA-vI-aUi">
-                    <rect key="frame" x="48" y="12" width="285" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BA-vI-aUi">
+                    <rect key="frame" x="54" y="17" width="45" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Fng-Rl-LOp"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0bf-Od-6RS">
-                    <rect key="frame" x="335" y="12" width="24" height="24"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0bf-Od-6RS">
+                    <rect key="frame" x="335" y="15" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="hHu-iV-cj7"/>
+                        <constraint firstAttribute="width" constant="24" id="x2n-pG-srh"/>
+                    </constraints>
                 </imageView>
             </subviews>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0bf-Od-6RS" secondAttribute="trailing" constant="16" id="8lo-7I-rhW"/>
+                <constraint firstItem="iV2-9V-DED" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="KlD-tA-Uvi"/>
+                <constraint firstItem="iV2-9V-DED" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="RhX-kW-J2T"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="0bf-Od-6RS" secondAttribute="bottom" constant="15" id="V35-nM-Qvk"/>
+                <constraint firstItem="7BA-vI-aUi" firstAttribute="leading" secondItem="iV2-9V-DED" secondAttribute="trailing" constant="8" id="XJP-V3-Quz"/>
+                <constraint firstItem="7BA-vI-aUi" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="17" id="eQa-aY-80l"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="iV2-9V-DED" secondAttribute="bottom" constant="12" id="g97-Dt-gwF"/>
+                <constraint firstItem="0bf-Od-6RS" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="iMN-AK-IfR"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="7BA-vI-aUi" secondAttribute="bottom" constant="16" id="o0m-IG-rG1"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
@@ -44,7 +63,7 @@
                 <outlet property="name" destination="7BA-vI-aUi" id="aK1-ia-hjE"/>
                 <outlet property="status" destination="0bf-Od-6RS" id="Lnk-lX-O6Y"/>
             </connections>
-            <point key="canvasLocation" x="138.40000000000001" y="-152.47376311844079"/>
+            <point key="canvasLocation" x="138.40000000000001" y="-152.92353823088456"/>
         </view>
     </objects>
 </document>
