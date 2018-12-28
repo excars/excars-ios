@@ -43,7 +43,7 @@ class InRoleView: XibView {
         case .driver?:
             roleIcon.image = UIImage(named: "wheel")
         case .hitchhiker?:
-            roleIcon.image = UIImage(named: "wheel")
+            roleIcon.image = UIImage(named: "hitchhike-thumb-90")
         default:
             break
         }
@@ -115,7 +115,7 @@ extension InRoleView: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "default", for: indexPath) as! RideViewCell
         
         if indexPath.section == 0 {
-            cell.render(profile: ride.driver, status: nil)
+            cell.render(profile: ride.driver)
         } else {
             let passenger = ride.passengers[indexPath.row]
             cell.render(profile: passenger.profile, status: passenger.status)
