@@ -20,9 +20,16 @@ protocol WSClientDelegate: class {
 }
 
 
+protocol WSRideDelegate: class {
+    func didUpdateRide()
+    func didCancelRide()
+}
+
+
 class WSClient {
     
     weak var delegate: WSClientDelegate?
+    weak var rideDelegate: WSRideDelegate?
     
     let socket: WebSocket
     let encoder = JSONEncoder()
@@ -32,7 +39,7 @@ class WSClient {
         if let token = KeyChain.getJWTToken() {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
-        
+
         socket = WebSocket(request: request)
         socket.connect()
         socket.delegate = self
@@ -88,12 +95,13 @@ extension WSClient: WebSocketDelegate {
             }
             delegate?.didReceiveDataUpdate(data: wsRide)
         case .rideAccepted, .rideDeclined:
-            print("RIDE: \(message.type)")
             NotificationCenter.default.post(
                 name: didUpdateRide,
                 object: nil,
                 userInfo: ["messageType": message.type]
             )
+        case .rideCancelled:
+            rideDelegate?.didCancelRide()
         default:
             print("NO MESSAGE TYPE \(message.type.rawValue)")
             break
@@ -109,7 +117,7 @@ extension WSClient: WebSocketDelegate {
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        
+
     }
 
 }
