@@ -15,6 +15,8 @@ class InRoleView: XibView {
     @IBOutlet weak var destination: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    var onRoleExit: (() -> Void)?
+
     private let user: User
     var ride: Ride? {
         didSet {
@@ -64,6 +66,9 @@ class InRoleView: XibView {
         tableView.tableHeaderView = (ride != nil) ? nil : EmptyRideView()
     }
 
+    @IBAction func exitRole() {
+        onRoleExit?()
+    }
 }
 
 

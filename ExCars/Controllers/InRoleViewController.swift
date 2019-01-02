@@ -8,35 +8,30 @@
 
 import UIKit
 
+
 class InRoleViewController: BottomViewController {
     private let user: User
+    private let wsClient: WSClient
     private let inRoleView: InRoleView
     
-    init(user: User) {
+    init(user: User, wsClient: WSClient) {
         self.user = user
+        self.wsClient = wsClient
         self.inRoleView = InRoleView(user: user, ride: nil)
-
+        
         super.init(nibName: nil, bundle: nil)
         
         fullHeight = 354
         height = 54
-        
-        NotificationCenter.default.addObserver(
-            forName: didUpdateRide,
-            object: nil,
-            queue: nil,
-            using: rideUpdated
-        )
+
+        wsClient.rideDelegate = self
+        inRoleView.onRoleExit = showExitRoleDialog
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,11 +40,7 @@ class InRoleViewController: BottomViewController {
 
         loadRide()
     }
-    
-    private func rideUpdated(notification: Notification) {
-        loadRide()
-    }
-    
+
     private func loadRide() {
         APIClient.currentRide() { [weak self] result in
             guard let self = self else { return }
@@ -58,8 +49,63 @@ class InRoleViewController: BottomViewController {
                 self.inRoleView.ride = ride
             case .failure(let error):
                 print("IN ROLE RIDE FAILURE \(error)")
+                self.inRoleView.ride = nil
             }
         }
+    }
+    
+    func showExitRoleDialog() {
+        let alertController = UIAlertController(
+            title: "Role exit",
+            message: "Are you sure you want to exit?",
+            preferredStyle: UIAlertController.Style.alert
+        )
+
+        let exitAction = UIAlertAction(title: "Exit", style: .destructive, handler: {action -> Void in
+            self.exitRole()
+        })
+        alertController.addAction(exitAction)
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
+    }
+    
+    func exitRole() {
+        APIClient.leaveRide() {[weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success:
+                self.user.role = nil
+            case .failure(let error):
+                print("LEAVE ERROR \(error)")
+            }
+        }
+    }
+
+}
+
+
+extension InRoleViewController: WSRideDelegate {
+
+    func didUpdateRide() {
+        self.loadRide()
+    }
+    
+    func didCancelRide() {
+        user.role = nil
+        
+        let alertController = UIAlertController(
+            title: "Ride has been cancelled",
+            message: "",
+            preferredStyle: UIAlertController.Style.alert
+        )
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true)
     }
 
 }

@@ -22,7 +22,8 @@ enum APIRouter: URLRequestConvertible {
     case rides(String)
     case updateRide(String, String, Profile)
     case currentRide
-    
+    case leave
+
     var method: HTTPMethod {
         switch self {
         case .auth:
@@ -39,7 +40,10 @@ enum APIRouter: URLRequestConvertible {
             return .put
         case .currentRide:
             return .get
+        case .leave:
+            return .delete
         }
+
     }
     
     var path: String {
@@ -58,6 +62,8 @@ enum APIRouter: URLRequestConvertible {
             return "/api/rides/\(uid)"
         case .currentRide:
             return "/api/rides/current"
+        case .leave:
+            return "/api/rides/leave"
         }
     }
     

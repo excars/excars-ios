@@ -20,7 +20,7 @@ class APIClient {
                 completion(response.result)
         }
     }
-    
+
     static func auth(idToken: String, completion: @escaping (Result<Auth>)->Void) {
         performRequest(route: APIRouter.auth(idToken), completion: completion)
     }
@@ -53,9 +53,7 @@ class APIClient {
         performRequest(route: APIRouter.currentRide, completion: completion)
     }
 
-}
-
-
-struct EmptyResponse: Codable {
-    let status: String
+    static func leaveRide(completion: @escaping (Result<Empty>)->Void) {
+        performRequest(route: APIRouter.leave, completion: completion)
+    }
 }

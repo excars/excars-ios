@@ -165,9 +165,9 @@ extension MapViewController: UserDelegate {
         if role == nil {
             roleVC = RoleViewController(user: currentUser)
         } else {
-            roleVC = InRoleViewController(user: currentUser)
+            roleVC = InRoleViewController(user: currentUser, wsClient: wsClient)
         }
-        
+
         rolePresenter.present(roleVC)
     }
 

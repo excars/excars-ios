@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ProfileViewController: BottomViewController {
     private let uid: String
     private var profile: Profile?
