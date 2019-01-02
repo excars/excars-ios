@@ -14,8 +14,9 @@ enum MessageType: String, Codable {
     case map = "MAP"
 
     case rideRequested = "RIDE_REQUESTED"
-    case rideAccepted = "RIDE_ACCEPTED"
-    case rideDeclined = "RIDE_DECLINED"
+    case rideRequestAccepted = "RIDE_REQUEST_ACCEPTED"
+    case rideRequestDeclined = "RIDE_REQUEST_DECLINED"
+    case rideUpdated = "RIDE_UPDATED"
     case rideCancelled = "RIDE_CANCELLED"
 }
 

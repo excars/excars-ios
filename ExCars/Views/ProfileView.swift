@@ -53,7 +53,7 @@ class ProfileView: XibView {
             case .success(_):
                 // there is chance notification will be from another ride request/offer
                 NotificationCenter.default.addObserver(
-                    forName: didUpdateRide,
+                    forName: didUpdateRideRequest,
                     object: nil,
                     queue: nil,
                     using: self.rideUpdated
@@ -68,9 +68,9 @@ class ProfileView: XibView {
         guard let messageType = notification.userInfo?["messageType"] as? MessageType else { return }
         
         switch(messageType) {
-        case .rideAccepted:
+        case .rideRequestAccepted:
             submitButton.render(for: .success)
-        case .rideDeclined:
+        case .rideRequestDeclined:
             submitButton.render(for: .failure)
         default:
             break

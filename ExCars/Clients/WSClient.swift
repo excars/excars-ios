@@ -10,7 +10,7 @@ import CoreLocation
 import Starscream
 
 
-let didUpdateRide = NSNotification.Name("didUpdateRide")
+let didUpdateRideRequest = NSNotification.Name("didUpdateRideRequest")
 
 
 protocol WSClientDelegate: class {
@@ -94,12 +94,14 @@ extension WSClient: WebSocketDelegate {
                 break
             }
             delegate?.didReceiveDataUpdate(data: wsRide)
-        case .rideAccepted, .rideDeclined:
+        case .rideRequestAccepted, .rideRequestDeclined:
             NotificationCenter.default.post(
-                name: didUpdateRide,
+                name: didUpdateRideRequest,
                 object: nil,
                 userInfo: ["messageType": message.type]
             )
+        case .rideUpdated:
+            rideDelegate?.didUpdateRide()
         case .rideCancelled:
             rideDelegate?.didCancelRide()
         default:
