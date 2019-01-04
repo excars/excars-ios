@@ -107,7 +107,7 @@ extension MapViewController: GMSMapViewDelegate {
         let currentUserData = currentMarker?.userData as? WSMapPayload
         
         if userData.uid != currentUserData?.uid {
-            let profileVC = ProfileViewController(uid: userData.uid)
+            let profileVC = ProfileViewController(uid: userData.uid, currentUser: currentUser)
             exclusivePresenter.present(profileVC)
             currentMarker = marker
         } else {

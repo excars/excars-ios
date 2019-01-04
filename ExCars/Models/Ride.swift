@@ -9,6 +9,12 @@
 import Foundation
 
 
+enum PassengerStatus: String, Codable {
+    case accepted = "accepted"
+    case declined = "declined"
+}
+
+
 struct Ride: Codable {
     let uid: String
     let driver: Profile
@@ -18,7 +24,7 @@ struct Ride: Codable {
 
 struct Passenger: Codable {
     let profile: Profile
-    let status: String
+    let status: PassengerStatus
 }
 
 

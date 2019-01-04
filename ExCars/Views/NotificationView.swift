@@ -12,26 +12,22 @@ import UIKit
 class NotificationView: XibView {
 
     @IBOutlet weak var header: UILabel!
-
-    private let rideRequest: RideRequest
+    @IBOutlet weak var baseProfileView: BaseProfileView!
 
     var onDidAccept: (() -> Void)?
     var onDidDecline: (() -> Void)?
 
     init(rideRequest: RideRequest, frame: CGRect = CGRect.zero) {
-        self.rideRequest = rideRequest
         super.init(nibName: "NotificationView", frame: frame)
-        self.setupHeader(role: rideRequest.sender.role)
-
-        let profileView = BaseProfileView(profile: rideRequest.sender)
-        profileView.frame = CGRect(x: 0, y: 48, width: frame.width, height: 142)
-        addSubview(profileView)
+        
+        setupHeader(role: rideRequest.sender.role)
+        baseProfileView.profile = rideRequest.sender
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupHeader(role: Role) {
         switch role {
         case .driver:
@@ -42,34 +38,11 @@ class NotificationView: XibView {
     }
 
     @IBAction func accept() {
-        APIClient.acceptRide(uid: rideRequest.uid, passenger: getPassenger()) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(_):
-                self.onDidAccept?()
-            case .failure(let error):
-                print ("ACCEPT RIDE ERROR \(error)")
-            }
-        }
+        onDidAccept?()
     }
 
     @IBAction func decline() {
-        APIClient.declineRide(uid: rideRequest.uid, passenger: getPassenger()) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(_):
-                self.onDidAccept?()
-            case .failure(let error):
-                print ("DECLINE RIDE ERROR \(error)")
-            }
-        }
-    }
-    
-    private func getPassenger() -> Profile {
-        if rideRequest.sender.role == Role.driver {
-            return rideRequest.receiver
-        }
-        return rideRequest.sender
+        onDidDecline?()
     }
 
 }

@@ -9,73 +9,87 @@
 import UIKit
 
 import SDWebImage
+import SkeletonView
+
+
+enum ProfileViewState {
+    case loading
+    case normal(Profile)
+    case disabled(Profile)
+    case requested(Profile)
+    case accepted(Profile)
+    case declined(Profile)
+}
 
 
 class ProfileView: XibView {
 
     @IBOutlet weak var submitButton: StateButton!
+    @IBOutlet weak var baseProfileView: BaseProfileView!
+
+    var onSubmit: (() -> Void)?
     
-    private var profile: Profile
-
-    init(profile: Profile, frame: CGRect = CGRect.zero) {
-        self.profile = profile
-        super.init(nibName: "ProfileView", frame: frame)
-        
-        let profileView = BaseProfileView(profile: profile)
-        profileView.frame = CGRect(x: 0, y: 0, width: frame.width, height: 142)
-        addSubview(profileView)
-
-        render()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
-    private func render() {
-        switch profile.role {
-        case .driver:
-            submitButton.setTitle("Request a Ride", for: UIControl.State.normal)
-        case .hitchhiker:
-            submitButton.setTitle("Offer a Ride", for: UIControl.State.normal)
-        }
+    override var nibName: String {
+        get { return "ProfileView" }
+        set { }
     }
 
     @IBAction func submit() {
-        submitButton.render(for: .loading)
+        onSubmit?()
+    }
 
-        APIClient.ride(to: profile.uid) { result in
-            switch result {
-            case .success(_):
-                // there is chance notification will be from another ride request/offer
-                NotificationCenter.default.addObserver(
-                    forName: didUpdateRideRequest,
-                    object: nil,
-                    queue: nil,
-                    using: self.rideUpdated
-                )
-            case .failure(let error):
-                print("RIDE REQUEST ERROR: \(error)")
-            }
+    func render(for state: ProfileViewState) {
+        hideSkeleton()
+        submitButton.isHidden = false
+
+        switch state {
+        case .loading:
+            renderLoading()
+        case .normal(let profile):
+            renderNormal(profile: profile)
+        case .disabled(let profile):
+            renderDisabled(profile: profile)
+        case .requested(let profile):
+            renderRequested(profile: profile)
+        case .accepted(let profile):
+            renderAccepted(profile: profile)
+        case .declined(let profile):
+            renderDeclined(profile: profile)
+        }
+    }
+
+    private func renderLoading() {
+        showSkeleton()
+    }
+
+    private func renderNormal(profile: Profile) {
+        baseProfileView.profile = profile
+        switch profile.role {
+        case .driver:
+            submitButton.setTitle("Request a Ride", for: .normal)
+        case .hitchhiker:
+            submitButton.setTitle("Offer a Ride", for: .normal)
         }
     }
     
-    private func rideUpdated(notification: Notification) {
-        guard let messageType = notification.userInfo?["messageType"] as? MessageType else { return }
-        
-        switch(messageType) {
-        case .rideRequestAccepted:
-            submitButton.render(for: .success)
-        case .rideRequestDeclined:
-            submitButton.render(for: .failure)
-        default:
-            break
-        }
+    private func renderDisabled(profile: Profile) {
+        baseProfileView.profile = profile
+        submitButton.isHidden = true
+    }
 
+    private func renderRequested(profile: Profile) {
+        baseProfileView.profile = profile
+        submitButton.render(for: .loading)
+    }
+    
+    private func renderAccepted(profile: Profile) {
+        baseProfileView.profile = profile
+        submitButton.render(for: .success)
+    }
+    
+    private func renderDeclined(profile: Profile) {
+        baseProfileView.profile = profile
+        submitButton.render(for: .failure)
     }
 
 }

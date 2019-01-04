@@ -31,6 +31,7 @@ PODS:
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
+  - SkeletonView (1.4.1)
   - Starscream (3.0.6)
 
 DEPENDENCIES:
@@ -40,6 +41,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - KeychainAccess
   - SDWebImage
+  - SkeletonView
   - Starscream
 
 SPEC REPOS:
@@ -52,6 +54,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - KeychainAccess
     - SDWebImage
+    - SkeletonView
     - Starscream
 
 EXTERNAL SOURCES:
@@ -74,8 +77,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SkeletonView: 60d6ce7edb0cb4c7758db33c74add50392b3c475
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
 
-PODFILE CHECKSUM: bdabb3739fa33d8c19e32914145659f33e9406b0
+PODFILE CHECKSUM: 05e2a5d251857fe93994edeb81645009e197b697
 
 COCOAPODS: 1.5.3

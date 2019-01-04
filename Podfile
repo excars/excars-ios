@@ -5,6 +5,7 @@ use_frameworks!
 
 target :'ExCars' do
     ## Require one of the AeroGear SDK's here
+    pod 'SkeletonView'
     pod 'GoogleSignIn'
     pod 'GoogleMaps'
     pod 'GooglePlaces'

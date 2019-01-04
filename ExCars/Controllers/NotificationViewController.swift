@@ -30,19 +30,43 @@ class NotificationViewController: BottomViewController {
     }
 
     private func setupNotificationView() {
-        let frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: fullHeight)
-        let notificationView = NotificationView(rideRequest: rideRequest, frame: frame)
-
-        let dismiss = { [weak self] in
-            guard let self = self else { return }
-            Presenter.dismiss(self)
-        }
-        notificationView.onDidAccept = dismiss
-        notificationView.onDidDecline = dismiss
-
-        notificationView.frame = view.bounds
-        
+        let notificationView = NotificationView(rideRequest: rideRequest)
         view.addSubview(notificationView)
+        notificationView.frame = view.bounds
+
+        notificationView.onDidAccept = accept
+        notificationView.onDidDecline = decline
+    }
+
+    func accept() {
+        APIClient.acceptRide(uid: rideRequest.uid, passenger: getPassenger()) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(_):
+                Presenter.dismiss(self)
+            case .failure(let error):
+                print ("ACCEPT RIDE ERROR \(error)")
+            }
+        }
+    }
+
+    func decline() {
+        APIClient.declineRide(uid: rideRequest.uid, passenger: getPassenger()) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(_):
+                Presenter.dismiss(self)
+            case .failure(let error):
+                print ("DECLINE RIDE ERROR \(error)")
+            }
+        }
+    }
+
+    private func getPassenger() -> Profile {
+        if rideRequest.sender.role == Role.driver {
+            return rideRequest.receiver
+        }
+        return rideRequest.sender
     }
 
 }

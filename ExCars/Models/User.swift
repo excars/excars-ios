@@ -25,8 +25,13 @@ class User: Codable {
     var role: Role? {
         didSet {
             delegate?.didChangeRole(role: role)
+            if role == nil {
+                ride = nil
+            }
         }
     }
+
+    var ride: Ride?
 
     private enum CodingKeys: String, CodingKey {
         case uid

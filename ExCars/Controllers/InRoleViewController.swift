@@ -18,9 +18,9 @@ class InRoleViewController: BottomViewController {
         self.user = user
         self.wsClient = wsClient
         self.inRoleView = InRoleView(user: user, ride: nil)
-        
+
         super.init(nibName: nil, bundle: nil)
-        
+
         fullHeight = 354
         height = 54
 
@@ -34,7 +34,7 @@ class InRoleViewController: BottomViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         inRoleView.frame = view.bounds
         view.addSubview(inRoleView)
 
@@ -47,14 +47,15 @@ class InRoleViewController: BottomViewController {
             switch result {
             case .success(let ride):
                 self.inRoleView.ride = ride
+                self.user.ride = ride
             case .failure(let error):
                 print("IN ROLE RIDE FAILURE \(error)")
                 self.inRoleView.ride = nil
             }
         }
     }
-    
-    func showExitRoleDialog() {
+
+    private func showExitRoleDialog() {
         let alertController = UIAlertController(
             title: "Role exit",
             message: "Are you sure you want to exit?",
@@ -72,8 +73,8 @@ class InRoleViewController: BottomViewController {
         present(alertController, animated: true)
     }
     
-    func exitRole() {
-        APIClient.leaveRide() {[weak self] result in
+    private func exitRole() {
+        APIClient.leaveRide() { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success:
@@ -92,7 +93,7 @@ extension InRoleViewController: WSRideDelegate {
     func didUpdateRide() {
         self.loadRide()
     }
-    
+
     func didCancelRide() {
         user.role = nil
         
