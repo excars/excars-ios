@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotificationView" customModule="ExCars" customModuleProvider="target">
             <connections>
+                <outlet property="baseProfileView" destination="fTi-5o-MH4" id="9Zi-HZ-U2n"/>
                 <outlet property="header" destination="Nde-DR-0Ip" id="Q7x-a4-Xn2"/>
             </connections>
         </placeholder>
@@ -66,17 +67,24 @@
                         <action selector="decline" destination="-1" eventType="touchUpInside" id="MNC-JL-veD"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTi-5o-MH4" customClass="BaseProfileView" customModule="ExCars" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="48" width="375" height="148"/>
+                </view>
             </subviews>
             <constraints>
+                <constraint firstItem="T8S-2f-3ZB" firstAttribute="top" secondItem="fTi-5o-MH4" secondAttribute="bottom" constant="9" id="0b1-UW-qML"/>
                 <constraint firstItem="Nde-DR-0Ip" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="80T-7m-XDG"/>
                 <constraint firstItem="Nde-DR-0Ip" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="KjF-AX-MYB"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Nde-DR-0Ip" secondAttribute="trailing" constant="16" id="PMC-xn-yeF"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="4FY-d2-hVg" secondAttribute="bottom" constant="20" id="Rj5-s1-Zb4"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="T8S-2f-3ZB" secondAttribute="bottom" constant="20" id="fHb-sB-sjI"/>
+                <constraint firstItem="fTi-5o-MH4" firstAttribute="top" secondItem="Nde-DR-0Ip" secondAttribute="bottom" constant="7" id="i1A-ih-MWS"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="T8S-2f-3ZB" secondAttribute="trailing" constant="30" id="kbY-0q-lfu"/>
+                <constraint firstItem="fTi-5o-MH4" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="mCi-cR-5iz"/>
                 <constraint firstItem="4FY-d2-hVg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="snW-Q1-nLC"/>
                 <constraint firstItem="T8S-2f-3ZB" firstAttribute="leading" secondItem="4FY-d2-hVg" secondAttribute="trailing" constant="23" id="vEw-HX-WIM"/>
                 <constraint firstItem="T8S-2f-3ZB" firstAttribute="width" secondItem="4FY-d2-hVg" secondAttribute="width" id="y8Y-gO-uGy"/>
+                <constraint firstItem="fTi-5o-MH4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="yt3-B0-t1z"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

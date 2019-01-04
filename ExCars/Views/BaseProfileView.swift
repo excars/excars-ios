@@ -16,29 +16,22 @@ class BaseProfileView: XibView {
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var destination: UILabel!
-    @IBOutlet weak var submitButton: StateButton!
-    
-    private var profile: Profile
-    
-    init(profile: Profile, frame: CGRect = CGRect.zero) {
-        self.profile = profile
-        super.init(nibName: "BaseProfileView", frame: frame)
-        
-        render()
+
+    var profile: Profile? {
+        didSet {
+            render()
+        }
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+
+    override var nibName: String {
+        get { return "BaseProfileView" }
+        set { }
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
+
     private func render() {
-        name.text = profile.name
-        destination.text = profile.destination?.name
-        avatar?.sd_setImage(with: profile.avatar, placeholderImage: UIImage(named: profile.role.rawValue))
+        name.text = profile!.name
+        destination.text = profile!.destination?.name
+        avatar?.sd_setImage(with: profile!.avatar, placeholderImage: UIImage(named: profile!.role.rawValue))
     }
     
 }

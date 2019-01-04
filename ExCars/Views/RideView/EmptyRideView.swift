@@ -11,12 +11,9 @@ import UIKit
 
 class EmptyRideView: XibView {
 
-    init (frame: CGRect = CGRect.zero) {
-        super.init(nibName: "EmptyRideView", frame: frame)
+    override var nibName: String {
+        get { return "EmptyRideView" }
+        set { }
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
 }

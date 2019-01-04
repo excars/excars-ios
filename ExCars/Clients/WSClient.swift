@@ -10,13 +10,9 @@ import CoreLocation
 import Starscream
 
 
-let didUpdateRideRequest = NSNotification.Name("didUpdateRideRequest")
-
-
 protocol WSClientDelegate: class {
     func didReceiveDataUpdate(data: [WSMapPayload])
     func didReceiveDataUpdate(data: WSRide)
-    func didSendMessage(type: MessageType)
 }
 
 
@@ -26,11 +22,18 @@ protocol WSRideDelegate: class {
 }
 
 
+protocol WSRideRequestDelegate: class {
+    func didAcceptRequest()
+    func didDeclineRequest()
+}
+
+
 class WSClient {
-    
+
     weak var delegate: WSClientDelegate?
     weak var rideDelegate: WSRideDelegate?
-    
+    weak var rideRequestDelegate: WSRideRequestDelegate?
+
     let socket: WebSocket
     let encoder = JSONEncoder()
 
@@ -57,16 +60,15 @@ class WSClient {
             course: location.course,
             speed: location.speed
         )
-        
+
         guard let data = try? encoder.encode(WSLocation(data: payload)) else {
             print("CANT ENCODE LOCATION")
             return
         }
 
         socket.write(data: data)
-        delegate?.didSendMessage(type: MessageType.location)
     }
-    
+
 }
 
 
@@ -94,12 +96,10 @@ extension WSClient: WebSocketDelegate {
                 break
             }
             delegate?.didReceiveDataUpdate(data: wsRide)
-        case .rideRequestAccepted, .rideRequestDeclined:
-            NotificationCenter.default.post(
-                name: didUpdateRideRequest,
-                object: nil,
-                userInfo: ["messageType": message.type]
-            )
+        case .rideRequestAccepted:
+            rideRequestDelegate?.didAcceptRequest()
+        case .rideRequestDeclined:
+            rideRequestDelegate?.didDeclineRequest()
         case .rideUpdated:
             rideDelegate?.didUpdateRide()
         case .rideCancelled:
@@ -113,11 +113,11 @@ extension WSClient: WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
 
     }
-    
+
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
 
     }
-    
+
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
 
     }

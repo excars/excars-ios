@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileView" customModule="ExCars" customModuleProvider="target">
             <connections>
+                <outlet property="baseProfileView" destination="KI9-j9-UZo" id="HIu-JX-DFM"/>
                 <outlet property="submitButton" destination="ilp-iV-Ppy" id="jNc-jm-cb2"/>
             </connections>
         </placeholder>
@@ -26,25 +27,39 @@
                         <constraint firstAttribute="width" constant="140" id="Z5K-KQ-dep"/>
                         <constraint firstAttribute="height" constant="30" id="eME-Hc-0gD"/>
                     </constraints>
-                    <state key="normal" title="Submit">
+                    <state key="normal">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="15"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="submit" destination="-1" eventType="touchUpInside" id="X89-FS-0tr"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KI9-j9-UZo" customClass="BaseProfileView" customModule="ExCars" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="141"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <constraints>
+                <constraint firstItem="KI9-j9-UZo" firstAttribute="trailing" secondItem="Wfh-Wl-9C0" secondAttribute="trailing" id="5QP-VY-BYp"/>
+                <constraint firstItem="KI9-j9-UZo" firstAttribute="leading" secondItem="Wfh-Wl-9C0" secondAttribute="leading" id="Amg-08-zPD"/>
                 <constraint firstItem="ilp-iV-Ppy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="GGg-a3-Zsg"/>
+                <constraint firstItem="ilp-iV-Ppy" firstAttribute="top" secondItem="KI9-j9-UZo" secondAttribute="bottom" constant="8" id="IBV-ly-Ksk"/>
+                <constraint firstItem="KI9-j9-UZo" firstAttribute="top" secondItem="Wfh-Wl-9C0" secondAttribute="top" id="co0-rs-YLU"/>
                 <constraint firstItem="Wfh-Wl-9C0" firstAttribute="bottom" secondItem="ilp-iV-Ppy" secondAttribute="bottom" constant="20" id="eu2-Dx-jvX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Wfh-Wl-9C0"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="68" y="31.934032983508249"/>
         </view>
     </objects>

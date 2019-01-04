@@ -107,7 +107,7 @@ extension MapViewController: GMSMapViewDelegate {
         let currentUserData = currentMarker?.userData as? WSMapPayload
         
         if userData.uid != currentUserData?.uid {
-            let profileVC = ProfileViewController(uid: userData.uid)
+            let profileVC = ProfileViewController(uid: userData.uid, currentUser: currentUser, wsClient: wsClient)
             exclusivePresenter.present(profileVC)
             currentMarker = marker
         } else {
@@ -122,10 +122,6 @@ extension MapViewController: GMSMapViewDelegate {
 
 
 extension MapViewController: WSClientDelegate {
-    
-    func didSendMessage(type: MessageType) {
-        
-    }
     
     func didReceiveDataUpdate(data: [WSMapPayload]) {
         mapView.clear()

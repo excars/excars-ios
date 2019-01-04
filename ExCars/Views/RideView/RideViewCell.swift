@@ -15,10 +15,6 @@ class RideViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var statusIcon: UIImageView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 
     func render(profile: Profile) {
         backgroundColor = UIColor(white: 1, alpha: 0)
@@ -26,10 +22,10 @@ class RideViewCell: UITableViewCell {
         avatar?.sd_setImage(with: profile.avatar, placeholderImage: UIImage(named: profile.role.rawValue))
     }
     
-    func render(profile: Profile, status: String?) {
+    func render(profile: Profile, status: PassengerStatus?) {
         render(profile: profile)
         guard let status = status else { return }
-        statusIcon.image = UIImage(named: status)
+        statusIcon.image = UIImage(named: status.rawValue)
     }
 
 }

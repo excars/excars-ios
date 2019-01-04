@@ -13,8 +13,4 @@ class HeaderViewCell: UITableViewCell {
 
     @IBOutlet weak var headerText: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
 }

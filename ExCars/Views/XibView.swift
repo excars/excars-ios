@@ -13,18 +13,24 @@ import SDWebImage
 
 @IBDesignable class XibView: UIView {
     
-    let nibName: String
-    
+    var nibName = ""
+
     var view: UIView!
-    
+
     init(nibName: String, frame: CGRect) {
         self.nibName = nibName
         super.init(frame: frame)
         xibSetup()
     }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        xibSetup()
+    }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        xibSetup()
     }
     
     func xibSetup() {
