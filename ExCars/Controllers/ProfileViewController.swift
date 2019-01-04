@@ -17,7 +17,7 @@ class ProfileViewController: BottomViewController {
     private var profile: Profile?
     private let profileView: ProfileView
 
-    init(uid: String, currentUser: User) {
+    init(uid: String, currentUser: User, wsClient: WSClient) {
         self.uid = uid
         self.currentUser = currentUser
         self.profileView = ProfileView()
@@ -31,6 +31,8 @@ class ProfileViewController: BottomViewController {
         openFullView = true
 
         profileView.onSubmit = requestRide
+        
+        wsClient.rideRequestDelegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -83,34 +85,27 @@ class ProfileViewController: BottomViewController {
     func requestRide() {
         profileView.render(for: .requested(profile!))
 
-        APIClient.ride(to: uid) { [weak self] result in
-            guard let self = self else { return }
+        APIClient.ride(to: uid) { result in
             switch result {
             case .success(_):
-                NotificationCenter.default.addObserver(
-                    forName: didUpdateRideRequest,
-                    object: nil,
-                    queue: nil,
-                    using: self.rideUpdated
-                )
+                return
             case .failure(let error):
                 print("RIDE REQUEST ERROR: \(error)")
             }
         }
     }
 
-    private func rideUpdated(notification: Notification) {
-        guard let messageType = notification.userInfo?["messageType"] as? MessageType else { return }
+}
 
-        switch(messageType) {
-        case .rideRequestAccepted:
-            profileView.render(for: .accepted(profile!))
-        case .rideRequestDeclined:
-            profileView.render(for: .declined(profile!))
-        default:
-            break
-        }
 
+extension ProfileViewController: WSRideRequestDelegate {
+
+    func didAcceptRequest() {
+        profileView.render(for: .accepted(profile!))
+    }
+
+    func didDeclineRequest() {
+        profileView.render(for: .declined(profile!))
     }
 
 }
