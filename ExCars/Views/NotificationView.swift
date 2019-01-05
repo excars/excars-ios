@@ -17,11 +17,11 @@ class NotificationView: XibView {
     var onDidAccept: (() -> Void)?
     var onDidDecline: (() -> Void)?
 
-    init(rideRequest: RideRequest, frame: CGRect = CGRect.zero) {
+    init(profile: Profile, frame: CGRect = CGRect.zero) {
         super.init(nibName: "NotificationView", frame: frame)
         
-        setupHeader(role: rideRequest.sender.role)
-        baseProfileView.profile = rideRequest.sender
+        setupHeader(role: profile.role)
+        baseProfileView.profile = profile
     }
 
     required init?(coder aDecoder: NSCoder) {

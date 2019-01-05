@@ -16,7 +16,8 @@ class BaseProfileView: XibView {
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var destination: UILabel!
-
+    @IBOutlet weak var distance: UILabel!
+    
     var profile: Profile? {
         didSet {
             render()
@@ -29,9 +30,18 @@ class BaseProfileView: XibView {
     }
 
     private func render() {
-        name.text = profile!.name
-        destination.text = profile!.destination?.name
-        avatar?.sd_setImage(with: profile!.avatar, placeholderImage: UIImage(named: profile!.role.rawValue))
+        guard let profile = profile else { return }
+
+        name.text = profile.name
+        destination.text = profile.destination?.name
+        avatar?.sd_setImage(with: profile.avatar, placeholderImage: UIImage(named: profile.role.rawValue))
+        
+        if profile.distance == nil {
+            distance.text = "Unknown"
+        } else {
+            let distanceInKm = profile.distance! / 1000.0
+            distance.text = String(format: "%.1f km", distanceInKm)
+        }
     }
-    
+
 }

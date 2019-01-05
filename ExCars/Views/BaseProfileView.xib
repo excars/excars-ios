@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="avatar" destination="zsb-4A-fah" id="JWT-3V-BxU"/>
                 <outlet property="destination" destination="HIP-BR-ufj" id="cXc-Bc-uq2"/>
+                <outlet property="distance" destination="Gmf-6A-5Rg" id="SKx-JT-Dus"/>
                 <outlet property="name" destination="6ds-RO-dri" id="lkJ-sh-7TN"/>
             </connections>
         </placeholder>
