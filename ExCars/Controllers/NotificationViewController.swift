@@ -6,14 +6,20 @@
 //  Copyright © 2018 Леша. All rights reserved.
 //
 
+import CoreLocation
 import UIKit
+
 
 class NotificationViewController: BottomViewController {
 
     let rideRequest: RideRequest
+    let currentUser: User
+    let locations: [WSMapPayload]
 
-    init(rideRequest: RideRequest) {
+    init(rideRequest: RideRequest, currentUser: User, locations: [WSMapPayload]) {
         self.rideRequest = rideRequest
+        self.currentUser = currentUser
+        self.locations = locations
 
         super.init(nibName: nil, bundle: nil)
 
@@ -30,7 +36,10 @@ class NotificationViewController: BottomViewController {
     }
 
     private func setupNotificationView() {
-        let notificationView = NotificationView(rideRequest: rideRequest)
+        var profile = rideRequest.sender
+        profile.distance = getDistance()
+
+        let notificationView = NotificationView(profile: profile)
         view.addSubview(notificationView)
         notificationView.frame = view.bounds
 
@@ -67,6 +76,18 @@ class NotificationViewController: BottomViewController {
             return rideRequest.receiver
         }
         return rideRequest.sender
+    }
+
+    private func getDistance() ->  CLLocationDistance? {
+        let sender = rideRequest.sender
+        let receiver = rideRequest.receiver
+
+        let targetUid = (currentUser.uid == sender.uid) ? receiver.uid : sender.uid
+        guard let targetLocation = locations.first(where: {$0.uid == targetUid})?.location else {
+            return nil
+        }
+
+        return currentUser.location?.distance(from: targetLocation.clLocation)
     }
 
 }

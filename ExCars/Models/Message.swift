@@ -6,7 +6,7 @@
 //  Copyright © 2018 Леша. All rights reserved.
 //
 
-import Foundation
+import CoreLocation
 
 
 enum MessageType: String, Codable {
@@ -64,6 +64,10 @@ struct WSMapPayload: Codable {
 struct WSMapLocation: Codable {
     let latitude: Double
     let longitude: Double
+    
+    var clLocation: CLLocation {
+        return CLLocation(latitude: latitude, longitude: longitude)
+    }
 }
 
 

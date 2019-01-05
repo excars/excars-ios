@@ -6,7 +6,7 @@
 //  Copyright © 2018 Леша. All rights reserved.
 //
 
-import Foundation
+import CoreLocation
 
 
 protocol UserDelegate: class {
@@ -32,6 +32,7 @@ class User: Codable {
     }
 
     var ride: Ride?
+    var location: CLLocation?
 
     private enum CodingKeys: String, CodingKey {
         case uid

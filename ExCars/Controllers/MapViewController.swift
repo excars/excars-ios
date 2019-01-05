@@ -15,12 +15,13 @@ class MapViewController: UIViewController {
     var locationManager = CLLocationManager()
     let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
     let zoomLevel: Float = 15.0
+    var locations: [WSMapPayload] = []
 
     var mapView = GMSMapView()
     var currentMarker: GMSMarker?
     
     let currentUser: User
-    
+
     lazy var exclusivePresenter = ExclusivePresenter(to: self)
     lazy var rolePresenter = ExclusivePresenter(to: self)
 
@@ -62,26 +63,27 @@ class MapViewController: UIViewController {
 
 
 extension MapViewController: CLLocationManagerDelegate {
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
-        
+        currentUser.location = location
+
         let camera = GMSCameraPosition.camera(
             withLatitude: location.coordinate.latitude,
             longitude: location.coordinate.longitude,
             zoom: zoomLevel
         )
-        
+
         if mapView.isHidden {
             mapView.isHidden = false
             mapView.camera = camera
         } else {
             mapView.animate(to: camera)
         }
-        
+
         wsClient.sendLocation(location: location)
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .restricted, .denied, .notDetermined:
@@ -98,16 +100,16 @@ extension MapViewController: CLLocationManagerDelegate {
 
 
 extension MapViewController: GMSMapViewDelegate {
-    
+
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         guard let userData = marker.userData as? WSMapPayload else {
             return false
         }
 
         let currentUserData = currentMarker?.userData as? WSMapPayload
-        
+
         if userData.uid != currentUserData?.uid {
-            let profileVC = ProfileViewController(uid: userData.uid, currentUser: currentUser, wsClient: wsClient)
+            let profileVC = ProfileViewController(uid: userData.uid, currentUser: currentUser, locations: locations, wsClient: wsClient)
             exclusivePresenter.present(profileVC)
             currentMarker = marker
         } else {
@@ -122,10 +124,11 @@ extension MapViewController: GMSMapViewDelegate {
 
 
 extension MapViewController: WSClientDelegate {
-    
+
     func didReceiveDataUpdate(data: [WSMapPayload]) {
+        locations = data
         mapView.clear()
-        
+
         let carIcon = UIImage(named: "car")
         let hitchhikerIcon = UIImage(named: "hitchhiker")
 
@@ -146,7 +149,9 @@ extension MapViewController: WSClientDelegate {
     }
 
     func didReceiveDataUpdate(data: WSRide) {
-        let notificationVC = NotificationViewController(rideRequest: data.data)
+        let notificationVC = NotificationViewController(
+            rideRequest: data.data, currentUser: currentUser, locations: locations
+        )
         exclusivePresenter.present(notificationVC)
     }
 
