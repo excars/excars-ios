@@ -6,7 +6,6 @@
 //  Copyright © 2018 Леша. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 
@@ -18,7 +17,7 @@ class ExclusivePresenter {
     init(to: UIViewController) {
         self.to = to
     }
-    
+
     func present(_ vc: UIViewController, isBounded: Bool = false) {
         Presenter.present(vc, to: to, isBounded: isBounded)
         self.dismiss()
@@ -30,6 +29,12 @@ class ExclusivePresenter {
             Presenter.dismiss(current)
         }
         current = nil
+    }
+
+    func collapse() {
+        if let current = current as? BottomViewController {
+            Presenter.collapse(current)
+        }
     }
 
 }

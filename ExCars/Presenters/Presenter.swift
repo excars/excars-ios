@@ -6,7 +6,6 @@
 //  Copyright © 2018 Леша. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 
@@ -35,6 +34,10 @@ class Presenter {
             vc.view.removeFromSuperview()
             vc.removeFromParent()
         }
+    }
+
+    static func collapse(_ vc: BottomViewController) {
+        vc.toPartialView()
     }
 
 }
