@@ -64,7 +64,9 @@ struct WSMapPayload: Codable {
 struct WSMapLocation: Codable {
     let latitude: Double
     let longitude: Double
-    
+    let course: Double
+    let ts: Double
+
     var clLocation: CLLocation {
         return CLLocation(latitude: latitude, longitude: longitude)
     }

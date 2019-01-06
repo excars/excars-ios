@@ -16,6 +16,8 @@ class MapViewController: UIViewController {
     let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
     let zoomLevel: Float = 15.0
     var locations: [WSMapPayload] = []
+    
+    var oldLocations: [String: GMSMarker] = [:]
 
     var mapView = GMSMapView()
     var currentMarker: GMSMarker?
@@ -54,7 +56,7 @@ class MapViewController: UIViewController {
         view.addSubview(mapView)
 
         wsClient.delegate = self
-        
+
         currentUser.delegate = self
         didChangeRole(role: currentUser.role)
     }
@@ -109,7 +111,9 @@ extension MapViewController: GMSMapViewDelegate {
         let currentUserData = currentMarker?.userData as? WSMapPayload
 
         if userData.uid != currentUserData?.uid {
-            let profileVC = ProfileViewController(uid: userData.uid, currentUser: currentUser, locations: locations, wsClient: wsClient)
+            let profileVC = ProfileViewController(
+                uid: userData.uid, currentUser: currentUser, locations: locations, wsClient: wsClient
+            )
             exclusivePresenter.present(profileVC)
             currentMarker = marker
         } else {
@@ -133,8 +137,9 @@ extension MapViewController: WSClientDelegate {
         let hitchhikerIcon = UIImage(named: "hitchhiker")
 
         for item in data {
-            let position = CLLocationCoordinate2D(latitude: item.location.latitude, longitude: item.location.longitude)
-            let marker = GMSMarker(position: position)
+            let marker = oldLocations[item.uid] ?? GMSMarker()
+            marker.map = mapView
+            marker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
 
             switch item.role {
             case .driver:
@@ -143,8 +148,21 @@ extension MapViewController: WSClientDelegate {
                 marker.icon = hitchhikerIcon
             }
 
+            let userData = marker.userData as? WSMapPayload
+            let duration = (userData != nil ) ? (item.location.ts - userData!.location.ts) + 0.1 : 0.0
             marker.userData = item
-            marker.map = mapView
+
+            let position = CLLocationCoordinate2D(latitude: item.location.latitude, longitude: item.location.longitude)
+
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(duration)
+            if item.role == .driver {
+                marker.rotation = item.location.course
+            }
+            marker.position = position
+            CATransaction.commit()
+
+            oldLocations[item.uid] = marker
         }
     }
 
