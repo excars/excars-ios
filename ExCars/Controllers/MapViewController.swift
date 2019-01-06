@@ -152,13 +152,14 @@ extension MapViewController: GMSMapViewDelegate {
             let profileVC = ProfileViewController(
                 uid: userData.uid, currentUser: currentUser, locations: locations, wsClient: wsClient
             )
+            profileVC.onDismiss = {
+                self.currentMarker = nil
+                self.unlockCamera()
+            }
+            rolePresenter.collapse()
             exclusivePresenter.present(profileVC)
             currentMarker = marker
             lockCameraOnProfile()
-        } else {
-            exclusivePresenter.dismiss()
-            currentMarker = nil
-            unlockCamera()
         }
 
         return false
@@ -181,7 +182,6 @@ extension MapViewController: GMSMapViewDelegate {
 extension MapViewController: WSClientDelegate {
 
     func didReceiveDataUpdate(data: [WSMapPayload]) {
-        print("MAP UPDATE; FOLLOW: \(cameraLockedOnProfile)")
         locations = data
         mapView.clear()
 
@@ -229,6 +229,7 @@ extension MapViewController: WSClientDelegate {
         let notificationVC = NotificationViewController(
             rideRequest: data.data, currentUser: currentUser, locations: locations
         )
+        rolePresenter.collapse()
         exclusivePresenter.present(notificationVC)
     }
 
