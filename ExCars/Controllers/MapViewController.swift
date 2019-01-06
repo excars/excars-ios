@@ -16,18 +16,21 @@ class MapViewController: UIViewController {
     let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
     let zoomLevel: Float = 15.0
     var locations: [WSMapPayload] = []
-    
-    var oldLocations: [String: GMSMarker] = [:]
+    let durationTreshhold = 3.0
 
     var mapView = GMSMapView()
+    var markers: [String: GMSMarker] = [:]
     var currentMarker: GMSMarker?
-    
+
     let currentUser: User
 
     lazy var exclusivePresenter = ExclusivePresenter(to: self)
     lazy var rolePresenter = ExclusivePresenter(to: self)
 
     let wsClient = WSClient()
+
+    private var cameraLockedOnMe: Bool = true
+    private var cameraLockedOnProfile: Bool = false
 
     init(currentUser: User) {
         self.currentUser = currentUser
@@ -43,7 +46,7 @@ class MapViewController: UIViewController {
 
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
-        locationManager.distanceFilter = 50
+        locationManager.distanceFilter = 25
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
 
@@ -61,6 +64,37 @@ class MapViewController: UIViewController {
         didChangeRole(role: currentUser.role)
     }
 
+    private func lockCameraOnMe() {
+        cameraLockedOnMe = true
+        cameraLockedOnProfile = false
+    }
+
+    private func lockCameraOnProfile() {
+        cameraLockedOnMe = false
+        cameraLockedOnProfile = true
+    }
+
+    private func unlockCamera() {
+        cameraLockedOnMe = false
+        cameraLockedOnProfile = false
+    }
+
+    private func tryToMoveCameraToProfile(uid: String) {
+        guard cameraLockedOnProfile == true,
+            let currentUserData = currentMarker?.userData as? WSMapPayload,
+            currentUserData.uid == uid
+        else {
+            return
+        }
+
+        let camera = GMSCameraPosition.camera(
+            withLatitude: currentUserData.location.latitude,
+            longitude: currentUserData.location.longitude,
+            zoom: mapView.camera.zoom
+        )
+        mapView.animate(to: camera)
+    }
+
 }
 
 
@@ -73,14 +107,16 @@ extension MapViewController: CLLocationManagerDelegate {
         let camera = GMSCameraPosition.camera(
             withLatitude: location.coordinate.latitude,
             longitude: location.coordinate.longitude,
-            zoom: zoomLevel
+            zoom: mapView.camera.zoom
         )
 
         if mapView.isHidden {
             mapView.isHidden = false
             mapView.camera = camera
         } else {
-            mapView.animate(to: camera)
+            if cameraLockedOnMe {
+                mapView.animate(to: camera)
+            }
         }
 
         wsClient.sendLocation(location: location)
@@ -91,10 +127,12 @@ extension MapViewController: CLLocationManagerDelegate {
         case .restricted, .denied, .notDetermined:
             mapView.isMyLocationEnabled = false
             mapView.settings.myLocationButton = false
+            mapView.settings.compassButton = false
             mapView.isHidden = true
         case .authorizedAlways, .authorizedWhenInUse:
             mapView.isMyLocationEnabled = true
             mapView.settings.myLocationButton = true
+            mapView.settings.compassButton = true
         }
     }
 
@@ -116,11 +154,24 @@ extension MapViewController: GMSMapViewDelegate {
             )
             exclusivePresenter.present(profileVC)
             currentMarker = marker
+            lockCameraOnProfile()
         } else {
             exclusivePresenter.dismiss()
             currentMarker = nil
+            unlockCamera()
         }
 
+        return false
+    }
+
+    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+        if gesture {
+            unlockCamera()
+        }
+    }
+
+    func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
+        lockCameraOnMe()
         return false
     }
 
@@ -130,6 +181,7 @@ extension MapViewController: GMSMapViewDelegate {
 extension MapViewController: WSClientDelegate {
 
     func didReceiveDataUpdate(data: [WSMapPayload]) {
+        print("MAP UPDATE; FOLLOW: \(cameraLockedOnProfile)")
         locations = data
         mapView.clear()
 
@@ -137,7 +189,7 @@ extension MapViewController: WSClientDelegate {
         let hitchhikerIcon = UIImage(named: "hitchhiker")
 
         for item in data {
-            let marker = oldLocations[item.uid] ?? GMSMarker()
+            let marker = markers[item.uid] ?? GMSMarker()
             marker.map = mapView
             marker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
 
@@ -149,7 +201,10 @@ extension MapViewController: WSClientDelegate {
             }
 
             let userData = marker.userData as? WSMapPayload
-            let duration = (userData != nil ) ? (item.location.ts - userData!.location.ts) + 0.1 : 0.0
+            var duration = (userData != nil ) ? (item.location.ts - userData!.location.ts) + 0.1 : 0.0
+            if duration > durationTreshhold {
+               duration = durationTreshhold
+            }
             marker.userData = item
 
             let position = CLLocationCoordinate2D(latitude: item.location.latitude, longitude: item.location.longitude)
@@ -160,13 +215,17 @@ extension MapViewController: WSClientDelegate {
                 marker.rotation = item.location.course
             }
             marker.position = position
+            tryToMoveCameraToProfile(uid: item.uid)
             CATransaction.commit()
 
-            oldLocations[item.uid] = marker
+            markers[item.uid] = marker
         }
+
     }
 
     func didReceiveDataUpdate(data: WSRide) {
+        currentMarker = markers[data.data.sender.uid]
+        lockCameraOnProfile()
         let notificationVC = NotificationViewController(
             rideRequest: data.data, currentUser: currentUser, locations: locations
         )
