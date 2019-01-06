@@ -26,6 +26,8 @@ class BottomViewController: UIViewController {
         return UIScreen.main.bounds.height - (height + bottomSafeAreaInsets)
     }
 
+    var onDismiss: (() -> Void)?
+    
     override func loadView() {
         view = UIView(frame: CGRect(x: 0, y: fullHeight, width: UIScreen.main.bounds.width, height: fullHeight))
     }
@@ -77,6 +79,7 @@ class BottomViewController: UIViewController {
         let completion: (Bool) -> Void = { [weak self] _ in
             if let self = self, self.allowDismiss {
                 Presenter.dismiss(self)
+                self.onDismiss?()
             }
         }
         changeYWithAnimation(y: partialView, withDuration: duration, completion: completion)

@@ -152,14 +152,14 @@ extension MapViewController: GMSMapViewDelegate {
             let profileVC = ProfileViewController(
                 uid: userData.uid, currentUser: currentUser, locations: locations, wsClient: wsClient
             )
+            profileVC.onDismiss = {
+                self.currentMarker = nil
+                self.unlockCamera()
+            }
             rolePresenter.collapse()
             exclusivePresenter.present(profileVC)
             currentMarker = marker
             lockCameraOnProfile()
-        } else {
-            exclusivePresenter.dismiss()
-            currentMarker = nil
-            unlockCamera()
         }
 
         return false
