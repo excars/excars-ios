@@ -95,8 +95,6 @@ extension InRoleViewController: WSRideDelegate {
     }
 
     func didCancelRide() {
-        user.role = nil
-        
         let alertController = UIAlertController(
             title: "Ride has been cancelled",
             message: "",
@@ -107,6 +105,9 @@ extension InRoleViewController: WSRideDelegate {
         alertController.addAction(okAction)
         
         present(alertController, animated: true)
+        
+        user.ride = nil
+        inRoleView.ride = nil
     }
 
 }

@@ -12,7 +12,7 @@ import Alamofire
 enum APIRouter: URLRequestConvertible {
     
     enum Constants {
-        static let baseURLPath = "http://localhost:8000"
+        static let baseURLPath = "https://\(Configuration.API_HOST)"
     }
     
     case auth(String)

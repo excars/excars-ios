@@ -53,6 +53,7 @@ class RoleView: XibView {
         APIClient.join(role: role, destination: offices[destination]) { result in
             switch result {
             case .success(let profile):
+                self.user.destination = profile.destination
                 self.user.role = profile.role
             case .failure(let error):
                 print("JOIN ERROR \(error)")

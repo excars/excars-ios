@@ -31,7 +31,7 @@ class MapViewController: UIViewController {
 
     private var cameraLockedOnMe: Bool = true
     private var cameraLockedOnProfile: Bool = false
-
+    
     init(currentUser: User) {
         self.currentUser = currentUser
         super.init(nibName: nil, bundle: nil)
@@ -46,7 +46,7 @@ class MapViewController: UIViewController {
 
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
-        locationManager.distanceFilter = 25
+        locationManager.distanceFilter = 10
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
 
@@ -58,41 +58,11 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         view.addSubview(mapView)
 
+        wsClient.connect()
         wsClient.delegate = self
 
         currentUser.delegate = self
         didChangeRole(role: currentUser.role)
-    }
-
-    private func lockCameraOnMe() {
-        cameraLockedOnMe = true
-        cameraLockedOnProfile = false
-    }
-
-    private func lockCameraOnProfile() {
-        cameraLockedOnMe = false
-        cameraLockedOnProfile = true
-    }
-
-    private func unlockCamera() {
-        cameraLockedOnMe = false
-        cameraLockedOnProfile = false
-    }
-
-    private func tryToMoveCameraToProfile(uid: String) {
-        guard cameraLockedOnProfile == true,
-            let currentUserData = currentMarker?.userData as? WSMapPayload,
-            currentUserData.uid == uid
-        else {
-            return
-        }
-
-        let camera = GMSCameraPosition.camera(
-            withLatitude: currentUserData.location.latitude,
-            longitude: currentUserData.location.longitude,
-            zoom: mapView.camera.zoom
-        )
-        mapView.animate(to: camera)
     }
 
 }
@@ -247,7 +217,44 @@ extension MapViewController: UserDelegate {
             roleVC = InRoleViewController(user: currentUser, wsClient: wsClient)
         }
 
+        exclusivePresenter.dismiss()
         rolePresenter.present(roleVC)
+    }
+
+}
+
+
+extension MapViewController {
+
+    private func lockCameraOnMe() {
+        cameraLockedOnMe = true
+        cameraLockedOnProfile = false
+    }
+    
+    private func lockCameraOnProfile() {
+        cameraLockedOnMe = false
+        cameraLockedOnProfile = true
+    }
+    
+    private func unlockCamera() {
+        cameraLockedOnMe = false
+        cameraLockedOnProfile = false
+    }
+    
+    private func tryToMoveCameraToProfile(uid: String) {
+        guard cameraLockedOnProfile == true,
+            let currentUserData = currentMarker?.userData as? WSMapPayload,
+            currentUserData.uid == uid
+            else {
+                return
+        }
+        
+        let camera = GMSCameraPosition.camera(
+            withLatitude: currentUserData.location.latitude,
+            longitude: currentUserData.location.longitude,
+            zoom: mapView.camera.zoom
+        )
+        mapView.animate(to: camera)
     }
 
 }

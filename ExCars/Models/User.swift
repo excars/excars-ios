@@ -20,7 +20,7 @@ class User: Codable {
     let uid: String
     let name: String
     let avatar: URL
-    let destination: Destination?
+    var destination: Destination?
 
     var role: Role? {
         didSet {

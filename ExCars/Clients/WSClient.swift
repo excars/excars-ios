@@ -37,14 +37,15 @@ class WSClient {
     let socket: WebSocket
     let encoder = JSONEncoder()
 
+    weak var timer: Timer?
+    
     init() {
-        var request = URLRequest(url: URL(string: "ws://localhost:8000/stream")!)
+        var request = URLRequest(url: URL(string: "wss://\(Configuration.API_HOST)/stream")!)
         if let token = KeyChain.getJWTToken() {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
 
         socket = WebSocket(request: request)
-        socket.connect()
         socket.delegate = self
     }
 
@@ -53,6 +54,10 @@ class WSClient {
         socket.delegate = nil
     }
 
+    func connect() {
+        socket.connect()
+    }
+    
     func sendLocation(location: CLLocation) {
         let payload = WSLocationPayload(
             latitude: location.coordinate.latitude,
@@ -111,11 +116,15 @@ extension WSClient: WebSocketDelegate {
     }
 
     func websocketDidConnect(socket: WebSocketClient) {
-
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            self.socket.write(pong: Data())
+        }
     }
 
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-
+        timer?.invalidate()
     }
 
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
