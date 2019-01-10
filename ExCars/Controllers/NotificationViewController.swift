@@ -48,7 +48,7 @@ class NotificationViewController: BottomViewController {
     }
 
     func accept() {
-        APIClient.acceptRide(uid: rideRequest.uid, passenger: getPassenger()) { [weak self] result in
+        APIClient.acceptRide(uid: rideRequest.uid, passenger: getPassenger()) { [weak self] status, result in
             guard let self = self else { return }
             switch result {
             case .success(_):
@@ -60,7 +60,7 @@ class NotificationViewController: BottomViewController {
     }
 
     func decline() {
-        APIClient.declineRide(uid: rideRequest.uid, passenger: getPassenger()) { [weak self] result in
+        APIClient.declineRide(uid: rideRequest.uid, passenger: getPassenger()) { [weak self] status, result in
             guard let self = self else { return }
             switch result {
             case .success(_):

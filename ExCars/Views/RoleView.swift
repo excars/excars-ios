@@ -50,13 +50,14 @@ class RoleView: XibView {
     private func join(role: Role) {
         
         let destination = officePicker.selectedRow(inComponent: 0)
-        APIClient.join(role: role, destination: offices[destination]) { result in
+        APIClient.join(role: role, destination: offices[destination]) { [weak self] status, result in
+            guard let self = self else { return }
             switch result {
             case .success(let profile):
                 self.user.destination = profile.destination
                 self.user.role = profile.role
             case .failure(let error):
-                print("JOIN ERROR \(error)")
+                print("JOIN ERROR [\(status)]: \(error)")
             }
         }
     }

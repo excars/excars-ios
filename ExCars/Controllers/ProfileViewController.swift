@@ -50,7 +50,7 @@ class ProfileViewController: BottomViewController {
         profileView.frame = view.bounds
         profileView.render(for: .loading)
 
-        APIClient.profile(uid: uid) {[weak self] result in
+        APIClient.profile(uid: uid) { [weak self] status, result in
             guard let self = self else { return }
 
             switch result {
@@ -60,7 +60,7 @@ class ProfileViewController: BottomViewController {
                 self.profileView.render(for: state)
                 self.profile = profile
             case .failure(let error):
-                print("FAILED TO GET PROFILE \(error)")
+                print("FAILED TO GET PROFILE [\(status)]: \(error)")
             }
 
         }
@@ -98,12 +98,12 @@ class ProfileViewController: BottomViewController {
     func requestRide() {
         profileView.render(for: .requested(profile!))
 
-        APIClient.ride(to: uid) { result in
+        APIClient.ride(to: uid) { status, result in
             switch result {
             case .success(_):
                 return
             case .failure(let error):
-                print("RIDE REQUEST ERROR: \(error)")
+                print("RIDE REQUEST ERROR: \(status): \(error)")
             }
         }
     }

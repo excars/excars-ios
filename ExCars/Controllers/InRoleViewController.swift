@@ -42,14 +42,16 @@ class InRoleViewController: BottomViewController {
     }
 
     private func loadRide() {
-        APIClient.currentRide() { [weak self] result in
+        APIClient.currentRide() { [weak self] status, result in
             guard let self = self else { return }
             switch result {
             case .success(let ride):
                 self.inRoleView.ride = ride
                 self.user.ride = ride
             case .failure(let error):
-                print("IN ROLE RIDE FAILURE \(error)")
+                if status != 404 {
+                    print("IN ROLE RIDE FAILURE [\(status)]: \(error)")
+                }
                 self.inRoleView.ride = nil
             }
         }
@@ -74,13 +76,13 @@ class InRoleViewController: BottomViewController {
     }
     
     private func exitRole() {
-        APIClient.leaveRide() { [weak self] result in
+        APIClient.leaveRide() { [weak self] status, result in
             guard let self = self else { return }
             switch result {
             case .success:
                 self.user.role = nil
             case .failure(let error):
-                print("LEAVE ERROR \(error)")
+                print("LEAVE ERROR \(status): \(error)")
             }
         }
     }

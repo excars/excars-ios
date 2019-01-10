@@ -37,13 +37,14 @@ class RootViewController: UIViewController {
     }
     
     func toMap() {
-        APIClient.me() { result in
+        APIClient.me() { [weak self] status, result in
+            guard let self = self else { return }
             switch result {
             case .success(let me):
                 self.currentUser = me
                 self.toController(controller: MapViewController(currentUser: me))
             case .failure(let error):
-                print("ME ERROR \(error)")
+                print("ME ERROR [\(status)]: \(error)")
                 return
             }
         }

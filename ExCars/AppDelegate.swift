@@ -61,13 +61,13 @@ extension AppDelegate: GIDSignInDelegate {
             return
         }
         
-        APIClient.auth(idToken: user.authentication.idToken) { result in
+        APIClient.auth(idToken: user.authentication.idToken) { status, result in
             switch result {
             case .success(let response):
                 KeyChain.setJWTToken(token: response.jwtToken)
                 AppDelegate.shared.rootViewController.toMap()
             case .failure(let error):
-                print("AUTH ERROR \(error)")
+                print("AUTH ERROR [\(status)]: \(error)")
                 
                 let alertController = UIAlertController(
                     title: "Cannot connect to server",

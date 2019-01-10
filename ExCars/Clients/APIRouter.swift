@@ -9,18 +9,19 @@
 
 import Alamofire
 
+
 enum APIRouter: URLRequestConvertible {
     
     enum Constants {
         static let baseURLPath = "https://\(Configuration.API_HOST)"
     }
     
-    case auth(String)
+    case auth(idToken: String)
     case me
-    case profile(String)
-    case join(Role, Destination)
-    case rides(String)
-    case updateRide(String, String, Profile)
+    case profile(_ uid: String)
+    case join(_ role: Role, _ destination: Destination)
+    case rides(_ uid: String)
+    case updateRide(_ uid: String, status: PassengerStatus, passenger: Profile)
     case currentRide
     case leave
 
@@ -43,7 +44,6 @@ enum APIRouter: URLRequestConvertible {
         case .leave:
             return .delete
         }
-
     }
     
     var path: String {
@@ -70,7 +70,9 @@ enum APIRouter: URLRequestConvertible {
     var parameters: [String: Any]? {
         switch self {
         case .auth(let idToken):
-            return ["id_token": idToken]
+            return [
+                "id_token": idToken,
+            ]
         case .join(let role, let destination):
             return [
                 "role": role.rawValue,
@@ -82,12 +84,12 @@ enum APIRouter: URLRequestConvertible {
             ]
         case .rides(let uid):
             return [
-                "receiver": uid
+                "receiver": uid,
             ]
-        case .updateRide(_, let status, let profile):
+        case .updateRide(_, let status, let passenger):
             return [
-                "status": status,
-                "passenger_uid": profile.uid,
+                "status": status.rawValue,
+                "passenger_uid": passenger.uid,
             ]
         default:
             return nil

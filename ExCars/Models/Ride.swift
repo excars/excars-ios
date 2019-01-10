@@ -26,8 +26,3 @@ struct Passenger: Codable {
     let profile: Profile
     let status: PassengerStatus
 }
-
-
-struct RideAPIResponse: Codable {
-    let uid: String
-}

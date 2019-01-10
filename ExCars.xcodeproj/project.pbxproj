@@ -761,7 +761,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3CDDA33E29E2D5384CF7A66C /* Pods-ExCars.debug.xcconfig */;
 			buildSettings = {
-				API_HOST = localhost;
+				API_HOST = excars.herokuapp.com;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
