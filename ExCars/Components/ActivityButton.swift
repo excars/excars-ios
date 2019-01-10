@@ -42,7 +42,7 @@ class ActivityButton: DesignableButton {
         
         setTitle(text, for: .disabled)
         setupImage(named: "check-white")
-        backgroundColor = UIColor(red: 0.18, green: 0.80, blue: 0.44, alpha: 1.0)
+        backgroundColor = UIColor(named: "Green")
     }
     
     private func renderFailure(_ text: String) {
@@ -51,7 +51,7 @@ class ActivityButton: DesignableButton {
         
         setTitle(text, for: .disabled)
         setupImage(named: "close-white")
-        backgroundColor = UIColor(red: 0.91, green: 0.30, blue: 0.24, alpha: 1.0)
+        backgroundColor = UIColor(named: "Red")
     }
     
     private func addActivityIndicator() {

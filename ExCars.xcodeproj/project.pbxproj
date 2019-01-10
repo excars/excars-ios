@@ -54,6 +54,7 @@
 		74F7CD0821B08053003463A9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0721B08053003463A9 /* RootViewController.swift */; };
 		74F7CD0A21B08145003463A9 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0921B08145003463A9 /* LaunchViewController.swift */; };
 		74F7CD0C21B08866003463A9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0B21B08865003463A9 /* MapViewController.swift */; };
+		74FBBA8B21E7C5F600E5203E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74FBBA8A21E7C5F600E5203E /* Colors.xcassets */; };
 		74FF005221AE9A8D00D588BA /* RoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74FF005121AE9A8D00D588BA /* RoleView.xib */; };
 		74FF005421AE9BC000D588BA /* RoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FF005321AE9BC000D588BA /* RoleView.swift */; };
 		BD2E4109E5C82AAC0AC7AD28 /* Pods_ExCars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA4426F5266D8890A9B1B9D /* Pods_ExCars.framework */; };
@@ -132,6 +133,7 @@
 		74F7CD0721B08053003463A9 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		74F7CD0921B08145003463A9 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		74F7CD0B21B08865003463A9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		74FBBA8A21E7C5F600E5203E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		74FF005121AE9A8D00D588BA /* RoleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoleView.xib; sourceTree = "<group>"; };
 		74FF005321AE9BC000D588BA /* RoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleView.swift; sourceTree = "<group>"; };
 		A96F478CF922E74E5D152055 /* Pods-ExCars.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExCars.dev.xcconfig"; path = "Pods/Target Support Files/Pods-ExCars/Pods-ExCars.dev.xcconfig"; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				745418EE21A360EA00EF3F09 /* KeyChain.swift */,
 				74F1167521D375A500738E59 /* Secrets.swift */,
 				748BA64021E68D0F00384CB4 /* Configuration.swift */,
+				74FBBA8A21E7C5F600E5203E /* Colors.xcassets */,
 			);
 			path = ExCars;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 			files = (
 				746E42BB21B40E2500F083C3 /* InRoleView.xib in Resources */,
 				74E2F0E021AD3F8D0092FEEF /* NotificationView.xib in Resources */,
+				74FBBA8B21E7C5F600E5203E /* Colors.xcassets in Resources */,
 				742BCD7421C6529500403EBA /* RideViewCell.xib in Resources */,
 				74D2CC4B21CB027B004FD613 /* BaseProfileView.xib in Resources */,
 				74F1167C21D403E300738E59 /* EmptyRideView.xib in Resources */,
