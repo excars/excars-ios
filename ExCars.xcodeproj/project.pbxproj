@@ -20,7 +20,7 @@
 		7438806A21C815D0009C339A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438806921C815D0009C339A /* LoginView.swift */; };
 		7438806C21C815DC009C339A /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7438806B21C815DC009C339A /* LoginView.xib */; };
 		7438806F21C9672E009C339A /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438806E21C9672E009C339A /* DesignableButton.swift */; };
-		7438807121C990C1009C339A /* StateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438807021C990C1009C339A /* StateButton.swift */; };
+		7438807121C990C1009C339A /* ActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438807021C990C1009C339A /* ActivityButton.swift */; };
 		744E6B8821B12CF4002CC847 /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744E6B8721B12CF4002CC847 /* RoleViewController.swift */; };
 		745418ED21A35BCA00EF3F09 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EC21A35BCA00EF3F09 /* APIRouter.swift */; };
 		745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EE21A360EA00EF3F09 /* KeyChain.swift */; };
@@ -98,7 +98,7 @@
 		7438806921C815D0009C339A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7438806B21C815DC009C339A /* LoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		7438806E21C9672E009C339A /* DesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
-		7438807021C990C1009C339A /* StateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateButton.swift; sourceTree = "<group>"; };
+		7438807021C990C1009C339A /* ActivityButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityButton.swift; sourceTree = "<group>"; };
 		744E6B8721B12CF4002CC847 /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
 		745418EC21A35BCA00EF3F09 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		745418EE21A360EA00EF3F09 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				7438806E21C9672E009C339A /* DesignableButton.swift */,
-				7438807021C990C1009C339A /* StateButton.swift */,
+				7438807021C990C1009C339A /* ActivityButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -598,7 +598,7 @@
 				74E2F0D421AC59C10092FEEF /* Message.swift in Sources */,
 				74E2F0D021AC37470092FEEF /* XibView.swift in Sources */,
 				74FF005421AE9BC000D588BA /* RoleView.swift in Sources */,
-				7438807121C990C1009C339A /* StateButton.swift in Sources */,
+				7438807121C990C1009C339A /* ActivityButton.swift in Sources */,
 				7400C74821A153F200DFD5A3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,7 +24,7 @@ enum ProfileViewState {
 
 class ProfileView: XibView {
 
-    @IBOutlet weak var submitButton: StateButton!
+    @IBOutlet weak var submitButton: ActivityButton!
     @IBOutlet weak var baseProfileView: BaseProfileView!
 
     var onSubmit: (() -> Void)?
@@ -84,12 +84,12 @@ class ProfileView: XibView {
     
     private func renderAccepted(profile: Profile) {
         baseProfileView.profile = profile
-        submitButton.render(for: .success)
+        submitButton.render(for: .success("Accepted"))
     }
     
     private func renderDeclined(profile: Profile) {
         baseProfileView.profile = profile
-        submitButton.render(for: .failure)
+        submitButton.render(for: .failure("Declined"))
     }
 
 }

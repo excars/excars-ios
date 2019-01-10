@@ -9,66 +9,62 @@
 import UIKit
 
 
-enum ButtonState {
+enum ActivityButtonState {
     case loading
-    case success
-    case failure
+    case success(String)
+    case failure(String)
 }
 
 
-class StateButton: DesignableButton {
-    let indicatorTag = 1040808
+class ActivityButton: DesignableButton {
+    private let activityIndicator = UIActivityIndicatorView()
     
-    func render(for state: ButtonState) {
+    func render(for state: ActivityButtonState) {
         switch state {
         case .loading:
             renderLoading()
-        case .success:
-            renderSuccess()
-        case .failure:
-            renderFailure()
+        case .success(let text):
+            renderSuccess(text)
+        case .failure(let text):
+            renderFailure(text)
         }
     }
-    
+
     private func renderLoading() {
         isEnabled = false
         setTitle("", for: .disabled)
         addActivityIndicator()
     }
-    
-    private func renderSuccess() {
+
+    private func renderSuccess(_ text: String) {
         isEnabled = false
         removeActivityIndicator()
         
-        setTitle("Accepted", for: .disabled)
+        setTitle(text, for: .disabled)
         setupImage(named: "check-white")
         backgroundColor = UIColor(red: 0.18, green: 0.80, blue: 0.44, alpha: 1.0)
     }
     
-    private func renderFailure() {
+    private func renderFailure(_ text: String) {
         isEnabled = false
         removeActivityIndicator()
         
-        setTitle("Declined", for: .disabled)
+        setTitle(text, for: .disabled)
         setupImage(named: "close-white")
         backgroundColor = UIColor(red: 0.91, green: 0.30, blue: 0.24, alpha: 1.0)
     }
     
     private func addActivityIndicator() {
-        let indicator = UIActivityIndicatorView()
         let buttonHeight = bounds.size.height
         let buttonWidth = bounds.size.width
-        indicator.center = CGPoint(x: buttonWidth/2, y: buttonHeight/2)
-        indicator.tag = indicatorTag
-        addSubview(indicator)
-        indicator.startAnimating()
+        activityIndicator.center = CGPoint(x: buttonWidth/2, y: buttonHeight/2)
+        addSubview(activityIndicator)
+        activityIndicator.startAnimating()
     }
-    
+
     private func removeActivityIndicator() {
-        if let indicator = viewWithTag(indicatorTag) as? UIActivityIndicatorView {
-            indicator.stopAnimating()
-            indicator.removeFromSuperview()
-        }
+        activityIndicator.stopAnimating()
+        activityIndicator.removeFromSuperview()
     }
     
     private func setupImage(named: String) {
