@@ -6,22 +6,17 @@
 //  Copyright © 2018 Леша. All rights reserved.
 //
 
-
 import Alamofire
 
 
 enum APIRouter: URLRequestConvertible {
-    
-    enum Constants {
-        static let baseURLPath = "https://\(Configuration.API_HOST)"
-    }
-    
+
     case auth(idToken: String)
     case me
     case profile(_ uid: String)
     case join(_ role: Role, _ destination: Destination)
-    case rides(_ uid: String)
-    case updateRide(_ uid: String, status: PassengerStatus, passenger: Profile)
+    case requestRide(_ uid: String)
+    case updateRideRequest(_ uid: String, status: PassengerStatus, passenger: Profile)
     case currentRide
     case leave
 
@@ -35,9 +30,9 @@ enum APIRouter: URLRequestConvertible {
             return .get
         case .join:
             return .post
-        case .rides:
+        case .requestRide:
             return .post
-        case .updateRide:
+        case .updateRideRequest:
             return .put
         case .currentRide:
             return .get
@@ -56,9 +51,9 @@ enum APIRouter: URLRequestConvertible {
             return "/api/profiles/\(uid)"
         case .join:
             return "/api/rides/join"
-        case .rides:
+        case .requestRide:
             return "/api/rides"
-        case .updateRide(let uid, _, _):
+        case .updateRideRequest(let uid, _, _):
             return "/api/rides/\(uid)"
         case .currentRide:
             return "/api/rides/current"
@@ -82,11 +77,11 @@ enum APIRouter: URLRequestConvertible {
                     "longitude": destination.longitude,
                 ]
             ]
-        case .rides(let uid):
+        case .requestRide(let uid):
             return [
                 "receiver": uid,
             ]
-        case .updateRide(_, let status, let passenger):
+        case .updateRideRequest(_, let status, let passenger):
             return [
                 "status": status.rawValue,
                 "passenger_uid": passenger.uid,
@@ -97,7 +92,7 @@ enum APIRouter: URLRequestConvertible {
     }
     
     public func asURLRequest() throws -> URLRequest {
-        let url = try Constants.baseURLPath.asURL()
+        let url = URL(string: "https://\(Configuration.API_HOST)")!
         
         var request = URLRequest(url: url.appendingPathComponent(path))
         request.httpMethod = method.rawValue

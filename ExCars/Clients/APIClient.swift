@@ -15,7 +15,7 @@ class APIClient {
     private static func performRequest<T:Decodable>(route:APIRouter, decoder: JSONDecoder = JSONDecoder(), completion: @escaping (Int, Result<T>)->Void) -> DataRequest {
         return AF.request(route)
             .responseJSONDecodable (decoder: decoder){ (response: DataResponse<T>) in
-                completion(response.response!.statusCode, response.result)
+                completion(response.response?.statusCode ?? 500, response.result)
         }
     }
 
@@ -35,24 +35,24 @@ class APIClient {
         performRequest(route: APIRouter.join(role, destination), completion: completion)
     }
 
-    static func ride(to: String, completion: @escaping (Int, Result<Empty>)->Void) {
-        performRequest(route: APIRouter.rides(to), completion: completion)
-    }
-
-    static func acceptRide(uid: String, passenger: Profile, completion: @escaping (Int, Result<Empty>)->Void) {
-        performRequest(route: APIRouter.updateRide(uid, status: .accepted, passenger: passenger), completion: completion)
+    static func leave(completion: @escaping (Int, Result<Empty>)->Void) {
+        performRequest(route: APIRouter.leave, completion: completion)
     }
     
-    static func declineRide(uid: String, passenger: Profile, completion: @escaping (Int, Result<Empty>)->Void) {
-        performRequest(route: APIRouter.updateRide(uid, status: .declined, passenger: passenger), completion: completion)
-    }
-
     static func currentRide(completion: @escaping (Int, Result<Ride>)->Void) {
         performRequest(route: APIRouter.currentRide, completion: completion)
     }
+    
+    static func requestRide(to: String, completion: @escaping (Int, Result<Empty>)->Void) {
+        performRequest(route: APIRouter.requestRide(to), completion: completion)
+    }
 
-    static func leaveRide(completion: @escaping (Int, Result<Empty>)->Void) {
-        performRequest(route: APIRouter.leave, completion: completion)
+    static func acceptRideRequest(uid: String, passenger: Profile, completion: @escaping (Int, Result<Empty>)->Void) {
+        performRequest(route: APIRouter.updateRideRequest(uid, status: .accepted, passenger: passenger), completion: completion)
+    }
+    
+    static func declineRideRequest(uid: String, passenger: Profile, completion: @escaping (Int, Result<Empty>)->Void) {
+        performRequest(route: APIRouter.updateRideRequest(uid, status: .declined, passenger: passenger), completion: completion)
     }
 
 }

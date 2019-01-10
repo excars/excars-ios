@@ -98,7 +98,7 @@ class ProfileViewController: BottomViewController {
     func requestRide() {
         profileView.render(for: .requested(profile!))
 
-        APIClient.ride(to: uid) { status, result in
+        APIClient.requestRide(to: uid) { status, result in
             switch result {
             case .success(_):
                 return

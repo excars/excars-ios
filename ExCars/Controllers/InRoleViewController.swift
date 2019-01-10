@@ -76,7 +76,7 @@ class InRoleViewController: BottomViewController {
     }
     
     private func exitRole() {
-        APIClient.leaveRide() { [weak self] status, result in
+        APIClient.leave() { [weak self] status, result in
             guard let self = self else { return }
             switch result {
             case .success:
