@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class RootViewController: UIViewController {
     
     private var current: UIViewController
@@ -49,8 +50,9 @@ class RootViewController: UIViewController {
     }
     
     private func toController(controller: UIViewController) {
-        Presenter.present(controller, to: self, isBounded: true)
+        Presenter.present(controller, to: self)
         Presenter.dismiss(current)
         current = controller
     }
+
 }
