@@ -11,6 +11,7 @@ import GoogleMaps
 import GoogleSignIn
 import Alamofire
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -21,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         GIDSignIn.sharedInstance().clientID = GOOGLE_OAUTH2_CLIENT_ID
         GIDSignIn.sharedInstance().delegate = self
+        
+        registerWSMessages()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = RootViewController()
@@ -48,6 +51,20 @@ extension AppDelegate {
 
     var rootViewController: RootViewController {
         return window!.rootViewController as! RootViewController
+    }
+
+}
+
+
+extension AppDelegate {
+
+    func registerWSMessages() {
+        Message.register(Location.self, for: .location)
+
+        Message.register([MapItem].self, for: .map)
+        Message.register(RideRequest.self, for: .rideRequested)
+        Message.register(RideRequest.self, for: .rideRequestAccepted)
+        Message.register(RideRequest.self, for: .rideRequestDeclined)
     }
 
 }

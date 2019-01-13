@@ -33,7 +33,10 @@ class User: Codable {
 
     var ride: Ride?
     var location: CLLocation?
+}
 
+
+extension User {
     private enum CodingKeys: String, CodingKey {
         case uid
         case name
@@ -41,5 +44,4 @@ class User: Codable {
         case role
         case destination
     }
-
 }

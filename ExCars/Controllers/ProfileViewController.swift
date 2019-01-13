@@ -18,9 +18,9 @@ class ProfileViewController: BottomViewController {
     private var profile: Profile?
     private let profileView: ProfileView
 
-    private let locations: [WSMapPayload]
+    private let locations: [MapItem]
 
-    init(uid: String, currentUser: User, locations: [WSMapPayload], wsClient: WSClient) {
+    init(uid: String, currentUser: User, locations: [MapItem], wsClient: WSClient) {
         self.uid = uid
         self.currentUser = currentUser
         self.profileView = ProfileView()

@@ -14,9 +14,9 @@ class NotificationViewController: BottomViewController {
 
     let rideRequest: RideRequest
     let currentUser: User
-    let locations: [WSMapPayload]
+    let locations: [MapItem]
 
-    init(rideRequest: RideRequest, currentUser: User, locations: [WSMapPayload]) {
+    init(rideRequest: RideRequest, currentUser: User, locations: [MapItem]) {
         self.rideRequest = rideRequest
         self.currentUser = currentUser
         self.locations = locations

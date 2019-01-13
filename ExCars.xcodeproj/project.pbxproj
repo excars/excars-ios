@@ -28,7 +28,6 @@
 		746E42BB21B40E2500F083C3 /* InRoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746E42BA21B40E2500F083C3 /* InRoleView.xib */; };
 		746E42BD21B40E3F00F083C3 /* InRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E42BC21B40E3F00F083C3 /* InRoleView.swift */; };
 		746E42BF21B4142100F083C3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E42BE21B4142100F083C3 /* ProfileViewController.swift */; };
-		746E42C121B4321A00F083C3 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E42C021B4321A00F083C3 /* Role.swift */; };
 		746E42C321B4352100F083C3 /* BottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E42C221B4352100F083C3 /* BottomViewController.swift */; };
 		746E7ECA21BC2D7D0041ACAD /* RideRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E7EC921BC2D7D0041ACAD /* RideRequest.swift */; };
 		747FDFEF21A19B8E00BD8D75 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */; };
@@ -55,6 +54,10 @@
 		74F7CD0A21B08145003463A9 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0921B08145003463A9 /* LaunchViewController.swift */; };
 		74F7CD0C21B08866003463A9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0B21B08865003463A9 /* MapViewController.swift */; };
 		74FBBA8B21E7C5F600E5203E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74FBBA8A21E7C5F600E5203E /* Colors.xcassets */; };
+		74FCC59F21EB933D00644765 /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FCC59E21EB933D00644765 /* MapItem.swift */; };
+		74FCC5A121EB974900644765 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FCC5A021EB974900644765 /* Destination.swift */; };
+		74FCC5A321EB976300644765 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FCC5A221EB976300644765 /* Role.swift */; };
+		74FCC5A521EB978500644765 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FCC5A421EB978500644765 /* Location.swift */; };
 		74FF005221AE9A8D00D588BA /* RoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74FF005121AE9A8D00D588BA /* RoleView.xib */; };
 		74FF005421AE9BC000D588BA /* RoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FF005321AE9BC000D588BA /* RoleView.swift */; };
 		BD2E4109E5C82AAC0AC7AD28 /* Pods_ExCars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA4426F5266D8890A9B1B9D /* Pods_ExCars.framework */; };
@@ -107,7 +110,6 @@
 		746E42BA21B40E2500F083C3 /* InRoleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InRoleView.xib; sourceTree = "<group>"; };
 		746E42BC21B40E3F00F083C3 /* InRoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InRoleView.swift; sourceTree = "<group>"; };
 		746E42BE21B4142100F083C3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		746E42C021B4321A00F083C3 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		746E42C221B4352100F083C3 /* BottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomViewController.swift; sourceTree = "<group>"; };
 		746E7EC921BC2D7D0041ACAD /* RideRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRequest.swift; sourceTree = "<group>"; };
 		747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,10 @@
 		74F7CD0921B08145003463A9 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		74F7CD0B21B08865003463A9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		74FBBA8A21E7C5F600E5203E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		74FCC59E21EB933D00644765 /* MapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
+		74FCC5A021EB974900644765 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
+		74FCC5A221EB976300644765 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
+		74FCC5A421EB978500644765 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		74FF005121AE9A8D00D588BA /* RoleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoleView.xib; sourceTree = "<group>"; };
 		74FF005321AE9BC000D588BA /* RoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleView.swift; sourceTree = "<group>"; };
 		A96F478CF922E74E5D152055 /* Pods-ExCars.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExCars.dev.xcconfig"; path = "Pods/Target Support Files/Pods-ExCars/Pods-ExCars.dev.xcconfig"; sourceTree = "<group>"; };
@@ -275,13 +281,16 @@
 		7442FD4121A7385100D311F8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				74E2F0C721AC0E550092FEEF /* Profile.swift */,
 				74E2F0CD21AC2EFF0092FEEF /* Auth.swift */,
+				74FCC5A021EB974900644765 /* Destination.swift */,
+				74FCC5A421EB978500644765 /* Location.swift */,
+				74FCC59E21EB933D00644765 /* MapItem.swift */,
 				74E2F0D321AC59C10092FEEF /* Message.swift */,
-				74D3240A21B1779B0096963E /* User.swift */,
-				746E42C021B4321A00F083C3 /* Role.swift */,
-				746E7EC921BC2D7D0041ACAD /* RideRequest.swift */,
+				74E2F0C721AC0E550092FEEF /* Profile.swift */,
 				74A204B321C67365004B8A2D /* Ride.swift */,
+				746E7EC921BC2D7D0041ACAD /* RideRequest.swift */,
+				74FCC5A221EB976300644765 /* Role.swift */,
+				74D3240A21B1779B0096963E /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -289,9 +298,9 @@
 		7442FD4421A74D2D00D311F8 /* Clients */ = {
 			isa = PBXGroup;
 			children = (
+				74E2F0CB21AC17650092FEEF /* APIClient.swift */,
 				745418EC21A35BCA00EF3F09 /* APIRouter.swift */,
 				7415AEDB21A5D1660042674A /* WSClient.swift */,
-				74E2F0CB21AC17650092FEEF /* APIClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -569,17 +578,19 @@
 			files = (
 				74E2F0CE21AC2EFF0092FEEF /* Auth.swift in Sources */,
 				745418ED21A35BCA00EF3F09 /* APIRouter.swift in Sources */,
+				74FCC5A521EB978500644765 /* Location.swift in Sources */,
 				740F6ABE21B5DAB500A955A4 /* Presenter.swift in Sources */,
 				74F7CD0821B08053003463A9 /* RootViewController.swift in Sources */,
 				740F6ABC21B5CEDF00A955A4 /* ExclusivePresenter.swift in Sources */,
 				74F1167621D375A500738E59 /* Secrets.swift in Sources */,
 				74D2CC4921CB0258004FD613 /* BaseProfileView.swift in Sources */,
 				74F7CD0C21B08866003463A9 /* MapViewController.swift in Sources */,
+				74FCC5A121EB974900644765 /* Destination.swift in Sources */,
 				74E2F0E221AD3FA10092FEEF /* NotificationView.swift in Sources */,
+				74FCC59F21EB933D00644765 /* MapItem.swift in Sources */,
 				746E42BF21B4142100F083C3 /* ProfileViewController.swift in Sources */,
 				74E2F0C821AC0E550092FEEF /* Profile.swift in Sources */,
 				747FDFEF21A19B8E00BD8D75 /* LoginViewController.swift in Sources */,
-				746E42C121B4321A00F083C3 /* Role.swift in Sources */,
 				740F6AC021B6F31E00A955A4 /* InRoleViewController.swift in Sources */,
 				74A21CBA21A605B600982247 /* ProfileView.swift in Sources */,
 				746E7ECA21BC2D7D0041ACAD /* RideRequest.swift in Sources */,
@@ -589,6 +600,7 @@
 				742BCD7621C652CF00403EBA /* RideViewCell.swift in Sources */,
 				748BA64121E68D0F00384CB4 /* Configuration.swift in Sources */,
 				746E42BD21B40E3F00F083C3 /* InRoleView.swift in Sources */,
+				74FCC5A321EB976300644765 /* Role.swift in Sources */,
 				745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */,
 				746E42C321B4352100F083C3 /* BottomViewController.swift in Sources */,
 				7438806A21C815D0009C339A /* LoginView.swift in Sources */,

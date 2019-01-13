@@ -15,7 +15,7 @@ class MapViewController: UIViewController {
     var locationManager = CLLocationManager()
     let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
     let zoomLevel: Float = 15.0
-    var locations: [WSMapPayload] = []
+    var locations: [MapItem] = []
     let durationTreshhold = 3.0
 
     var mapView = GMSMapView()
@@ -112,11 +112,11 @@ extension MapViewController: CLLocationManagerDelegate {
 extension MapViewController: GMSMapViewDelegate {
 
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        guard let userData = marker.userData as? WSMapPayload else {
+        guard let userData = marker.userData as? MapItem else {
             return false
         }
 
-        let currentUserData = currentMarker?.userData as? WSMapPayload
+        let currentUserData = currentMarker?.userData as? MapItem
 
         if userData.uid != currentUserData?.uid {
             let profileVC = ProfileViewController(
@@ -151,14 +151,14 @@ extension MapViewController: GMSMapViewDelegate {
 
 extension MapViewController: WSClientDelegate {
 
-    func didReceiveDataUpdate(data: [WSMapPayload]) {
-        locations = data
+    func didReceiveMapUpdate(items: [MapItem]) {
+        locations = items
         mapView.clear()
 
         let carIcon = UIImage(named: "car")
         let hitchhikerIcon = UIImage(named: "hitchhiker")
 
-        for item in data {
+        for item in items {
             let marker = markers[item.uid] ?? GMSMarker()
             marker.map = mapView
             marker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
@@ -170,7 +170,7 @@ extension MapViewController: WSClientDelegate {
                 marker.icon = hitchhikerIcon
             }
 
-            let userData = marker.userData as? WSMapPayload
+            let userData = marker.userData as? MapItem
             var duration = (userData != nil ) ? (item.location.ts - userData!.location.ts) + 0.1 : 0.0
             if duration > durationTreshhold {
                duration = durationTreshhold
@@ -193,11 +193,11 @@ extension MapViewController: WSClientDelegate {
 
     }
 
-    func didReceiveDataUpdate(data: WSRide) {
-        currentMarker = markers[data.data.sender.uid]
+    func didReceiveRideRequest(rideRequest: RideRequest) {
+        currentMarker = markers[rideRequest.sender.uid]
         lockCameraOnProfile()
         let notificationVC = NotificationViewController(
-            rideRequest: data.data, currentUser: currentUser, locations: locations
+            rideRequest: rideRequest, currentUser: currentUser, locations: locations
         )
         rolePresenter.collapse()
         exclusivePresenter.present(notificationVC)
@@ -243,7 +243,7 @@ extension MapViewController {
     
     private func tryToMoveCameraToProfile(uid: String) {
         guard cameraLockedOnProfile == true,
-            let currentUserData = currentMarker?.userData as? WSMapPayload,
+            let currentUserData = currentMarker?.userData as? MapItem,
             currentUserData.uid == uid
             else {
                 return

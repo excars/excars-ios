@@ -16,12 +16,4 @@ struct Profile: Codable {
     let role: Role
     let destination: Destination?
     var distance: Double?
-    let plate: String
-}
-
-
-struct Destination: Codable {
-    let name: String
-    let latitude: Double
-    let longitude: Double
 }
