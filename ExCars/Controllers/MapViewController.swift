@@ -196,7 +196,7 @@ extension MapViewController: WSClientDelegate {
     func didReceiveRideRequest(rideRequest: RideRequest) {
         currentMarker = markers[rideRequest.sender.uid]
         lockCameraOnProfile()
-        let notificationVC = NotificationViewController(
+        let notificationVC = RideRequestViewController(
             rideRequest: rideRequest, currentUser: currentUser, locations: locations
         )
         rolePresenter.collapse()

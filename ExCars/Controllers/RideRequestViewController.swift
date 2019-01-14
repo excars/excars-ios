@@ -10,7 +10,7 @@ import CoreLocation
 import UIKit
 
 
-class NotificationViewController: BottomViewController {
+class RideRequestViewController: BottomViewController {
 
     let rideRequest: RideRequest
     let currentUser: User
@@ -39,12 +39,12 @@ class NotificationViewController: BottomViewController {
         var profile = rideRequest.sender
         profile.distance = getDistance()
 
-        let notificationView = NotificationView(profile: profile)
+        let notificationView = RideRequestView(profile: profile)
         view.addSubview(notificationView)
         notificationView.frame = view.bounds
 
-        notificationView.onDidAccept = accept
-        notificationView.onDidDecline = decline
+        notificationView.onAccept = accept
+        notificationView.onDecline = decline
     }
 
     func accept() {

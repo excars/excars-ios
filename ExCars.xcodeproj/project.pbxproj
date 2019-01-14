@@ -24,7 +24,7 @@
 		744E6B8821B12CF4002CC847 /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744E6B8721B12CF4002CC847 /* RoleViewController.swift */; };
 		745418ED21A35BCA00EF3F09 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EC21A35BCA00EF3F09 /* APIRouter.swift */; };
 		745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EE21A360EA00EF3F09 /* KeyChain.swift */; };
-		7462254521B48144001E3C40 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462254421B48144001E3C40 /* NotificationViewController.swift */; };
+		7462254521B48144001E3C40 /* RideRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462254421B48144001E3C40 /* RideRequestViewController.swift */; };
 		746E42BB21B40E2500F083C3 /* InRoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746E42BA21B40E2500F083C3 /* InRoleView.xib */; };
 		746E42BD21B40E3F00F083C3 /* InRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E42BC21B40E3F00F083C3 /* InRoleView.swift */; };
 		746E42BF21B4142100F083C3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E42BE21B4142100F083C3 /* ProfileViewController.swift */; };
@@ -43,8 +43,8 @@
 		74E2F0CE21AC2EFF0092FEEF /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0CD21AC2EFF0092FEEF /* Auth.swift */; };
 		74E2F0D021AC37470092FEEF /* XibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0CF21AC37470092FEEF /* XibView.swift */; };
 		74E2F0D421AC59C10092FEEF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0D321AC59C10092FEEF /* Message.swift */; };
-		74E2F0E021AD3F8D0092FEEF /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74E2F0DF21AD3F8D0092FEEF /* NotificationView.xib */; };
-		74E2F0E221AD3FA10092FEEF /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0E121AD3FA10092FEEF /* NotificationView.swift */; };
+		74E2F0E021AD3F8D0092FEEF /* RideRequestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74E2F0DF21AD3F8D0092FEEF /* RideRequestView.xib */; };
+		74E2F0E221AD3FA10092FEEF /* RideRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E2F0E121AD3FA10092FEEF /* RideRequestView.swift */; };
 		74F1167621D375A500738E59 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1167521D375A500738E59 /* Secrets.swift */; };
 		74F1167821D3F26900738E59 /* HeaderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F1167721D3F26900738E59 /* HeaderViewCell.xib */; };
 		74F1167A21D3F37600738E59 /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1167921D3F37600738E59 /* HeaderViewCell.swift */; };
@@ -106,7 +106,7 @@
 		744E6B8721B12CF4002CC847 /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
 		745418EC21A35BCA00EF3F09 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		745418EE21A360EA00EF3F09 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
-		7462254421B48144001E3C40 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		7462254421B48144001E3C40 /* RideRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRequestViewController.swift; sourceTree = "<group>"; };
 		746E42BA21B40E2500F083C3 /* InRoleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InRoleView.xib; sourceTree = "<group>"; };
 		746E42BC21B40E3F00F083C3 /* InRoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InRoleView.swift; sourceTree = "<group>"; };
 		746E42BE21B4142100F083C3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -125,8 +125,8 @@
 		74E2F0CD21AC2EFF0092FEEF /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		74E2F0CF21AC37470092FEEF /* XibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibView.swift; sourceTree = "<group>"; };
 		74E2F0D321AC59C10092FEEF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		74E2F0DF21AD3F8D0092FEEF /* NotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
-		74E2F0E121AD3FA10092FEEF /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		74E2F0DF21AD3F8D0092FEEF /* RideRequestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RideRequestView.xib; sourceTree = "<group>"; };
+		74E2F0E121AD3FA10092FEEF /* RideRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRequestView.swift; sourceTree = "<group>"; };
 		74F1167521D375A500738E59 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		74F1167721D3F26900738E59 /* HeaderViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderViewCell.xib; sourceTree = "<group>"; };
 		74F1167921D3F37600738E59 /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
@@ -263,7 +263,7 @@
 				74F7CD0B21B08865003463A9 /* MapViewController.swift */,
 				744E6B8721B12CF4002CC847 /* RoleViewController.swift */,
 				746E42BE21B4142100F083C3 /* ProfileViewController.swift */,
-				7462254421B48144001E3C40 /* NotificationViewController.swift */,
+				7462254421B48144001E3C40 /* RideRequestViewController.swift */,
 				740F6ABF21B6F31E00A955A4 /* InRoleViewController.swift */,
 			);
 			path = Controllers;
@@ -312,8 +312,8 @@
 				74A21CB721A605A500982247 /* ProfileView.xib */,
 				74A21CB921A605B600982247 /* ProfileView.swift */,
 				74E2F0CF21AC37470092FEEF /* XibView.swift */,
-				74E2F0DF21AD3F8D0092FEEF /* NotificationView.xib */,
-				74E2F0E121AD3FA10092FEEF /* NotificationView.swift */,
+				74E2F0DF21AD3F8D0092FEEF /* RideRequestView.xib */,
+				74E2F0E121AD3FA10092FEEF /* RideRequestView.swift */,
 				74FF005121AE9A8D00D588BA /* RoleView.xib */,
 				74FF005321AE9BC000D588BA /* RoleView.swift */,
 				746E42BA21B40E2500F083C3 /* InRoleView.xib */,
@@ -457,7 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				746E42BB21B40E2500F083C3 /* InRoleView.xib in Resources */,
-				74E2F0E021AD3F8D0092FEEF /* NotificationView.xib in Resources */,
+				74E2F0E021AD3F8D0092FEEF /* RideRequestView.xib in Resources */,
 				74FBBA8B21E7C5F600E5203E /* Colors.xcassets in Resources */,
 				742BCD7421C6529500403EBA /* RideViewCell.xib in Resources */,
 				74D2CC4B21CB027B004FD613 /* BaseProfileView.xib in Resources */,
@@ -586,7 +586,7 @@
 				74D2CC4921CB0258004FD613 /* BaseProfileView.swift in Sources */,
 				74F7CD0C21B08866003463A9 /* MapViewController.swift in Sources */,
 				74FCC5A121EB974900644765 /* Destination.swift in Sources */,
-				74E2F0E221AD3FA10092FEEF /* NotificationView.swift in Sources */,
+				74E2F0E221AD3FA10092FEEF /* RideRequestView.swift in Sources */,
 				74FCC59F21EB933D00644765 /* MapItem.swift in Sources */,
 				746E42BF21B4142100F083C3 /* ProfileViewController.swift in Sources */,
 				74E2F0C821AC0E550092FEEF /* Profile.swift in Sources */,
@@ -594,7 +594,7 @@
 				740F6AC021B6F31E00A955A4 /* InRoleViewController.swift in Sources */,
 				74A21CBA21A605B600982247 /* ProfileView.swift in Sources */,
 				746E7ECA21BC2D7D0041ACAD /* RideRequest.swift in Sources */,
-				7462254521B48144001E3C40 /* NotificationViewController.swift in Sources */,
+				7462254521B48144001E3C40 /* RideRequestViewController.swift in Sources */,
 				74D3240B21B1779B0096963E /* User.swift in Sources */,
 				74E2F0CC21AC17650092FEEF /* APIClient.swift in Sources */,
 				742BCD7621C652CF00403EBA /* RideViewCell.swift in Sources */,
