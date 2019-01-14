@@ -1,5 +1,5 @@
 //
-//  NotificationView.swift
+//  RideRequestView.swift
 //  ExCars
 //
 //  Created by Леша on 27/11/2018.

@@ -1,5 +1,5 @@
 //
-//  NotificationViewController.swift
+//  RideRequestViewController.swift
 //  ExCars
 //
 //  Created by Леша on 02/12/2018.
@@ -32,19 +32,19 @@ class RideRequestViewController: BottomViewController {
     }
 
     override func viewDidLoad() {
-        setupNotificationView()
+        setupRideRequestView()
     }
 
-    private func setupNotificationView() {
+    private func setupRideRequestView() {
         var profile = rideRequest.sender
         profile.distance = getDistance()
 
-        let notificationView = RideRequestView(profile: profile)
-        view.addSubview(notificationView)
-        notificationView.frame = view.bounds
+        let rideRequestView = RideRequestView(profile: profile)
+        view.addSubview(rideRequestView)
+        rideRequestView.frame = view.bounds
 
-        notificationView.onAccept = accept
-        notificationView.onDecline = decline
+        rideRequestView.onAccept = accept
+        rideRequestView.onDecline = decline
     }
 
     func accept() {

@@ -25,7 +25,7 @@ class MapViewController: UIViewController {
     let currentUser: User
 
     lazy var exclusivePresenter = ExclusivePresenter(to: self)
-    lazy var rolePresenter = ExclusivePresenter(to: self)
+    lazy var bottomPresenter = ExclusivePresenter(to: self)
 
     let wsClient = WSClient()
 
@@ -126,7 +126,7 @@ extension MapViewController: GMSMapViewDelegate {
                 self.currentMarker = nil
                 self.unlockCamera()
             }
-            rolePresenter.collapse()
+            bottomPresenter.collapse()
             exclusivePresenter.present(profileVC)
             currentMarker = marker
             lockCameraOnProfile()
@@ -196,11 +196,11 @@ extension MapViewController: WSClientDelegate {
     func didReceiveRideRequest(rideRequest: RideRequest) {
         currentMarker = markers[rideRequest.sender.uid]
         lockCameraOnProfile()
-        let notificationVC = RideRequestViewController(
+        let rideRequestVC = RideRequestViewController(
             rideRequest: rideRequest, currentUser: currentUser, locations: locations
         )
-        rolePresenter.collapse()
-        exclusivePresenter.present(notificationVC)
+        bottomPresenter.collapse()
+        exclusivePresenter.present(rideRequestVC)
     }
 
 }
@@ -209,16 +209,16 @@ extension MapViewController: WSClientDelegate {
 extension MapViewController: UserDelegate {
 
     func didChangeRole(role: Role?) {
-        let roleVC: UIViewController
+        let bottomVC: UIViewController
 
         if role == nil {
-            roleVC = WelcomeViewController(user: currentUser)
+            bottomVC = WelcomeViewController(user: currentUser)
         } else {
-            roleVC = RideViewController(user: currentUser, wsClient: wsClient)
+            bottomVC = RideViewController(user: currentUser, wsClient: wsClient)
         }
 
         exclusivePresenter.dismiss()
-        rolePresenter.present(roleVC)
+        bottomPresenter.present(bottomVC)
     }
 
 }

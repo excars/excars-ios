@@ -1,5 +1,5 @@
 //
-//  RoleViewController.swift
+//  WelcomeViewController.swift
 //  ExCars
 //
 //  Created by Леша on 30/11/2018.
@@ -26,14 +26,14 @@ class WelcomeViewController: BottomViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupRoleView()
+        setupWelcomeView()
     }
 
-    private func setupRoleView() {
-        let roleView = WelcomeView(currentUser: currentUser)
-        roleView.onRoleSelect = join
-        roleView.frame = view.bounds
-        view.addSubview(roleView)
+    private func setupWelcomeView() {
+        let welcomeView = WelcomeView(currentUser: currentUser)
+        welcomeView.onRoleSelect = join
+        welcomeView.frame = view.bounds
+        view.addSubview(welcomeView)
     }
     
     private func join(role: Role, destination: Destination) {

@@ -1,5 +1,5 @@
 //
-//  RoleView.swift
+//  WelcomeView.swift
 //  ExCars
 //
 //  Created by Леша on 28/11/2018.
