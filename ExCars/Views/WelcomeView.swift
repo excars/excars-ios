@@ -9,7 +9,7 @@
 import UIKit
 
 
-class RoleView: XibView {
+class WelcomeView: XibView {
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var officePicker: UIPickerView!
@@ -27,7 +27,7 @@ class RoleView: XibView {
     init(currentUser: User, frame: CGRect = CGRect.zero) {
         self.user = currentUser
         
-        super.init(nibName: "RoleView", frame: frame)
+        super.init(nibName: "WelcomeView", frame: frame)
         
         officePicker.dataSource = self
         officePicker.delegate = self
@@ -53,7 +53,7 @@ class RoleView: XibView {
 }
 
 
-extension RoleView: UIPickerViewDataSource, UIPickerViewDelegate {
+extension WelcomeView: UIPickerViewDataSource, UIPickerViewDelegate {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

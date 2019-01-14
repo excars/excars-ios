@@ -21,7 +21,7 @@
 		7438806C21C815DC009C339A /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7438806B21C815DC009C339A /* LoginView.xib */; };
 		7438806F21C9672E009C339A /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438806E21C9672E009C339A /* DesignableButton.swift */; };
 		7438807121C990C1009C339A /* ActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438807021C990C1009C339A /* ActivityButton.swift */; };
-		744E6B8821B12CF4002CC847 /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744E6B8721B12CF4002CC847 /* RoleViewController.swift */; };
+		744E6B8821B12CF4002CC847 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744E6B8721B12CF4002CC847 /* WelcomeViewController.swift */; };
 		745418ED21A35BCA00EF3F09 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EC21A35BCA00EF3F09 /* APIRouter.swift */; };
 		745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EE21A360EA00EF3F09 /* KeyChain.swift */; };
 		7462254521B48144001E3C40 /* RideRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462254421B48144001E3C40 /* RideRequestViewController.swift */; };
@@ -58,8 +58,8 @@
 		74FCC5A121EB974900644765 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FCC5A021EB974900644765 /* Destination.swift */; };
 		74FCC5A321EB976300644765 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FCC5A221EB976300644765 /* Role.swift */; };
 		74FCC5A521EB978500644765 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FCC5A421EB978500644765 /* Location.swift */; };
-		74FF005221AE9A8D00D588BA /* RoleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74FF005121AE9A8D00D588BA /* RoleView.xib */; };
-		74FF005421AE9BC000D588BA /* RoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FF005321AE9BC000D588BA /* RoleView.swift */; };
+		74FF005221AE9A8D00D588BA /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74FF005121AE9A8D00D588BA /* WelcomeView.xib */; };
+		74FF005421AE9BC000D588BA /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FF005321AE9BC000D588BA /* WelcomeView.swift */; };
 		BD2E4109E5C82AAC0AC7AD28 /* Pods_ExCars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA4426F5266D8890A9B1B9D /* Pods_ExCars.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,7 +103,7 @@
 		7438806B21C815DC009C339A /* LoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		7438806E21C9672E009C339A /* DesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		7438807021C990C1009C339A /* ActivityButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityButton.swift; sourceTree = "<group>"; };
-		744E6B8721B12CF4002CC847 /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
+		744E6B8721B12CF4002CC847 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		745418EC21A35BCA00EF3F09 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		745418EE21A360EA00EF3F09 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		7462254421B48144001E3C40 /* RideRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRequestViewController.swift; sourceTree = "<group>"; };
@@ -140,8 +140,8 @@
 		74FCC5A021EB974900644765 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		74FCC5A221EB976300644765 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		74FCC5A421EB978500644765 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		74FF005121AE9A8D00D588BA /* RoleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoleView.xib; sourceTree = "<group>"; };
-		74FF005321AE9BC000D588BA /* RoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleView.swift; sourceTree = "<group>"; };
+		74FF005121AE9A8D00D588BA /* WelcomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
+		74FF005321AE9BC000D588BA /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		A96F478CF922E74E5D152055 /* Pods-ExCars.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExCars.dev.xcconfig"; path = "Pods/Target Support Files/Pods-ExCars/Pods-ExCars.dev.xcconfig"; sourceTree = "<group>"; };
 		C4F3098860B17DAC3D4991BC /* Pods_ExCarsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCarsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3E7380E57D919B93268712 /* Pods_ExCarsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCarsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -261,7 +261,7 @@
 				74F7CD0721B08053003463A9 /* RootViewController.swift */,
 				74F7CD0921B08145003463A9 /* LaunchViewController.swift */,
 				74F7CD0B21B08865003463A9 /* MapViewController.swift */,
-				744E6B8721B12CF4002CC847 /* RoleViewController.swift */,
+				744E6B8721B12CF4002CC847 /* WelcomeViewController.swift */,
 				746E42BE21B4142100F083C3 /* ProfileViewController.swift */,
 				7462254421B48144001E3C40 /* RideRequestViewController.swift */,
 				740F6ABF21B6F31E00A955A4 /* InRoleViewController.swift */,
@@ -314,8 +314,8 @@
 				74E2F0CF21AC37470092FEEF /* XibView.swift */,
 				74E2F0DF21AD3F8D0092FEEF /* RideRequestView.xib */,
 				74E2F0E121AD3FA10092FEEF /* RideRequestView.swift */,
-				74FF005121AE9A8D00D588BA /* RoleView.xib */,
-				74FF005321AE9BC000D588BA /* RoleView.swift */,
+				74FF005121AE9A8D00D588BA /* WelcomeView.xib */,
+				74FF005321AE9BC000D588BA /* WelcomeView.swift */,
 				746E42BA21B40E2500F083C3 /* InRoleView.xib */,
 				746E42BC21B40E3F00F083C3 /* InRoleView.swift */,
 				7438806921C815D0009C339A /* LoginView.swift */,
@@ -464,7 +464,7 @@
 				74F1167C21D403E300738E59 /* EmptyRideView.xib in Resources */,
 				74F1167821D3F26900738E59 /* HeaderViewCell.xib in Resources */,
 				7438806C21C815DC009C339A /* LoginView.xib in Resources */,
-				74FF005221AE9A8D00D588BA /* RoleView.xib in Resources */,
+				74FF005221AE9A8D00D588BA /* WelcomeView.xib in Resources */,
 				7400C74F21A153F500DFD5A3 /* Assets.xcassets in Resources */,
 				74A21CB821A605A500982247 /* ProfileView.xib in Resources */,
 			);
@@ -607,13 +607,13 @@
 				74F1167E21D403F300738E59 /* EmptyRideView.swift in Sources */,
 				7415AEDC21A5D1660042674A /* WSClient.swift in Sources */,
 				74A204B421C67365004B8A2D /* Ride.swift in Sources */,
-				744E6B8821B12CF4002CC847 /* RoleViewController.swift in Sources */,
+				744E6B8821B12CF4002CC847 /* WelcomeViewController.swift in Sources */,
 				74F7CD0A21B08145003463A9 /* LaunchViewController.swift in Sources */,
 				7438806F21C9672E009C339A /* DesignableButton.swift in Sources */,
 				74F1167A21D3F37600738E59 /* HeaderViewCell.swift in Sources */,
 				74E2F0D421AC59C10092FEEF /* Message.swift in Sources */,
 				74E2F0D021AC37470092FEEF /* XibView.swift in Sources */,
-				74FF005421AE9BC000D588BA /* RoleView.swift in Sources */,
+				74FF005421AE9BC000D588BA /* WelcomeView.swift in Sources */,
 				7438807121C990C1009C339A /* ActivityButton.swift in Sources */,
 				7400C74821A153F200DFD5A3 /* AppDelegate.swift in Sources */,
 			);

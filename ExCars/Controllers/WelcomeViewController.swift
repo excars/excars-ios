@@ -9,7 +9,7 @@
 import UIKit
 
 
-class RoleViewController: BottomViewController {
+class WelcomeViewController: BottomViewController {
     private let currentUser: User
 
     init(user: User) {
@@ -30,7 +30,7 @@ class RoleViewController: BottomViewController {
     }
 
     private func setupRoleView() {
-        let roleView = RoleView(currentUser: currentUser)
+        let roleView = WelcomeView(currentUser: currentUser)
         roleView.onRoleSelect = join
         roleView.frame = view.bounds
         view.addSubview(roleView)

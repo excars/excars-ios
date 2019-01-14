@@ -212,7 +212,7 @@ extension MapViewController: UserDelegate {
         let roleVC: UIViewController
 
         if role == nil {
-            roleVC = RoleViewController(user: currentUser)
+            roleVC = WelcomeViewController(user: currentUser)
         } else {
             roleVC = InRoleViewController(user: currentUser, wsClient: wsClient)
         }
