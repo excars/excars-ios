@@ -6,7 +6,6 @@
 //  Copyright © 2018 Леша. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 
@@ -15,16 +14,18 @@ class RoleView: XibView {
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var officePicker: UIPickerView!
 
+    private let user: User
+    
+    var onRoleSelect: ((Role, Destination) -> Void)?
+    
     private let offices = [
         Destination(name: "Eleftherias", latitude: 34.674297, longitude: 33.039742),
         Destination(name: "Porto Bello", latitude: 34.6709681, longitude: 33.0396582),
         Destination(name: "Ellinon", latitude: 34.673039, longitude: 33.039255),
     ]
 
-    private let user: User
-
-    init(user: User, frame: CGRect = CGRect.zero) {
-        self.user = user
+    init(currentUser: User, frame: CGRect = CGRect.zero) {
+        self.user = currentUser
         
         super.init(nibName: "RoleView", frame: frame)
         
@@ -32,7 +33,7 @@ class RoleView: XibView {
         officePicker.delegate = self
         officePicker.selectRow(1, inComponent: 0, animated: true)
         
-        welcomeLabel.text = "Welcome, \(user.name)!"
+        welcomeLabel.text = "Welcome, \(currentUser.name)!"
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,26 +41,13 @@ class RoleView: XibView {
     }
 
     @IBAction func drive() {
-        join(role: Role.driver)
+        let destination = officePicker.selectedRow(inComponent: 0)
+        onRoleSelect?(Role.driver, offices[destination])
     }
 
     @IBAction func hitchhike() {
-        join(role: Role.hitchhiker)
-    }
-
-    private func join(role: Role) {
-        
         let destination = officePicker.selectedRow(inComponent: 0)
-        APIClient.join(role: role, destination: offices[destination]) { [weak self] status, result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let profile):
-                self.user.destination = profile.destination
-                self.user.role = profile.role
-            case .failure(let error):
-                print("JOIN ERROR [\(status)]: \(error)")
-            }
-        }
+        onRoleSelect?(Role.driver, offices[destination])
     }
 
 }

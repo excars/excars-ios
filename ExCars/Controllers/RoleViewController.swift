@@ -10,10 +10,10 @@ import UIKit
 
 
 class RoleViewController: BottomViewController {
-    private let user: User
+    private let currentUser: User
 
     init(user: User) {
-        self.user = user
+        self.currentUser = user
         super.init(nibName: nil, bundle: nil)
 
         fullHeight = 256.0
@@ -30,9 +30,23 @@ class RoleViewController: BottomViewController {
     }
 
     private func setupRoleView() {
-        let roleView = RoleView(user: user)
+        let roleView = RoleView(currentUser: currentUser)
+        roleView.onRoleSelect = join
         roleView.frame = view.bounds
         view.addSubview(roleView)
+    }
+    
+    private func join(role: Role, destination: Destination) {
+        APIClient.join(role: role, destination: destination) { [weak self] status, result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let profile):
+                self.currentUser.destination = profile.destination
+                self.currentUser.role = profile.role
+            case .failure(let error):
+                print("JOIN ERROR [\(status)]: \(error)")
+            }
+        }
     }
 
 }

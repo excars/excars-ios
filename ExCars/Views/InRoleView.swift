@@ -14,7 +14,7 @@ class InRoleView: XibView {
     @IBOutlet weak var roleIcon: UIImageView!
     @IBOutlet weak var destination: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    
+
     var onRoleExit: (() -> Void)?
 
     private let user: User
