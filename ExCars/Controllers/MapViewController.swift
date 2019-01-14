@@ -214,7 +214,7 @@ extension MapViewController: UserDelegate {
         if role == nil {
             roleVC = WelcomeViewController(user: currentUser)
         } else {
-            roleVC = InRoleViewController(user: currentUser, wsClient: wsClient)
+            roleVC = RideViewController(user: currentUser, wsClient: wsClient)
         }
 
         exclusivePresenter.dismiss()

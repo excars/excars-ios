@@ -14,15 +14,14 @@ class WelcomeView: XibView {
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var officePicker: UIPickerView!
 
-    private let user: User
-    
     var onRoleSelect: ((Role, Destination) -> Void)?
     
+    private let user: User
     private let offices = [
         Destination(name: "Eleftherias", latitude: 34.674297, longitude: 33.039742),
         Destination(name: "Porto Bello", latitude: 34.6709681, longitude: 33.0396582),
         Destination(name: "Ellinon", latitude: 34.673039, longitude: 33.039255),
-    ]
+        ]
 
     init(currentUser: User, frame: CGRect = CGRect.zero) {
         self.user = currentUser

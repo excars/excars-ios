@@ -1,5 +1,5 @@
 //
-//  InRoleViewController.swift
+//  RideViewController.swift
 //  ExCars
 //
 //  Created by Леша on 04/12/2018.
@@ -9,15 +9,15 @@
 import UIKit
 
 
-class InRoleViewController: BottomViewController {
+class RideViewController: BottomViewController {
     private let user: User
     private let wsClient: WSClient
-    private let inRoleView: InRoleView
+    private let rideView: RideView
     
     init(user: User, wsClient: WSClient) {
         self.user = user
         self.wsClient = wsClient
-        self.inRoleView = InRoleView(user: user, ride: nil)
+        self.rideView = RideView(user: user, ride: nil)
 
         super.init(nibName: nil, bundle: nil)
 
@@ -25,7 +25,7 @@ class InRoleViewController: BottomViewController {
         height = 54
 
         wsClient.rideDelegate = self
-        inRoleView.onRoleExit = showExitRoleDialog
+        rideView.onRoleExit = showExitRoleDialog
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -35,8 +35,8 @@ class InRoleViewController: BottomViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        inRoleView.frame = view.bounds
-        view.addSubview(inRoleView)
+        rideView.frame = view.bounds
+        view.addSubview(rideView)
 
         loadRide()
     }
@@ -46,13 +46,13 @@ class InRoleViewController: BottomViewController {
             guard let self = self else { return }
             switch result {
             case .success(let ride):
-                self.inRoleView.ride = ride
+                self.rideView.ride = ride
                 self.user.ride = ride
             case .failure(let error):
                 if status != 404 {
                     print("IN ROLE RIDE FAILURE [\(status)]: \(error)")
                 }
-                self.inRoleView.ride = nil
+                self.rideView.ride = nil
             }
         }
     }
@@ -90,7 +90,7 @@ class InRoleViewController: BottomViewController {
 }
 
 
-extension InRoleViewController: WSRideDelegate {
+extension RideViewController: WSRideDelegate {
 
     func didUpdateRide() {
         self.loadRide()
@@ -109,7 +109,7 @@ extension InRoleViewController: WSRideDelegate {
         present(alertController, animated: true)
         
         user.ride = nil
-        inRoleView.ride = nil
+        rideView.ride = nil
     }
 
 }

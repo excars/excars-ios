@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InRoleView" customModule="ExCars" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RideView" customModule="ExCars" customModuleProvider="target">
             <connections>
                 <outlet property="destination" destination="BpQ-Ff-N0c" id="9HA-L5-1Az"/>
                 <outlet property="roleIcon" destination="Fop-dQ-iFx" id="dOf-wX-dMw"/>
