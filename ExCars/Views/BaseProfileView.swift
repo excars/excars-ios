@@ -17,21 +17,13 @@ class BaseProfileView: XibView {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var destination: UILabel!
     @IBOutlet weak var distance: UILabel!
-    
-    var profile: Profile? {
-        didSet {
-            render()
-        }
-    }
 
     override var nibName: String {
         get { return "BaseProfileView" }
         set { }
     }
 
-    private func render() {
-        guard let profile = profile else { return }
-
+    func render(profile: Profile) {
         name.text = profile.name
         destination.text = profile.destination?.name
         avatar?.sd_setImage(with: profile.avatar, placeholderImage: UIImage(named: profile.role.rawValue))

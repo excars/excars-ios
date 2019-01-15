@@ -21,7 +21,7 @@ class RideRequestView: XibView {
         super.init(nibName: "RideRequestView", frame: frame)
         
         setupHeader(role: profile.role)
-        baseProfileView.profile = profile
+        baseProfileView.render(profile: profile)
     }
 
     required init?(coder aDecoder: NSCoder) {

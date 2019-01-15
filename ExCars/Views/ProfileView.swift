@@ -63,7 +63,7 @@ class ProfileView: XibView {
     }
 
     private func renderNormal(profile: Profile) {
-        baseProfileView.profile = profile
+        baseProfileView.render(profile: profile)
         switch profile.role {
         case .driver:
             submitButton.setTitle("Request a Ride", for: .normal)
@@ -73,22 +73,22 @@ class ProfileView: XibView {
     }
     
     private func renderDisabled(profile: Profile) {
-        baseProfileView.profile = profile
+        baseProfileView.render(profile: profile)
         submitButton.isHidden = true
     }
 
     private func renderRequested(profile: Profile) {
-        baseProfileView.profile = profile
+        baseProfileView.render(profile: profile)
         submitButton.render(for: .loading)
     }
     
     private func renderAccepted(profile: Profile) {
-        baseProfileView.profile = profile
+        baseProfileView.render(profile: profile)
         submitButton.render(for: .success("Accepted"))
     }
     
     private func renderDeclined(profile: Profile) {
-        baseProfileView.profile = profile
+        baseProfileView.render(profile: profile)
         submitButton.render(for: .failure("Declined"))
     }
 

@@ -17,8 +17,6 @@ class RideView: XibView {
 
     var onRoleExit: (() -> Void)?
 
-    private let user: User
-
     var ride: Ride? {
         didSet {
             setHeaderView()
@@ -26,12 +24,11 @@ class RideView: XibView {
         }
     }
 
-    init (user: User, ride: Ride?, frame: CGRect = CGRect.zero) {
-        self.user = user
+    init(currentUser: User, ride: Ride?, frame: CGRect = CGRect.zero) {
         self.ride = ride
         super.init(nibName: "RideView", frame: frame)
 
-        setupView()
+        setupView(user: currentUser)
         setupTableView()
     }
 
@@ -39,7 +36,7 @@ class RideView: XibView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupView() {
+    private func setupView(user: User) {
         destination.text = user.destination?.name
     
         switch user.role {

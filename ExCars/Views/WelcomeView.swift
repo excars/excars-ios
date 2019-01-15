@@ -16,7 +16,6 @@ class WelcomeView: XibView {
 
     var onRoleSelect: ((Role, Destination) -> Void)?
     
-    private let user: User
     private let offices = [
         Destination(name: "Eleftherias", latitude: 34.674297, longitude: 33.039742),
         Destination(name: "Porto Bello", latitude: 34.6709681, longitude: 33.0396582),
@@ -24,8 +23,6 @@ class WelcomeView: XibView {
         ]
 
     init(currentUser: User, frame: CGRect = CGRect.zero) {
-        self.user = currentUser
-        
         super.init(nibName: "WelcomeView", frame: frame)
         
         officePicker.dataSource = self
@@ -40,13 +37,16 @@ class WelcomeView: XibView {
     }
 
     @IBAction func drive() {
-        let destination = officePicker.selectedRow(inComponent: 0)
-        onRoleSelect?(Role.driver, offices[destination])
+        join(role: .driver)
     }
 
     @IBAction func hitchhike() {
+        join(role: .hitchhiker)
+    }
+    
+    private func join(role: Role) {
         let destination = officePicker.selectedRow(inComponent: 0)
-        onRoleSelect?(Role.driver, offices[destination])
+        onRoleSelect?(role, offices[destination])
     }
 
 }
