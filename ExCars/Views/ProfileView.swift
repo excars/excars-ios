@@ -14,11 +14,11 @@ import SkeletonView
 
 enum ProfileViewState {
     case loading
-    case normal(Profile)
-    case disabled(Profile)
-    case requested(Profile)
-    case accepted(Profile)
-    case declined(Profile)
+    case normal(Profile, Double?)
+    case disabled(Profile, Double?)
+    case requested(Profile, Double?)
+    case accepted(Profile, Double?)
+    case declined(Profile, Double?)
 }
 
 
@@ -45,16 +45,16 @@ class ProfileView: XibView {
         switch state {
         case .loading:
             renderLoading()
-        case .normal(let profile):
-            renderNormal(profile: profile)
-        case .disabled(let profile):
-            renderDisabled(profile: profile)
-        case .requested(let profile):
-            renderRequested(profile: profile)
-        case .accepted(let profile):
-            renderAccepted(profile: profile)
-        case .declined(let profile):
-            renderDeclined(profile: profile)
+        case .normal(let profile, let distance):
+            renderNormal(profile: profile, withDistance: distance)
+        case .disabled(let profile, let distance):
+            renderDisabled(profile: profile, withDistance: distance)
+        case .requested(let profile, let distance):
+            renderRequested(profile: profile, withDistance: distance)
+        case .accepted(let profile, let distance):
+            renderAccepted(profile: profile, withDistance: distance)
+        case .declined(let profile, let distance):
+            renderDeclined(profile: profile, withDistance: distance)
         }
     }
 
@@ -62,8 +62,8 @@ class ProfileView: XibView {
         showSkeleton()
     }
 
-    private func renderNormal(profile: Profile) {
-        baseProfileView.render(profile: profile)
+    private func renderNormal(profile: Profile, withDistance: Double?) {
+        baseProfileView.render(profile: profile, withDistance: withDistance)
         switch profile.role {
         case .driver:
             submitButton.setTitle("Request a Ride", for: .normal)
@@ -72,23 +72,23 @@ class ProfileView: XibView {
         }
     }
     
-    private func renderDisabled(profile: Profile) {
-        baseProfileView.render(profile: profile)
+    private func renderDisabled(profile: Profile, withDistance: Double?) {
+        baseProfileView.render(profile: profile, withDistance: withDistance)
         submitButton.isHidden = true
     }
 
-    private func renderRequested(profile: Profile) {
-        baseProfileView.render(profile: profile)
+    private func renderRequested(profile: Profile, withDistance: Double?) {
+        baseProfileView.render(profile: profile, withDistance: withDistance)
         submitButton.render(for: .loading)
     }
     
-    private func renderAccepted(profile: Profile) {
-        baseProfileView.render(profile: profile)
+    private func renderAccepted(profile: Profile, withDistance: Double?) {
+        baseProfileView.render(profile: profile, withDistance: withDistance)
         submitButton.render(for: .success("Accepted"))
     }
     
-    private func renderDeclined(profile: Profile) {
-        baseProfileView.render(profile: profile)
+    private func renderDeclined(profile: Profile, withDistance: Double?) {
+        baseProfileView.render(profile: profile, withDistance: withDistance)
         submitButton.render(for: .failure("Declined"))
     }
 

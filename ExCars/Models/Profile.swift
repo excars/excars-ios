@@ -14,6 +14,5 @@ struct Profile: Codable {
     let name: String
     let avatar: URL
     let role: Role
-    let destination: Destination?
-    var distance: Double?
+    let destination: Destination
 }

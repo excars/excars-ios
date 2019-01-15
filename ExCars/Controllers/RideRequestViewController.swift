@@ -36,17 +36,14 @@ class RideRequestViewController: BottomViewController {
     }
 
     private func setupRideRequestView() {
-        var profile = rideRequest.sender
-        profile.distance = getDistance()
-
-        let rideRequestView = RideRequestView(profile: profile)
+        let rideRequestView = RideRequestView(profile: rideRequest.sender, withDistance: getDistance())
         view.addSubview(rideRequestView)
         rideRequestView.frame = view.bounds
 
         rideRequestView.onAccept = accept
         rideRequestView.onDecline = decline
     }
-
+    
     func accept() {
         APIClient.acceptRideRequest(uid: rideRequest.uid, passenger: getPassenger()) { [weak self] status, result in
             guard let self = self else { return }
@@ -87,7 +84,7 @@ class RideRequestViewController: BottomViewController {
             return nil
         }
 
-        return currentUser.location?.distance(from: targetLocation.clLocation)
+        return currentUser.clLocation?.distance(from: targetLocation.clLocation)
     }
 
 }

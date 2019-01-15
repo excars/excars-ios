@@ -54,8 +54,7 @@ class ProfileViewController: BottomViewController {
             guard let self = self else { return }
 
             switch result {
-            case .success(var profile):
-                profile.distance = self.getDistance()
+            case .success(let profile):
                 let state = self.getState(profile: profile)
                 self.profileView.render(for: state)
                 self.profile = profile
@@ -66,37 +65,40 @@ class ProfileViewController: BottomViewController {
         }
     }
 
-    private func getDistance() ->  CLLocationDistance? {
+    private func getDistance() -> CLLocationDistance? {
         guard let location = locations.first(where: {$0.uid == uid})?.location else {
             return nil
         }
 
-        return currentUser.location?.distance(from: location.clLocation)
+        return currentUser.clLocation?.distance(from: location.clLocation)
     }
 
     private func getState(profile: Profile) -> ProfileViewState {
+        let distance = getDistance()
+
         if profile.role == currentUser.role {
-            return .disabled(profile)
+            return .disabled(profile, distance)
         }
 
-        guard let ride = currentUser.ride else { return .normal(profile) }
+        guard let ride = currentUser.ride else { return .normal(profile, distance) }
 
         let passenger_uid = (profile.role == .driver) ? currentUser.uid : profile.uid
 
         if let passenger = ride.passengers.first(where: {$0.profile.uid == passenger_uid}) {
             switch passenger.status {
             case .accepted:
-                return .accepted(profile)
+                return .accepted(profile, distance)
             case .declined:
-                return .declined(profile)
+                return .declined(profile, distance)
             }
         }
 
-        return .normal(profile)
+        return .normal(profile, distance)
     }
 
     func requestRide() {
-        profileView.render(for: .requested(profile!))
+        let distance = getDistance()
+        profileView.render(for: .requested(profile!, distance))
 
         APIClient.requestRide(to: uid) { status, result in
             switch result {
@@ -114,11 +116,13 @@ class ProfileViewController: BottomViewController {
 extension ProfileViewController: WSRideRequestDelegate {
 
     func didAcceptRequest() {
-        profileView.render(for: .accepted(profile!))
+        let distance = getDistance()
+        profileView.render(for: .accepted(profile!, distance))
     }
 
     func didDeclineRequest() {
-        profileView.render(for: .declined(profile!))
+        let distance = getDistance()
+        profileView.render(for: .declined(profile!, distance))
     }
 
 }

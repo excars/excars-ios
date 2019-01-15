@@ -17,11 +17,11 @@ class RideRequestView: XibView {
     var onAccept: (() -> Void)?
     var onDecline: (() -> Void)?
 
-    init(profile: Profile, frame: CGRect = CGRect.zero) {
+    init(profile: Profile, withDistance: Double?, frame: CGRect = CGRect.zero) {
         super.init(nibName: "RideRequestView", frame: frame)
         
         setupHeader(role: profile.role)
-        baseProfileView.render(profile: profile)
+        baseProfileView.render(profile: profile, withDistance: withDistance)
     }
 
     required init?(coder aDecoder: NSCoder) {

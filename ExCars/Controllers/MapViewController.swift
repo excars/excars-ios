@@ -71,8 +71,8 @@ class MapViewController: UIViewController {
 extension MapViewController: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location: CLLocation = locations.last!
-        currentUser.location = location
+        let location = locations.last!
+        currentUser.clLocation = location
 
         let camera = GMSCameraPosition.camera(
             withLatitude: location.coordinate.latitude,
@@ -212,7 +212,7 @@ extension MapViewController: UserDelegate {
         let bottomVC: UIViewController
 
         if role == nil {
-            bottomVC = WelcomeViewController(user: currentUser)
+            bottomVC = WelcomeViewController(currentUser: currentUser)
         } else {
             bottomVC = RideViewController(user: currentUser, wsClient: wsClient)
         }

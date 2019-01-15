@@ -22,17 +22,17 @@ class BaseProfileView: XibView {
         get { return "BaseProfileView" }
         set { }
     }
-
-    func render(profile: Profile) {
+    
+    func render(profile: Profile, withDistance: Double?) {
         name.text = profile.name
-        destination.text = profile.destination?.name
+        destination.text = profile.destination.name
         avatar?.sd_setImage(with: profile.avatar, placeholderImage: UIImage(named: profile.role.rawValue))
         
-        if profile.distance == nil {
-            distance.text = "Unknown"
+        if let distance = withDistance {
+            let distanceInKm = distance / 1000.0
+            self.distance.text = String(format: "%.1f km", distanceInKm)
         } else {
-            let distanceInKm = profile.distance! / 1000.0
-            distance.text = String(format: "%.1f km", distanceInKm)
+            distance.text = "Unknown"
         }
     }
 

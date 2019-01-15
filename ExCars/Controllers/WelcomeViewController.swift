@@ -12,8 +12,8 @@ import UIKit
 class WelcomeViewController: BottomViewController {
     private let currentUser: User
 
-    init(user: User) {
-        self.currentUser = user
+    init(currentUser: User) {
+        self.currentUser = currentUser
         super.init(nibName: nil, bundle: nil)
 
         fullHeight = 256.0
