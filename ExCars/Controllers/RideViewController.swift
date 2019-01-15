@@ -14,10 +14,10 @@ class RideViewController: BottomViewController {
     private let wsClient: WSClient
     private let rideView: RideView
     
-    init(user: User, wsClient: WSClient) {
-        self.currentUser = user
+    init(currentUser: User, wsClient: WSClient) {
+        self.currentUser = currentUser
         self.wsClient = wsClient
-        self.rideView = RideView(currentUser: user, ride: nil)
+        self.rideView = RideView(currentUser: currentUser)
 
         super.init(nibName: nil, bundle: nil)
 
@@ -46,13 +46,14 @@ class RideViewController: BottomViewController {
             guard let self = self else { return }
             switch result {
             case .success(let ride):
-                self.rideView.ride = ride
                 self.currentUser.ride = ride
+                self.rideView.reload()
             case .failure(let error):
                 if status != 404 {
                     print("IN ROLE RIDE FAILURE [\(status)]: \(error)")
                 }
-                self.rideView.ride = nil
+                self.currentUser.ride = nil
+                self.rideView.reload()
             }
         }
     }
@@ -80,7 +81,7 @@ class RideViewController: BottomViewController {
             guard let self = self else { return }
             switch result {
             case .success:
-                self.currentUser.role = nil
+                self.currentUser.trip = nil
             case .failure(let error):
                 print("LEAVE ERROR \(status): \(error)")
             }
@@ -109,7 +110,7 @@ extension RideViewController: WSRideDelegate {
         present(alertController, animated: true)
         
         currentUser.ride = nil
-        rideView.ride = nil
+        rideView.reload()
     }
 
 }

@@ -75,9 +75,9 @@ class ProfileViewController: BottomViewController {
     }
 
     private func getState(profile: Profile) -> ProfileViewState {
-        if profile.role == currentUser.role {
-            return .disabled(profile)
-        }
+//        if profile.role == currentUser.role {
+//            return .disabled(profile)
+//        }
 
         guard let ride = currentUser.ride else { return .normal(profile) }
 

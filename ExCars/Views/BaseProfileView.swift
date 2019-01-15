@@ -25,7 +25,7 @@ class BaseProfileView: XibView {
 
     func render(profile: Profile) {
         name.text = profile.name
-        destination.text = profile.destination?.name
+        destination.text = profile.destination.name
         avatar?.sd_setImage(with: profile.avatar, placeholderImage: UIImage(named: profile.role.rawValue))
         
         if profile.distance == nil {

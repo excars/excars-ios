@@ -41,8 +41,7 @@ class WelcomeViewController: BottomViewController {
             guard let self = self else { return }
             switch result {
             case .success(let profile):
-                self.currentUser.destination = profile.destination
-                self.currentUser.role = profile.role
+                self.currentUser.trip = Trip(role: profile.role, destination: profile.destination)
             case .failure(let error):
                 print("JOIN ERROR [\(status)]: \(error)")
             }

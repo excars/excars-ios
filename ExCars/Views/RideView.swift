@@ -16,19 +16,14 @@ class RideView: XibView {
     @IBOutlet weak var tableView: UITableView!
 
     var onRoleExit: (() -> Void)?
+    
+    private var currentUser: User
 
-    var ride: Ride? {
-        didSet {
-            setHeaderView()
-            tableView.reloadData()
-        }
-    }
-
-    init(currentUser: User, ride: Ride?, frame: CGRect = CGRect.zero) {
-        self.ride = ride
+    init(currentUser: User, frame: CGRect = CGRect.zero) {
+        self.currentUser = currentUser
         super.init(nibName: "RideView", frame: frame)
 
-        setupView(user: currentUser)
+        setupView()
         setupTableView()
     }
 
@@ -36,10 +31,15 @@ class RideView: XibView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupView(user: User) {
-        destination.text = user.destination?.name
+    func reload() {
+        setHeaderView()
+        tableView.reloadData()
+    }
     
-        switch user.role {
+    private func setupView() {
+        destination.text = currentUser.trip?.destination.name
+    
+        switch currentUser.trip?.role {
         case .driver?:
             roleIcon.image = UIImage(named: "wheel")
         case .hitchhiker?:
@@ -61,7 +61,7 @@ class RideView: XibView {
     }
     
     private func setHeaderView() {
-        tableView.tableHeaderView = (ride != nil) ? nil : EmptyRideView()
+        tableView.tableHeaderView = (currentUser.ride != nil) ? nil : EmptyRideView()
     }
 
     @IBAction func exitRole() {
@@ -77,7 +77,7 @@ extension RideView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let ride = ride else { return 0 }
+        guard let ride = currentUser.ride else { return 0 }
         switch section {
         case 0:
             return 1
@@ -93,7 +93,7 @@ extension RideView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard ride != nil else { return UIView() }
+        guard currentUser.ride != nil else { return UIView() }
         let header = tableView.dequeueReusableCell(withIdentifier: "header") as! HeaderViewCell
 
         switch section {
@@ -113,7 +113,7 @@ extension RideView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let ride = ride else { return UITableViewCell() }
+        guard let ride = currentUser.ride else { return UITableViewCell() }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "default", for: indexPath) as! RideViewCell
         

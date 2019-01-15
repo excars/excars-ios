@@ -62,7 +62,7 @@ class MapViewController: UIViewController {
         wsClient.delegate = self
 
         currentUser.delegate = self
-        didChangeRole(role: currentUser.role)
+        didChangeTrip(trip: currentUser.trip)
     }
 
 }
@@ -208,13 +208,13 @@ extension MapViewController: WSClientDelegate {
 
 extension MapViewController: UserDelegate {
 
-    func didChangeRole(role: Role?) {
+    func didChangeTrip(trip: Trip?) {
         let bottomVC: UIViewController
 
-        if role == nil {
+        if trip == nil {
             bottomVC = WelcomeViewController(user: currentUser)
         } else {
-            bottomVC = RideViewController(user: currentUser, wsClient: wsClient)
+            bottomVC = RideViewController(currentUser: currentUser, wsClient: wsClient)
         }
 
         exclusivePresenter.dismiss()

@@ -10,7 +10,7 @@ import CoreLocation
 
 
 protocol UserDelegate: class {
-    func didChangeRole(role: Role?)
+    func didChangeTrip(trip: Trip?)
 }
 
 
@@ -20,17 +20,12 @@ class User: Codable {
     let uid: String
     let name: String
     let avatar: URL
-    var destination: Destination?
 
-    var role: Role? {
+    var trip: Trip? {
         didSet {
-            delegate?.didChangeRole(role: role)
-            if role == nil {
-                ride = nil
-            }
+            delegate?.didChangeTrip(trip: trip)
         }
     }
-
     var ride: Ride?
     var location: CLLocation?
 }
@@ -41,7 +36,5 @@ extension User {
         case uid
         case name
         case avatar
-        case role
-        case destination
     }
 }
