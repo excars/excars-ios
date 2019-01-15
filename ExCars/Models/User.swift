@@ -32,7 +32,6 @@ class User: Codable {
     }
 
     var ride: Ride?
-    var clLocation: CLLocation?
 }
 
 

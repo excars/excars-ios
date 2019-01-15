@@ -18,13 +18,13 @@ class ProfileViewController: BottomViewController {
     private var profile: Profile?
     private let profileView: ProfileView
 
-    private let locations: [MapItem]
+    private let distance: Double?
 
-    init(uid: String, currentUser: User, locations: [MapItem], wsClient: WSClient) {
+    init(uid: String, currentUser: User, withDistance: Double?, wsClient: WSClient) {
         self.uid = uid
         self.currentUser = currentUser
         self.profileView = ProfileView()
-        self.locations = locations
+        self.distance = withDistance
 
         super.init(nibName: nil, bundle: nil)
 
@@ -61,21 +61,10 @@ class ProfileViewController: BottomViewController {
             case .failure(let error):
                 print("FAILED TO GET PROFILE [\(status)]: \(error)")
             }
-
         }
-    }
-
-    private func getDistance() -> CLLocationDistance? {
-        guard let location = locations.first(where: {$0.uid == uid})?.location else {
-            return nil
-        }
-
-        return currentUser.clLocation?.distance(from: location.clLocation)
     }
 
     private func getState(profile: Profile) -> ProfileViewState {
-        let distance = getDistance()
-
         if profile.role == currentUser.role {
             return .disabled(profile, distance)
         }
@@ -97,7 +86,6 @@ class ProfileViewController: BottomViewController {
     }
 
     func requestRide() {
-        let distance = getDistance()
         profileView.render(for: .requested(profile!, distance))
 
         APIClient.requestRide(to: uid) { status, result in
@@ -116,12 +104,10 @@ class ProfileViewController: BottomViewController {
 extension ProfileViewController: WSRideRequestDelegate {
 
     func didAcceptRequest() {
-        let distance = getDistance()
         profileView.render(for: .accepted(profile!, distance))
     }
 
     func didDeclineRequest() {
-        let distance = getDistance()
         profileView.render(for: .declined(profile!, distance))
     }
 

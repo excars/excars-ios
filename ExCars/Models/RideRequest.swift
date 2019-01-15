@@ -13,6 +13,10 @@ struct RideRequest: Codable {
     let uid: String
     let sender: Profile
     let receiver: Profile
+    
+    var passenger: Profile {
+        return (sender.role == .driver) ? receiver : sender
+    }
 }
 
 

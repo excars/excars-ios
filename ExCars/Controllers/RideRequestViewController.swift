@@ -12,14 +12,12 @@ import UIKit
 
 class RideRequestViewController: BottomViewController {
 
-    let rideRequest: RideRequest
-    let currentUser: User
-    let locations: [MapItem]
+    private let rideRequest: RideRequest
+    private let distance: Double?
 
-    init(rideRequest: RideRequest, currentUser: User, locations: [MapItem]) {
+    init(rideRequest: RideRequest, withDistance: Double?) {
         self.rideRequest = rideRequest
-        self.currentUser = currentUser
-        self.locations = locations
+        self.distance = withDistance
 
         super.init(nibName: nil, bundle: nil)
 
@@ -36,7 +34,7 @@ class RideRequestViewController: BottomViewController {
     }
 
     private func setupRideRequestView() {
-        let rideRequestView = RideRequestView(profile: rideRequest.sender, withDistance: getDistance())
+        let rideRequestView = RideRequestView(profile: rideRequest.sender, withDistance: distance)
         view.addSubview(rideRequestView)
         rideRequestView.frame = view.bounds
 
@@ -45,7 +43,7 @@ class RideRequestViewController: BottomViewController {
     }
     
     func accept() {
-        APIClient.acceptRideRequest(uid: rideRequest.uid, passenger: getPassenger()) { [weak self] status, result in
+        APIClient.accept(rideRequest: rideRequest) { [weak self] status, result in
             guard let self = self else { return }
             switch result {
             case .success(_):
@@ -57,7 +55,7 @@ class RideRequestViewController: BottomViewController {
     }
 
     func decline() {
-        APIClient.declineRideRequest(uid: rideRequest.uid, passenger: getPassenger()) { [weak self] status, result in
+        APIClient.decline(rideRequest: rideRequest) { [weak self] status, result in
             guard let self = self else { return }
             switch result {
             case .success(_):
@@ -66,25 +64,6 @@ class RideRequestViewController: BottomViewController {
                 print ("DECLINE RIDE ERROR \(error)")
             }
         }
-    }
-
-    private func getPassenger() -> Profile {
-        if rideRequest.sender.role == Role.driver {
-            return rideRequest.receiver
-        }
-        return rideRequest.sender
-    }
-
-    private func getDistance() ->  CLLocationDistance? {
-        let sender = rideRequest.sender
-        let receiver = rideRequest.receiver
-
-        let targetUid = (currentUser.uid == sender.uid) ? receiver.uid : sender.uid
-        guard let targetLocation = locations.first(where: {$0.uid == targetUid})?.location else {
-            return nil
-        }
-
-        return currentUser.clLocation?.distance(from: targetLocation.clLocation)
     }
 
 }

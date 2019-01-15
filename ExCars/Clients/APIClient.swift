@@ -47,12 +47,12 @@ class APIClient {
         performRequest(route: APIRouter.requestRide(to), completion: completion)
     }
 
-    static func acceptRideRequest(uid: String, passenger: Profile, completion: @escaping (Int, Result<Empty>)->Void) {
-        performRequest(route: APIRouter.updateRideRequest(uid, status: .accepted, passenger: passenger), completion: completion)
+    static func accept(rideRequest: RideRequest, completion: @escaping (Int, Result<Empty>)->Void) {
+        performRequest(route: APIRouter.updateRideRequest(rideRequest, status: .accepted), completion: completion)
     }
     
-    static func declineRideRequest(uid: String, passenger: Profile, completion: @escaping (Int, Result<Empty>)->Void) {
-        performRequest(route: APIRouter.updateRideRequest(uid, status: .declined, passenger: passenger), completion: completion)
+    static func decline(rideRequest: RideRequest, completion: @escaping (Int, Result<Empty>)->Void) {
+        performRequest(route: APIRouter.updateRideRequest(rideRequest, status: .declined), completion: completion)
     }
 
 }

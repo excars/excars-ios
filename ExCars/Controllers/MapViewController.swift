@@ -15,13 +15,14 @@ class MapViewController: UIViewController {
     var locationManager = CLLocationManager()
     let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
     let zoomLevel: Float = 15.0
-    var locations: [MapItem] = []
     let durationTreshhold = 3.0
 
     var mapView = GMSMapView()
+    
     var markers: [String: GMSMarker] = [:]
+    
     var currentMarker: GMSMarker?
-
+    var currentLocation: CLLocation?
     let currentUser: User
 
     lazy var exclusivePresenter = ExclusivePresenter(to: self)
@@ -72,7 +73,6 @@ extension MapViewController: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last!
-        currentUser.clLocation = location
 
         let camera = GMSCameraPosition.camera(
             withLatitude: location.coordinate.latitude,
@@ -90,6 +90,7 @@ extension MapViewController: CLLocationManagerDelegate {
         }
 
         wsClient.sendLocation(location: location)
+        currentLocation = location
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -119,8 +120,9 @@ extension MapViewController: GMSMapViewDelegate {
         let currentUserData = currentMarker?.userData as? MapItem
 
         if userData.uid != currentUserData?.uid {
+            let distance = getDistance(from: marker.position)
             let profileVC = ProfileViewController(
-                uid: userData.uid, currentUser: currentUser, locations: locations, wsClient: wsClient
+                uid: userData.uid, currentUser: currentUser, withDistance: distance, wsClient: wsClient
             )
             profileVC.onDismiss = {
                 self.currentMarker = nil
@@ -152,7 +154,6 @@ extension MapViewController: GMSMapViewDelegate {
 extension MapViewController: WSClientDelegate {
 
     func didReceiveMapUpdate(items: [MapItem]) {
-        locations = items
         mapView.clear()
 
         let carIcon = UIImage(named: "car")
@@ -194,11 +195,9 @@ extension MapViewController: WSClientDelegate {
     }
 
     func didReceiveRideRequest(rideRequest: RideRequest) {
-        currentMarker = markers[rideRequest.sender.uid]
         lockCameraOnProfile()
-        let rideRequestVC = RideRequestViewController(
-            rideRequest: rideRequest, currentUser: currentUser, locations: locations
-        )
+        let distance = getDistance(from: markers[rideRequest.sender.uid]?.position)
+        let rideRequestVC = RideRequestViewController(rideRequest: rideRequest, withDistance: distance)
         bottomPresenter.collapse()
         exclusivePresenter.present(rideRequestVC)
     }
@@ -245,8 +244,8 @@ extension MapViewController {
         guard cameraLockedOnProfile == true,
             let currentUserData = currentMarker?.userData as? MapItem,
             currentUserData.uid == uid
-            else {
-                return
+        else {
+            return
         }
         
         let camera = GMSCameraPosition.camera(
@@ -255,6 +254,19 @@ extension MapViewController {
             zoom: mapView.camera.zoom
         )
         mapView.animate(to: camera)
+    }
+
+}
+
+
+extension MapViewController {
+
+    func getDistance(from position: CLLocationCoordinate2D?) -> CLLocationDistance? {
+        if let position = position {
+            let location = CLLocation(latitude: position.latitude, longitude: position.longitude)
+            return currentLocation?.distance(from: location)
+        }
+        return nil
     }
 
 }
