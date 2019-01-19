@@ -15,11 +15,10 @@ class MapViewController: UIViewController {
     var locationManager = CLLocationManager()
     let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
     let zoomLevel: Float = 15.0
-    let durationTreshhold = 3.0
 
     var mapView = GMSMapView()
-    
     var markers: [String: GMSMarker] = [:]
+    let durationTreshhold = 1.0
     
     var currentMarker: GMSMarker?
     var currentLocation: CLLocation?
@@ -47,15 +46,17 @@ class MapViewController: UIViewController {
 
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
-        locationManager.distanceFilter = 10
+        locationManager.distanceFilter = 10.0
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
 
+        let location = currentLocation?.coordinate ?? defaultLocation
+        
         mapView.frame = view.bounds
-        mapView.camera = GMSCameraPosition(target: defaultLocation, zoom: zoomLevel, bearing: 0, viewingAngle: 0)
+        mapView.camera = GMSCameraPosition(target: location, zoom: zoomLevel, bearing: 0.0, viewingAngle: 0.0)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isHidden = true
-        mapView.padding = UIEdgeInsets(top: self.view.safeAreaInsets.top, left: 0, bottom: 80, right: 0)
+        mapView.padding = UIEdgeInsets(top: self.view.safeAreaInsets.top, left: 0.0, bottom: 80.0, right: 0.0)
         mapView.delegate = self
         view.addSubview(mapView)
 
@@ -124,7 +125,8 @@ extension MapViewController: GMSMapViewDelegate {
             let profileVC = ProfileViewController(
                 uid: userData.uid, currentUser: currentUser, withDistance: distance, wsClient: wsClient
             )
-            profileVC.onDismiss = {
+            profileVC.onDismiss = { [weak self] in
+                guard let self = self else { return }
                 self.currentMarker = nil
                 self.unlockCamera()
             }
@@ -171,29 +173,16 @@ extension MapViewController: WSClientDelegate {
                 marker.icon = hitchhikerIcon
             }
 
-            let userData = marker.userData as? MapItem
-            var duration = (userData != nil ) ? (item.location.ts - userData!.location.ts) + 0.1 : 0.0
-            if duration > durationTreshhold {
-               duration = durationTreshhold
-            }
+            let data = marker.userData as? MapItem
             marker.userData = item
 
-            let position = CLLocationCoordinate2D(latitude: item.location.latitude, longitude: item.location.longitude)
-
-            CATransaction.begin()
-            CATransaction.setAnimationDuration(duration)
-            if item.role == .driver {
-                marker.rotation = item.location.course
-            }
-            marker.position = position
-            tryToMoveCameraToProfile(uid: item.uid)
-            CATransaction.commit()
+            moveMarker(marker, from: data?.location, to: item.location)
 
             markers[item.uid] = marker
         }
 
     }
-
+    
     func didReceiveRideRequest(rideRequest: RideRequest) {
         lockCameraOnProfile()
         let distance = getDistance(from: markers[rideRequest.sender.uid]?.position)
@@ -213,7 +202,7 @@ extension MapViewController: UserDelegate {
         if role == nil {
             bottomVC = WelcomeViewController(currentUser: currentUser)
         } else {
-            bottomVC = RideViewController(user: currentUser, wsClient: wsClient)
+            bottomVC = RideViewController(currentUser: currentUser, wsClient: wsClient)
         }
 
         exclusivePresenter.dismiss()
@@ -240,7 +229,7 @@ extension MapViewController {
         cameraLockedOnProfile = false
     }
     
-    private func tryToMoveCameraToProfile(uid: String) {
+    private func maybeMoveCameraToProfile(uid: String) {
         guard cameraLockedOnProfile == true,
             let currentUserData = currentMarker?.userData as? MapItem,
             currentUserData.uid == uid
@@ -261,12 +250,32 @@ extension MapViewController {
 
 extension MapViewController {
 
-    func getDistance(from position: CLLocationCoordinate2D?) -> CLLocationDistance? {
+    private func getDistance(from position: CLLocationCoordinate2D?) -> CLLocationDistance? {
         if let position = position {
             let location = CLLocation(latitude: position.latitude, longitude: position.longitude)
             return currentLocation?.distance(from: location)
         }
         return nil
+    }
+    
+    private func moveMarker(_ marker: GMSMarker, from oldLocation: MapItemLocation?, to newLocation: MapItemLocation) {
+        var duration = (oldLocation != nil) ? newLocation.ts - oldLocation!.ts + 0.1 : 0.0
+        if duration > durationTreshhold {
+            duration = durationTreshhold
+        }
+        
+        let position = CLLocationCoordinate2D(latitude: newLocation.latitude, longitude: newLocation.longitude)
+        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(duration)
+        marker.position = position
+        if let data = marker.userData as? MapItem {
+            if data.role == .driver {
+                marker.rotation = newLocation.course
+            }
+            maybeMoveCameraToProfile(uid: data.uid)
+        }
+        CATransaction.commit()
     }
 
 }

@@ -28,8 +28,8 @@ class ProfileViewController: BottomViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        fullHeight = 199
-        height = 50
+        fullHeight = 199.0
+        height = 50.0
 
         allowDismiss = true
         openFullView = true

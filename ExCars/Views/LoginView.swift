@@ -21,10 +21,8 @@ class LoginView: XibView {
         set { }
     }
 
-    override init(frame: CGRect) {
+    override init(frame: CGRect = CGRect.zero) {
         super.init(frame: frame)
-
-        image.image = UIImage(named: "login-image")
         signInButton.colorScheme = GIDSignInButtonColorScheme.dark
     }
 

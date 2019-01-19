@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="45q-sv-Xwj">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-image" translatesAutoresizingMaskIntoConstraints="NO" id="45q-sv-Xwj">
                     <rect key="frame" x="38" y="184" width="299" height="299"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="45q-sv-Xwj" secondAttribute="height" multiplier="1:1" id="nSA-H7-bx8"/>
@@ -71,4 +71,7 @@
             <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>
         </view>
     </objects>
+    <resources>
+        <image name="login-image" width="1200" height="1200"/>
+    </resources>
 </document>

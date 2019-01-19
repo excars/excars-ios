@@ -24,8 +24,7 @@ class RideView: XibView {
         }
     }
 
-    init(currentUser: User, ride: Ride?, frame: CGRect = CGRect.zero) {
-        self.ride = ride
+    init(currentUser: User, frame: CGRect = CGRect.zero) {
         super.init(nibName: "RideView", frame: frame)
 
         setupView(user: currentUser)

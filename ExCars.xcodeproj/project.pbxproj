@@ -309,19 +309,19 @@
 			isa = PBXGroup;
 			children = (
 				74F1167F21D4171F00738E59 /* RideViewTable */,
-				74A21CB721A605A500982247 /* ProfileView.xib */,
-				74A21CB921A605B600982247 /* ProfileView.swift */,
-				74E2F0CF21AC37470092FEEF /* XibView.swift */,
-				74E2F0DF21AD3F8D0092FEEF /* RideRequestView.xib */,
-				74E2F0E121AD3FA10092FEEF /* RideRequestView.swift */,
-				74FF005121AE9A8D00D588BA /* WelcomeView.xib */,
-				74FF005321AE9BC000D588BA /* WelcomeView.swift */,
-				746E42BA21B40E2500F083C3 /* RideView.xib */,
-				746E42BC21B40E3F00F083C3 /* RideView.swift */,
-				7438806921C815D0009C339A /* LoginView.swift */,
-				7438806B21C815DC009C339A /* LoginView.xib */,
 				74D2CC4821CB0258004FD613 /* BaseProfileView.swift */,
 				74D2CC4A21CB027B004FD613 /* BaseProfileView.xib */,
+				7438806921C815D0009C339A /* LoginView.swift */,
+				7438806B21C815DC009C339A /* LoginView.xib */,
+				74A21CB921A605B600982247 /* ProfileView.swift */,
+				74A21CB721A605A500982247 /* ProfileView.xib */,
+				74E2F0E121AD3FA10092FEEF /* RideRequestView.swift */,
+				74E2F0DF21AD3F8D0092FEEF /* RideRequestView.xib */,
+				746E42BC21B40E3F00F083C3 /* RideView.swift */,
+				746E42BA21B40E2500F083C3 /* RideView.xib */,
+				74FF005321AE9BC000D588BA /* WelcomeView.swift */,
+				74FF005121AE9A8D00D588BA /* WelcomeView.xib */,
+				74E2F0CF21AC37470092FEEF /* XibView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

@@ -14,10 +14,10 @@ class RideViewController: BottomViewController {
     private let wsClient: WSClient
     private let rideView: RideView
     
-    init(user: User, wsClient: WSClient) {
-        self.currentUser = user
+    init(currentUser: User, wsClient: WSClient) {
+        self.currentUser = currentUser
         self.wsClient = wsClient
-        self.rideView = RideView(currentUser: user, ride: nil)
+        self.rideView = RideView(currentUser: currentUser)
 
         super.init(nibName: nil, bundle: nil)
 
