@@ -40,7 +40,7 @@ class WSClient {
     weak var timer: Timer?
     
     init() {
-        let url = URL(string: "wss://\(Configuration.API_HOST)/stream")!
+        let url = URL(string: "\(Configuration.API_WS_URL)/stream")!
         
         var request = URLRequest(url: url)
 

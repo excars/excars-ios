@@ -92,7 +92,7 @@ enum APIRouter: URLRequestConvertible {
     }
     
     public func asURLRequest() throws -> URLRequest {
-        let url = URL(string: "https://\(Configuration.API_HOST)")!
+        let url = URL(string: "\(Configuration.API_REST_URL)")!
         
         var request = URLRequest(url: url.appendingPathComponent(path))
         request.httpMethod = method.rawValue
