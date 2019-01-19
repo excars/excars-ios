@@ -773,7 +773,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3CDDA33E29E2D5384CF7A66C /* Pods-ExCars.debug.xcconfig */;
 			buildSettings = {
-				API_HOST = excars.herokuapp.com;
+				API_REST_URL = "https://excars.herokuapp.com";
+				API_WS_URL = "wss://excars.herokuapp.com";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -810,7 +811,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2423949B5B65E8DEA86C77A5 /* Pods-ExCars.release.xcconfig */;
 			buildSettings = {
-				API_HOST = excars.herokuapp.com;
+				API_REST_URL = "https://excars.herokuapp.com";
+				API_WS_URL = "wss://excars.herokuapp.com";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -987,7 +989,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A96F478CF922E74E5D152055 /* Pods-ExCars.dev.xcconfig */;
 			buildSettings = {
-				API_HOST = localhost;
+				API_REST_URL = "http://localhost:8000";
+				API_WS_URL = "ws://localhost:8000";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;

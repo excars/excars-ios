@@ -10,5 +10,6 @@ import Foundation
 
 
 struct Configuration {
-    static let API_HOST = Bundle.main.infoDictionary!["API_HOST"] as! String
+    static let API_REST_URL = Bundle.main.infoDictionary!["API_REST_URL"] as! String
+    static let API_WS_URL = Bundle.main.infoDictionary!["API_WS_URL"] as! String
 }
