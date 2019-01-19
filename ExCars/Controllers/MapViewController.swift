@@ -7,7 +7,9 @@
 //
 
 import UIKit
+
 import GoogleMaps
+import SideMenu
 
 
 class MapViewController: UIViewController {
@@ -62,6 +64,13 @@ class MapViewController: UIViewController {
 
         wsClient.connect()
         wsClient.delegate = self
+        
+        let menuVC = MenuViewController(currentUser: currentUser)
+        let menuNC = UISideMenuNavigationController(rootViewController: menuVC)
+        menuNC.isNavigationBarHidden = true
+        SideMenuManager.default.menuLeftNavigationController = menuNC
+        SideMenuManager.default.menuFadeStatusBar = false
+        SideMenuManager.default.menuPresentMode = .menuSlideIn
 
         currentUser.delegate = self
         didChangeRole(role: currentUser.role)
@@ -147,6 +156,7 @@ extension MapViewController: GMSMapViewDelegate {
 
     func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
         lockCameraOnMe()
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
         return false
     }
 
