@@ -1,5 +1,5 @@
 //
-//  InRoleView.swift
+//  RideView.swift
 //  ExCars
 //
 //  Created by Леша on 02/12/2018.
@@ -9,15 +9,14 @@
 import UIKit
 
 
-class InRoleView: XibView {
+class RideView: XibView {
     
     @IBOutlet weak var roleIcon: UIImageView!
     @IBOutlet weak var destination: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    
+
     var onRoleExit: (() -> Void)?
 
-    private let user: User
     var ride: Ride? {
         didSet {
             setHeaderView()
@@ -25,12 +24,10 @@ class InRoleView: XibView {
         }
     }
 
-    init (user: User, ride: Ride?, frame: CGRect = CGRect.zero) {
-        self.user = user
-        self.ride = ride
-        super.init(nibName: "InRoleView", frame: frame)
+    init(currentUser: User, frame: CGRect = CGRect.zero) {
+        super.init(nibName: "RideView", frame: frame)
 
-        setupView()
+        setupView(user: currentUser)
         setupTableView()
     }
 
@@ -38,7 +35,7 @@ class InRoleView: XibView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupView() {
+    private func setupView(user: User) {
         destination.text = user.destination?.name
     
         switch user.role {
@@ -72,7 +69,7 @@ class InRoleView: XibView {
 }
 
 
-extension InRoleView: UITableViewDelegate, UITableViewDataSource {
+extension RideView: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2

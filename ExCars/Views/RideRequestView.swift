@@ -1,27 +1,27 @@
 //
-//  NotificationView.swift
+//  RideRequestView.swift
 //  ExCars
 //
 //  Created by Леша on 27/11/2018.
 //  Copyright © 2018 Леша. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-class NotificationView: XibView {
+
+class RideRequestView: XibView {
 
     @IBOutlet weak var header: UILabel!
     @IBOutlet weak var baseProfileView: BaseProfileView!
 
-    var onDidAccept: (() -> Void)?
-    var onDidDecline: (() -> Void)?
+    var onAccept: (() -> Void)?
+    var onDecline: (() -> Void)?
 
-    init(profile: Profile, frame: CGRect = CGRect.zero) {
-        super.init(nibName: "NotificationView", frame: frame)
+    init(profile: Profile, withDistance: Double?, frame: CGRect = CGRect.zero) {
+        super.init(nibName: "RideRequestView", frame: frame)
         
         setupHeader(role: profile.role)
-        baseProfileView.profile = profile
+        baseProfileView.render(profile: profile, withDistance: withDistance)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -38,11 +38,11 @@ class NotificationView: XibView {
     }
 
     @IBAction func accept() {
-        onDidAccept?()
+        onAccept?()
     }
 
     @IBAction func decline() {
-        onDidDecline?()
+        onDecline?()
     }
 
 }

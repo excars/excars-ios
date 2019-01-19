@@ -18,7 +18,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     override func loadView() {
-        let loginView = LoginView(frame: CGRect.zero)
+        let loginView = LoginView()
         view = loginView
     }
 

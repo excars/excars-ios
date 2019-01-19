@@ -11,6 +11,7 @@ import GoogleMaps
 import GoogleSignIn
 import Alamofire
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -21,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         GIDSignIn.sharedInstance().clientID = GOOGLE_OAUTH2_CLIENT_ID
         GIDSignIn.sharedInstance().delegate = self
+        
+        registerWSMessages()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = RootViewController()
@@ -53,6 +56,20 @@ extension AppDelegate {
 }
 
 
+extension AppDelegate {
+
+    func registerWSMessages() {
+        Message.register(Location.self, for: .location)
+
+        Message.register([MapItem].self, for: .map)
+        Message.register(RideRequest.self, for: .rideRequested)
+        Message.register(RideRequest.self, for: .rideRequestAccepted)
+        Message.register(RideRequest.self, for: .rideRequestDeclined)
+    }
+
+}
+
+
 extension AppDelegate: GIDSignInDelegate {
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -61,13 +78,13 @@ extension AppDelegate: GIDSignInDelegate {
             return
         }
         
-        APIClient.auth(idToken: user.authentication.idToken) { result in
+        APIClient.auth(idToken: user.authentication.idToken) { status, result in
             switch result {
             case .success(let response):
                 KeyChain.setJWTToken(token: response.jwtToken)
                 AppDelegate.shared.rootViewController.toMap()
             case .failure(let error):
-                print("AUTH ERROR \(error)")
+                print("AUTH ERROR [\(status)]: \(error)")
                 
                 let alertController = UIAlertController(
                     title: "Cannot connect to server",

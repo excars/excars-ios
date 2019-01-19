@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class RootViewController: UIViewController {
     
     private var current: UIViewController
@@ -36,21 +37,23 @@ class RootViewController: UIViewController {
     }
     
     func toMap() {
-        APIClient.me() { result in
+        APIClient.me() { [weak self] status, result in
+            guard let self = self else { return }
             switch result {
             case .success(let me):
                 self.currentUser = me
                 self.toController(controller: MapViewController(currentUser: me))
             case .failure(let error):
-                print("ME ERROR \(error)")
+                print("ME ERROR [\(status)]: \(error)")
                 return
             }
         }
     }
     
     private func toController(controller: UIViewController) {
-        Presenter.present(controller, to: self, isBounded: true)
+        Presenter.present(controller, to: self)
         Presenter.dismiss(current)
         current = controller
     }
+
 }

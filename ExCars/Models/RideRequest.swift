@@ -14,6 +14,13 @@ struct RideRequest: Codable {
     let sender: Profile
     let receiver: Profile
     
+    var passenger: Profile {
+        return (sender.role == .driver) ? receiver : sender
+    }
+}
+
+
+extension RideRequest {
     private enum CodingKeys: String, CodingKey {
         case uid = "ride_uid"
         case sender

@@ -11,8 +11,8 @@ import Starscream
 
 
 protocol WSClientDelegate: class {
-    func didReceiveDataUpdate(data: [WSMapPayload])
-    func didReceiveDataUpdate(data: WSRide)
+    func didReceiveMapUpdate(items: [MapItem])
+    func didReceiveRideRequest(rideRequest: RideRequest)
 }
 
 
@@ -40,7 +40,10 @@ class WSClient {
     weak var timer: Timer?
     
     init() {
-        var request = URLRequest(url: URL(string: "wss://\(Configuration.API_HOST)/stream")!)
+        let url = URL(string: "wss://\(Configuration.API_HOST)/stream")!
+        
+        var request = URLRequest(url: url)
+
         if let token = KeyChain.getJWTToken() {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
@@ -50,7 +53,7 @@ class WSClient {
     }
 
     deinit {
-        socket.disconnect(forceTimeout: 0)
+        socket.disconnect(forceTimeout: 2)
         socket.delegate = nil
     }
 
@@ -59,14 +62,14 @@ class WSClient {
     }
     
     func sendLocation(location: CLLocation) {
-        let payload = WSLocationPayload(
+        let payload = Location(
             latitude: location.coordinate.latitude,
             longitude: location.coordinate.longitude,
             course: location.course,
             speed: location.speed
         )
 
-        guard let data = try? encoder.encode(WSLocation(data: payload)) else {
+        guard let data = try? encoder.encode(Message(type: .location, payload: payload)) else {
             print("CANT ENCODE LOCATION")
             return
         }
@@ -83,24 +86,16 @@ extension WSClient: WebSocketDelegate {
         let decoder = JSONDecoder()
         
         guard let data = text.data(using: .utf8),
-            let message = try? decoder.decode(WSMessage.self, from: data) else {
+            let message = try? decoder.decode(Message.self, from: data) else {
                 print("MESSAGE FAILED TO DECODE \(text)")
                 return
         }
         
         switch message.type {
         case .map:
-            guard let wsMap = try? decoder.decode(WSMap.self, from: data) else {
-                print("MAP FAILED TO DECODE: \(data)")
-                break
-            }
-            delegate?.didReceiveDataUpdate(data: wsMap.data)
+            delegate?.didReceiveMapUpdate(items: message.payload as! [MapItem])
         case .rideRequested:
-            guard let wsRide = try? decoder.decode(WSRide.self, from: data) else {
-                print("FAILED TO RIDE OFFER")
-                break
-            }
-            delegate?.didReceiveDataUpdate(data: wsRide)
+            delegate?.didReceiveRideRequest(rideRequest: message.payload as! RideRequest)
         case .rideRequestAccepted:
             rideRequestDelegate?.didAcceptRequest()
         case .rideRequestDeclined:
@@ -110,7 +105,7 @@ extension WSClient: WebSocketDelegate {
         case .rideCancelled:
             rideDelegate?.didCancelRide()
         default:
-            print("NO MESSAGE TYPE \(message.type.rawValue)")
+            print("NO MESSAGE TYPE \(data)")
             break
         }
     }

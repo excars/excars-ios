@@ -1,5 +1,5 @@
 //
-//  Role.swift
+//  Location.swift
 //  ExCars
 //
 //  Created by Леша Маслаков on 13/01/2019.
@@ -9,7 +9,9 @@
 import Foundation
 
 
-enum Role: String, Codable {
-    case driver = "driver"
-    case hitchhiker = "hitchhiker"
+struct Location: Codable {
+    let latitude: Double
+    let longitude: Double
+    let course: Double
+    let speed : Double
 }

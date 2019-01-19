@@ -17,30 +17,22 @@ class BaseProfileView: XibView {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var destination: UILabel!
     @IBOutlet weak var distance: UILabel!
-    
-    var profile: Profile? {
-        didSet {
-            render()
-        }
-    }
 
     override var nibName: String {
         get { return "BaseProfileView" }
         set { }
     }
-
-    private func render() {
-        guard let profile = profile else { return }
-
+    
+    func render(profile: Profile, withDistance: Double?) {
         name.text = profile.name
-        destination.text = profile.destination?.name
+        destination.text = profile.destination.name
         avatar?.sd_setImage(with: profile.avatar, placeholderImage: UIImage(named: profile.role.rawValue))
         
-        if profile.distance == nil {
-            distance.text = "Unknown"
+        if let distance = withDistance {
+            let distanceInKm = distance / 1000.0
+            self.distance.text = String(format: "%.1f km", distanceInKm)
         } else {
-            let distanceInKm = profile.distance! / 1000.0
-            distance.text = String(format: "%.1f km", distanceInKm)
+            distance.text = "Unknown"
         }
     }
 

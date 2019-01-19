@@ -18,8 +18,8 @@ class ExclusivePresenter {
         self.to = to
     }
 
-    func present(_ vc: UIViewController, isBounded: Bool = false) {
-        Presenter.present(vc, to: to, isBounded: isBounded)
+    func present(_ vc: UIViewController) {
+        Presenter.present(vc, to: to)
         self.dismiss()
         current = vc
     }

@@ -6,21 +6,17 @@
 //  Copyright © 2018 Леша. All rights reserved.
 //
 
-
 import Alamofire
 
+
 enum APIRouter: URLRequestConvertible {
-    
-    enum Constants {
-        static let baseURLPath = "https://\(Configuration.API_HOST)"
-    }
-    
-    case auth(String)
+
+    case auth(idToken: String)
     case me
-    case profile(String)
-    case join(Role, Destination)
-    case rides(String)
-    case updateRide(String, String, Profile)
+    case profile(_ uid: String)
+    case join(_ role: Role, _ destination: Destination)
+    case requestRide(_ uid: String)
+    case updateRideRequest(_ rideRequest: RideRequest, status: PassengerStatus)
     case currentRide
     case leave
 
@@ -34,16 +30,15 @@ enum APIRouter: URLRequestConvertible {
             return .get
         case .join:
             return .post
-        case .rides:
+        case .requestRide:
             return .post
-        case .updateRide:
+        case .updateRideRequest:
             return .put
         case .currentRide:
             return .get
         case .leave:
             return .delete
         }
-
     }
     
     var path: String {
@@ -56,10 +51,10 @@ enum APIRouter: URLRequestConvertible {
             return "/api/profiles/\(uid)"
         case .join:
             return "/api/rides/join"
-        case .rides:
+        case .requestRide:
             return "/api/rides"
-        case .updateRide(let uid, _, _):
-            return "/api/rides/\(uid)"
+        case .updateRideRequest(let rideRequest, _):
+            return "/api/rides/\(rideRequest.uid)"
         case .currentRide:
             return "/api/rides/current"
         case .leave:
@@ -70,7 +65,9 @@ enum APIRouter: URLRequestConvertible {
     var parameters: [String: Any]? {
         switch self {
         case .auth(let idToken):
-            return ["id_token": idToken]
+            return [
+                "id_token": idToken,
+            ]
         case .join(let role, let destination):
             return [
                 "role": role.rawValue,
@@ -80,14 +77,14 @@ enum APIRouter: URLRequestConvertible {
                     "longitude": destination.longitude,
                 ]
             ]
-        case .rides(let uid):
+        case .requestRide(let uid):
             return [
-                "receiver": uid
+                "receiver": uid,
             ]
-        case .updateRide(_, let status, let profile):
+        case .updateRideRequest(let rideRequest, let status):
             return [
-                "status": status,
-                "passenger_uid": profile.uid,
+                "status": status.rawValue,
+                "passenger_uid": rideRequest.passenger.uid,
             ]
         default:
             return nil
@@ -95,7 +92,7 @@ enum APIRouter: URLRequestConvertible {
     }
     
     public func asURLRequest() throws -> URLRequest {
-        let url = try Constants.baseURLPath.asURL()
+        let url = URL(string: "https://\(Configuration.API_HOST)")!
         
         var request = URLRequest(url: url.appendingPathComponent(path))
         request.httpMethod = method.rawValue

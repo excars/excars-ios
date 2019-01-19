@@ -5,11 +5,12 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotificationView" customModule="ExCars" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RideRequestView" customModule="ExCars" customModuleProvider="target">
             <connections>
                 <outlet property="baseProfileView" destination="fTi-5o-MH4" id="9Zi-HZ-U2n"/>
                 <outlet property="header" destination="Nde-DR-0Ip" id="Q7x-a4-Xn2"/>
@@ -31,7 +32,7 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8S-2f-3ZB" customClass="DesignableButton" customModule="ExCars" customModuleProvider="target">
                     <rect key="frame" x="199" y="205" width="146" height="30"/>
-                    <color key="backgroundColor" red="0.1803921568627451" green="0.80000000000000004" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" name="Green"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="03S-Da-EUD"/>
                     </constraints>
@@ -50,7 +51,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4FY-d2-hVg" customClass="DesignableButton" customModule="ExCars" customModuleProvider="target">
                     <rect key="frame" x="30" y="205" width="146" height="30"/>
-                    <color key="backgroundColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" name="Red"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="lh8-Se-Tbw"/>
                     </constraints>
@@ -94,5 +95,11 @@
     <resources>
         <image name="check-white" width="90" height="90"/>
         <image name="close-white" width="90" height="90"/>
+        <namedColor name="Green">
+            <color red="0.1803921568627451" green="0.80000000000000004" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Red">
+            <color red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

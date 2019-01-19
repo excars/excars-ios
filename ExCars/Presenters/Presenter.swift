@@ -11,17 +11,17 @@ import UIKit
 
 class Presenter {
 
-    static func present(_ vc: UIViewController, to: UIViewController, isBounded: Bool = false) {
+    static func present(_ vc: UIViewController, to: UIViewController) {
         to.addChild(vc)
         to.view.addSubview(vc.view)
         vc.didMove(toParent: to)
         
-        if isBounded {
-            vc.view.frame = to.view.bounds
-        } else {
+        if vc is BottomViewController {
             let height = to.view.frame.height
             let width = to.view.frame.width
             vc.view.frame = CGRect(x: 0, y: to.view.frame.maxY, width: width, height: height)
+        } else {
+            vc.view.frame = to.view.bounds
         }
     }
 

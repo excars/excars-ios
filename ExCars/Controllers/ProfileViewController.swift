@@ -18,18 +18,18 @@ class ProfileViewController: BottomViewController {
     private var profile: Profile?
     private let profileView: ProfileView
 
-    private let locations: [WSMapPayload]
+    private let distance: Double?
 
-    init(uid: String, currentUser: User, locations: [WSMapPayload], wsClient: WSClient) {
+    init(uid: String, currentUser: User, withDistance: Double?, wsClient: WSClient) {
         self.uid = uid
         self.currentUser = currentUser
         self.profileView = ProfileView()
-        self.locations = locations
+        self.distance = withDistance
 
         super.init(nibName: nil, bundle: nil)
 
-        fullHeight = 199
-        height = 50
+        fullHeight = 199.0
+        height = 50.0
 
         allowDismiss = true
         openFullView = true
@@ -50,60 +50,50 @@ class ProfileViewController: BottomViewController {
         profileView.frame = view.bounds
         profileView.render(for: .loading)
 
-        APIClient.profile(uid: uid) {[weak self] result in
+        APIClient.profile(uid: uid) { [weak self] status, result in
             guard let self = self else { return }
 
             switch result {
-            case .success(var profile):
-                profile.distance = self.getDistance()
+            case .success(let profile):
                 let state = self.getState(profile: profile)
                 self.profileView.render(for: state)
                 self.profile = profile
             case .failure(let error):
-                print("FAILED TO GET PROFILE \(error)")
+                print("FAILED TO GET PROFILE [\(status)]: \(error)")
             }
-
         }
-    }
-
-    private func getDistance() ->  CLLocationDistance? {
-        guard let location = locations.first(where: {$0.uid == uid})?.location else {
-            return nil
-        }
-
-        return currentUser.location?.distance(from: location.clLocation)
     }
 
     private func getState(profile: Profile) -> ProfileViewState {
         if profile.role == currentUser.role {
-            return .disabled(profile)
+            return .disabled(profile, distance)
         }
 
-        guard let ride = currentUser.ride else { return .normal(profile) }
+        guard let ride = currentUser.ride else { return .normal(profile, distance) }
 
         let passenger_uid = (profile.role == .driver) ? currentUser.uid : profile.uid
 
         if let passenger = ride.passengers.first(where: {$0.profile.uid == passenger_uid}) {
             switch passenger.status {
             case .accepted:
-                return .accepted(profile)
+                return .accepted(profile, distance)
             case .declined:
-                return .declined(profile)
+                return .declined(profile, distance)
             }
         }
 
-        return .normal(profile)
+        return .normal(profile, distance)
     }
 
     func requestRide() {
-        profileView.render(for: .requested(profile!))
+        profileView.render(for: .requested(profile!, distance))
 
-        APIClient.ride(to: uid) { result in
+        APIClient.requestRide(to: uid) { status, result in
             switch result {
             case .success(_):
                 return
             case .failure(let error):
-                print("RIDE REQUEST ERROR: \(error)")
+                print("RIDE REQUEST ERROR: \(status): \(error)")
             }
         }
     }
@@ -114,11 +104,11 @@ class ProfileViewController: BottomViewController {
 extension ProfileViewController: WSRideRequestDelegate {
 
     func didAcceptRequest() {
-        profileView.render(for: .accepted(profile!))
+        profileView.render(for: .accepted(profile!, distance))
     }
 
     func didDeclineRequest() {
-        profileView.render(for: .declined(profile!))
+        profileView.render(for: .declined(profile!, distance))
     }
 
 }

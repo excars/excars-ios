@@ -1,5 +1,5 @@
 //
-//  InRoleViewController.swift
+//  RideViewController.swift
 //  ExCars
 //
 //  Created by Леша on 04/12/2018.
@@ -9,15 +9,15 @@
 import UIKit
 
 
-class InRoleViewController: BottomViewController {
-    private let user: User
+class RideViewController: BottomViewController {
+    private let currentUser: User
     private let wsClient: WSClient
-    private let inRoleView: InRoleView
+    private let rideView: RideView
     
-    init(user: User, wsClient: WSClient) {
-        self.user = user
+    init(currentUser: User, wsClient: WSClient) {
+        self.currentUser = currentUser
         self.wsClient = wsClient
-        self.inRoleView = InRoleView(user: user, ride: nil)
+        self.rideView = RideView(currentUser: currentUser)
 
         super.init(nibName: nil, bundle: nil)
 
@@ -25,7 +25,7 @@ class InRoleViewController: BottomViewController {
         height = 54
 
         wsClient.rideDelegate = self
-        inRoleView.onRoleExit = showExitRoleDialog
+        rideView.onRoleExit = showExitRoleDialog
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -35,22 +35,24 @@ class InRoleViewController: BottomViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        inRoleView.frame = view.bounds
-        view.addSubview(inRoleView)
+        rideView.frame = view.bounds
+        view.addSubview(rideView)
 
         loadRide()
     }
 
     private func loadRide() {
-        APIClient.currentRide() { [weak self] result in
+        APIClient.currentRide() { [weak self] status, result in
             guard let self = self else { return }
             switch result {
             case .success(let ride):
-                self.inRoleView.ride = ride
-                self.user.ride = ride
+                self.rideView.ride = ride
+                self.currentUser.ride = ride
             case .failure(let error):
-                print("IN ROLE RIDE FAILURE \(error)")
-                self.inRoleView.ride = nil
+                if status != 404 {
+                    print("IN ROLE RIDE FAILURE [\(status)]: \(error)")
+                }
+                self.rideView.ride = nil
             }
         }
     }
@@ -74,13 +76,13 @@ class InRoleViewController: BottomViewController {
     }
     
     private func exitRole() {
-        APIClient.leaveRide() { [weak self] result in
+        APIClient.leave() { [weak self] status, result in
             guard let self = self else { return }
             switch result {
             case .success:
-                self.user.role = nil
+                self.currentUser.role = nil
             case .failure(let error):
-                print("LEAVE ERROR \(error)")
+                print("LEAVE ERROR \(status): \(error)")
             }
         }
     }
@@ -88,7 +90,7 @@ class InRoleViewController: BottomViewController {
 }
 
 
-extension InRoleViewController: WSRideDelegate {
+extension RideViewController: WSRideDelegate {
 
     func didUpdateRide() {
         self.loadRide()
@@ -106,8 +108,8 @@ extension InRoleViewController: WSRideDelegate {
         
         present(alertController, animated: true)
         
-        user.ride = nil
-        inRoleView.ride = nil
+        currentUser.ride = nil
+        rideView.ride = nil
     }
 
 }
