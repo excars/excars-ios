@@ -1,5 +1,5 @@
 //
-//  MapViewController.swift
+//  ViewController.swift
 //  ExCars
 //
 //  Created by Леша on 18/11/2018.
@@ -12,19 +12,19 @@ import UIKit
 import SideMenu
 
 
-class MapViewController: UIViewController {
+class ViewController: UIViewController {
 
-    var locationManager = CLLocationManager()
+    private var locationManager = CLLocationManager()
     
-    var currentLocation: CLLocation?
-    let currentUser: User
+    private var currentLocation: CLLocation?
+    private let currentUser: User
 
-    lazy var exclusivePresenter = ExclusivePresenter(to: self)
-    lazy var bottomPresenter = ExclusivePresenter(to: self)
+    private lazy var exclusivePresenter = ExclusivePresenter(to: self)
+    private lazy var bottomPresenter = ExclusivePresenter(to: self)
 
-    let wsClient = WSClient()
+    private let wsClient = WSClient()
 
-    let myView = MyMapView()
+    private let mapView = MapView()
 
     init(currentUser: User) {
         self.currentUser = currentUser
@@ -55,10 +55,10 @@ class MapViewController: UIViewController {
     }
 
     private func setupMyView() {
-        view.addSubview(myView)
-        myView.frame = view.bounds
-        myView.onDidTapSettings = showMenu
-        myView.onDidTapMapItem = showProfile
+        view.addSubview(mapView)
+        mapView.frame = view.bounds
+        mapView.onDidTapSettings = showMenu
+        mapView.onDidTapMapItem = showProfile
     }
 
     private func setupMenu() {
@@ -85,11 +85,11 @@ class MapViewController: UIViewController {
 }
 
 
-extension MapViewController: CLLocationManagerDelegate {
+extension ViewController: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last!
-        myView.setCurrentLocation(location: location)
+        mapView.setCurrentLocation(location: location)
         wsClient.sendLocation(location: location)
         currentLocation = location
     }
@@ -97,27 +97,27 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .restricted, .denied, .notDetermined:
-            myView.isLocationAllowed = false
+            mapView.isLocationAllowed = false
         case .authorizedAlways, .authorizedWhenInUse:
-            myView.isLocationAllowed = true
+            mapView.isLocationAllowed = true
         }
     }
 
 }
 
 
-extension MapViewController: WSClientDelegate {
+extension ViewController: WSClientDelegate {
 
     func didReceiveMapUpdate(items: [MapItem]) {
-        myView.drawMapItems(items: items)
+        mapView.drawMapItems(items: items)
     }
 
     func didReceiveRideRequest(rideRequest: RideRequest) {
-        let marker = myView.markers[rideRequest.sender.uid]
+        let marker = mapView.markers[rideRequest.sender.uid]
         let distance = getDistance(from: marker?.position)
         let rideRequestVC = RideRequestViewController(rideRequest: rideRequest, withDistance: distance)
         if let marker = marker {
-            myView.lockCameraOn(marker)
+            mapView.lockCameraOn(marker)
         }
         bottomPresenter.collapse()
         exclusivePresenter.present(rideRequestVC)
@@ -126,7 +126,7 @@ extension MapViewController: WSClientDelegate {
 }
 
 
-extension MapViewController: UserDelegate {
+extension ViewController: UserDelegate {
 
     func didChangeRole(role: Role?) {
         let bottomVC: UIViewController
@@ -144,7 +144,7 @@ extension MapViewController: UserDelegate {
 }
 
 
-extension MapViewController {
+extension ViewController {
 
     private func getDistance(from position: CLLocationCoordinate2D?) -> CLLocationDistance? {
         if let position = position {

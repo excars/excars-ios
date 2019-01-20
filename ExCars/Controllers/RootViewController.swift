@@ -42,7 +42,7 @@ class RootViewController: UIViewController {
             switch result {
             case .success(let me):
                 self.currentUser = me
-                self.toController(controller: MapViewController(currentUser: me))
+                self.toController(controller: ViewController(currentUser: me))
             case .failure(let error):
                 print("ME ERROR [\(status)]: \(error)")
                 return

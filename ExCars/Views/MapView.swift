@@ -11,7 +11,7 @@ import UIKit
 import GoogleMaps
 
 
-class MyMapView: XibView {
+class MapView: XibView {
 
     @IBOutlet weak var mapView: GMSMapView!
     
@@ -38,7 +38,7 @@ class MyMapView: XibView {
     
     init() {
         isLocationAllowed = false
-        super.init(nibName: "MyMapView", frame: CGRect.zero)
+        super.init(nibName: "MapView", frame: CGRect.zero)
         setupMapView()
     }
 
@@ -123,7 +123,7 @@ class MyMapView: XibView {
 }
 
 
-extension MyMapView: GMSMapViewDelegate {
+extension MapView: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         if let mapItem = marker.userData as? MapItem, marker != currentMarker {
@@ -149,7 +149,7 @@ extension MyMapView: GMSMapViewDelegate {
 }
 
 
-extension MyMapView {
+extension MapView {
     
     private func moveMarker(_ marker: GMSMarker, from oldLocation: MapItemLocation?, to newLocation: MapItemLocation) {
         var duration = (oldLocation != nil) ? newLocation.ts - oldLocation!.ts + 0.1 : 0.0
