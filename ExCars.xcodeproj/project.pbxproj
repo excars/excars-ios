@@ -25,6 +25,8 @@
 		745418ED21A35BCA00EF3F09 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EC21A35BCA00EF3F09 /* APIRouter.swift */; };
 		745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745418EE21A360EA00EF3F09 /* KeyChain.swift */; };
 		7462254521B48144001E3C40 /* RideRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462254421B48144001E3C40 /* RideRequestViewController.swift */; };
+		74693F8C21F4998C0086A615 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74693F8B21F4998C0086A615 /* MapView.swift */; };
+		74693F8E21F499950086A615 /* MapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74693F8D21F499950086A615 /* MapView.xib */; };
 		746E42BB21B40E2500F083C3 /* RideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746E42BA21B40E2500F083C3 /* RideView.xib */; };
 		746E42BD21B40E3F00F083C3 /* RideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E42BC21B40E3F00F083C3 /* RideView.swift */; };
 		746E42BF21B4142100F083C3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E42BE21B4142100F083C3 /* ProfileViewController.swift */; };
@@ -55,7 +57,7 @@
 		74F1167E21D403F300738E59 /* EmptyRideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1167D21D403F300738E59 /* EmptyRideView.swift */; };
 		74F7CD0821B08053003463A9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0721B08053003463A9 /* RootViewController.swift */; };
 		74F7CD0A21B08145003463A9 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0921B08145003463A9 /* LaunchViewController.swift */; };
-		74F7CD0C21B08866003463A9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0B21B08865003463A9 /* MapViewController.swift */; };
+		74F7CD0C21B08866003463A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0B21B08865003463A9 /* ViewController.swift */; };
 		74FBBA8B21E7C5F600E5203E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74FBBA8A21E7C5F600E5203E /* Colors.xcassets */; };
 		74FCC59F21EB933D00644765 /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FCC59E21EB933D00644765 /* MapItem.swift */; };
 		74FCC5A121EB974900644765 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FCC5A021EB974900644765 /* Destination.swift */; };
@@ -110,6 +112,8 @@
 		745418EC21A35BCA00EF3F09 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		745418EE21A360EA00EF3F09 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		7462254421B48144001E3C40 /* RideRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRequestViewController.swift; sourceTree = "<group>"; };
+		74693F8B21F4998C0086A615 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		74693F8D21F499950086A615 /* MapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapView.xib; sourceTree = "<group>"; };
 		746E42BA21B40E2500F083C3 /* RideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RideView.xib; sourceTree = "<group>"; };
 		746E42BC21B40E3F00F083C3 /* RideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideView.swift; sourceTree = "<group>"; };
 		746E42BE21B4142100F083C3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -140,7 +144,7 @@
 		74F1167D21D403F300738E59 /* EmptyRideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRideView.swift; sourceTree = "<group>"; };
 		74F7CD0721B08053003463A9 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		74F7CD0921B08145003463A9 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
-		74F7CD0B21B08865003463A9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		74F7CD0B21B08865003463A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		74FBBA8A21E7C5F600E5203E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		74FCC59E21EB933D00644765 /* MapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
 		74FCC5A021EB974900644765 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
@@ -265,7 +269,7 @@
 				746E42C221B4352100F083C3 /* BottomViewController.swift */,
 				74F7CD0921B08145003463A9 /* LaunchViewController.swift */,
 				747FDFEE21A19B8E00BD8D75 /* LoginViewController.swift */,
-				74F7CD0B21B08865003463A9 /* MapViewController.swift */,
+				74F7CD0B21B08865003463A9 /* ViewController.swift */,
 				749355C121F397C500E7FC1F /* MenuViewController.swift */,
 				746E42BE21B4142100F083C3 /* ProfileViewController.swift */,
 				7462254421B48144001E3C40 /* RideRequestViewController.swift */,
@@ -320,6 +324,8 @@
 				74D2CC4A21CB027B004FD613 /* BaseProfileView.xib */,
 				7438806921C815D0009C339A /* LoginView.swift */,
 				7438806B21C815DC009C339A /* LoginView.xib */,
+				74693F8B21F4998C0086A615 /* MapView.swift */,
+				74693F8D21F499950086A615 /* MapView.xib */,
 				749355C321F3980B00E7FC1F /* MenuView.swift */,
 				749355C521F398A100E7FC1F /* MenuView.xib */,
 				74A21CB921A605B600982247 /* ProfileView.swift */,
@@ -471,6 +477,7 @@
 				74FBBA8B21E7C5F600E5203E /* Colors.xcassets in Resources */,
 				742BCD7421C6529500403EBA /* RideViewCell.xib in Resources */,
 				74D2CC4B21CB027B004FD613 /* BaseProfileView.xib in Resources */,
+				74693F8E21F499950086A615 /* MapView.xib in Resources */,
 				74F1167C21D403E300738E59 /* EmptyRideView.xib in Resources */,
 				74F1167821D3F26900738E59 /* HeaderViewCell.xib in Resources */,
 				7438806C21C815DC009C339A /* LoginView.xib in Resources */,
@@ -597,7 +604,7 @@
 				74F1167621D375A500738E59 /* Secrets.swift in Sources */,
 				749355C421F3980B00E7FC1F /* MenuView.swift in Sources */,
 				74D2CC4921CB0258004FD613 /* BaseProfileView.swift in Sources */,
-				74F7CD0C21B08866003463A9 /* MapViewController.swift in Sources */,
+				74F7CD0C21B08866003463A9 /* ViewController.swift in Sources */,
 				74FCC5A121EB974900644765 /* Destination.swift in Sources */,
 				74E2F0E221AD3FA10092FEEF /* RideRequestView.swift in Sources */,
 				74FCC59F21EB933D00644765 /* MapItem.swift in Sources */,
@@ -613,6 +620,7 @@
 				74E2F0CC21AC17650092FEEF /* APIClient.swift in Sources */,
 				742BCD7621C652CF00403EBA /* RideViewCell.swift in Sources */,
 				748BA64121E68D0F00384CB4 /* Configuration.swift in Sources */,
+				74693F8C21F4998C0086A615 /* MapView.swift in Sources */,
 				746E42BD21B40E3F00F083C3 /* RideView.swift in Sources */,
 				74FCC5A321EB976300644765 /* Role.swift in Sources */,
 				745418EF21A360EA00EF3F09 /* KeyChain.swift in Sources */,
