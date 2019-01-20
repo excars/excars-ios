@@ -9,9 +9,12 @@
 import UIKit
 
 
-@IBDesignable
-class DesignableButton: UIButton {
+@IBDesignable class DesignableButton: UIButton {}
+@IBDesignable class DesignableImageView: UIImageView {}
 
+
+extension UIView {
+    
     @IBInspectable
     var cornerRadius: CGFloat {
         get {
@@ -95,5 +98,5 @@ class DesignableButton: UIButton {
             }
         }
     }
-
+    
 }

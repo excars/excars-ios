@@ -7,7 +7,9 @@
 //
 
 import UIKit
+
 import GoogleMaps
+import SideMenu
 
 
 class MapViewController: UIViewController {
@@ -62,7 +64,10 @@ class MapViewController: UIViewController {
 
         wsClient.connect()
         wsClient.delegate = self
-
+        
+        setupMenu()
+        setupMenuButton()
+        
         currentUser.delegate = self
         didChangeRole(role: currentUser.role)
     }
@@ -276,6 +281,41 @@ extension MapViewController {
             maybeMoveCameraToProfile(uid: data.uid)
         }
         CATransaction.commit()
+    }
+
+}
+
+
+extension MapViewController {
+
+    private func setupMenu() {
+        let menuVC = MenuViewController(currentUser: currentUser)
+        let menuNC = UISideMenuNavigationController(rootViewController: menuVC)
+        menuNC.isNavigationBarHidden = true
+        SideMenuManager.default.menuLeftNavigationController = menuNC
+        SideMenuManager.default.menuFadeStatusBar = false
+        SideMenuManager.default.menuPresentMode = .menuSlideIn
+    }
+    
+    private func setupMenuButton() {
+        let menuButton = UIButton(frame: CGRect(x: 10, y: 40, width: 40, height: 40))
+        menuButton.setImage(UIImage(named: "menu"), for: .normal)
+        menuButton.backgroundColor = .white
+        menuButton.layer.cornerRadius = 20
+        menuButton.clipsToBounds = true
+        
+        menuButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        menuButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        menuButton.layer.shadowOpacity = 1.0
+        menuButton.layer.masksToBounds = false
+        
+        menuButton.addTarget(self, action: #selector(showMenu), for: .touchUpInside)
+        
+        view.addSubview(menuButton)
+    }
+    
+    @objc private func showMenu() {
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
 
 }

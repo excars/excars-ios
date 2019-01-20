@@ -13,4 +13,5 @@ target :'ExCars' do
     pod 'Starscream'
     pod 'SDWebImage'
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
+    pod 'SideMenu'
 end
