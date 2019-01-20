@@ -15,10 +15,7 @@ import SideMenu
 class MapViewController: UIViewController {
 
     var locationManager = CLLocationManager()
-    let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
-    let zoomLevel: Float = 15.0
-
-    var mapView = GMSMapView()
+    
     var markers: [String: GMSMarker] = [:]
     let durationTreshhold = 1.0
     
@@ -33,6 +30,12 @@ class MapViewController: UIViewController {
 
     private var cameraLockedOnMe: Bool = true
     private var cameraLockedOnProfile: Bool = false
+    
+    let myView = MyMapView()
+    
+    var mapView: GMSMapView {
+        return myView.mapView
+    }
     
     init(currentUser: User) {
         self.currentUser = currentUser
@@ -51,27 +54,36 @@ class MapViewController: UIViewController {
         locationManager.distanceFilter = 10.0
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
-
-        let location = currentLocation?.coordinate ?? defaultLocation
         
-        mapView.frame = view.bounds
-        mapView.camera = GMSCameraPosition(target: location, zoom: zoomLevel, bearing: 0.0, viewingAngle: 0.0)
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.isHidden = true
-        mapView.padding = UIEdgeInsets(top: self.view.safeAreaInsets.top, left: 0.0, bottom: 80.0, right: 0.0)
-        mapView.delegate = self
-        view.addSubview(mapView)
-
+        setupMyView()
+        setupMenu()
+        
         wsClient.connect()
         wsClient.delegate = self
-        
-        setupMenu()
-        setupMenuButton()
-        
+
         currentUser.delegate = self
         didChangeRole(role: currentUser.role)
     }
 
+    private func setupMyView() {
+        view.addSubview(myView)
+        myView.frame = view.bounds
+        myView.onDidTapSettings = showMenu
+    }
+
+    private func setupMenu() {
+        let menuVC = MenuViewController(currentUser: currentUser)
+        let menuNC = UISideMenuNavigationController(rootViewController: menuVC)
+        menuNC.isNavigationBarHidden = true
+        SideMenuManager.default.menuLeftNavigationController = menuNC
+        SideMenuManager.default.menuFadeStatusBar = false
+        SideMenuManager.default.menuPresentMode = .menuSlideIn
+    }
+    
+    private func showMenu() {
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+    }
+    
 }
 
 
@@ -187,7 +199,7 @@ extension MapViewController: WSClientDelegate {
         }
 
     }
-    
+
     func didReceiveRideRequest(rideRequest: RideRequest) {
         lockCameraOnProfile()
         let distance = getDistance(from: markers[rideRequest.sender.uid]?.position)
@@ -223,25 +235,25 @@ extension MapViewController {
         cameraLockedOnMe = true
         cameraLockedOnProfile = false
     }
-    
+
     private func lockCameraOnProfile() {
         cameraLockedOnMe = false
         cameraLockedOnProfile = true
     }
-    
+
     private func unlockCamera() {
         cameraLockedOnMe = false
         cameraLockedOnProfile = false
     }
-    
-    private func maybeMoveCameraToProfile(uid: String) {
+
+    private func moveCameraToProfileIfNeeded(uid: String) {
         guard cameraLockedOnProfile == true,
             let currentUserData = currentMarker?.userData as? MapItem,
             currentUserData.uid == uid
         else {
             return
         }
-        
+
         let camera = GMSCameraPosition.camera(
             withLatitude: currentUserData.location.latitude,
             longitude: currentUserData.location.longitude,
@@ -262,15 +274,15 @@ extension MapViewController {
         }
         return nil
     }
-    
+
     private func moveMarker(_ marker: GMSMarker, from oldLocation: MapItemLocation?, to newLocation: MapItemLocation) {
         var duration = (oldLocation != nil) ? newLocation.ts - oldLocation!.ts + 0.1 : 0.0
         if duration > durationTreshhold {
             duration = durationTreshhold
         }
-        
+
         let position = CLLocationCoordinate2D(latitude: newLocation.latitude, longitude: newLocation.longitude)
-        
+
         CATransaction.begin()
         CATransaction.setAnimationDuration(duration)
         marker.position = position
@@ -278,44 +290,9 @@ extension MapViewController {
             if data.role == .driver {
                 marker.rotation = newLocation.course
             }
-            maybeMoveCameraToProfile(uid: data.uid)
+            moveCameraToProfileIfNeeded(uid: data.uid)
         }
         CATransaction.commit()
-    }
-
-}
-
-
-extension MapViewController {
-
-    private func setupMenu() {
-        let menuVC = MenuViewController(currentUser: currentUser)
-        let menuNC = UISideMenuNavigationController(rootViewController: menuVC)
-        menuNC.isNavigationBarHidden = true
-        SideMenuManager.default.menuLeftNavigationController = menuNC
-        SideMenuManager.default.menuFadeStatusBar = false
-        SideMenuManager.default.menuPresentMode = .menuSlideIn
-    }
-    
-    private func setupMenuButton() {
-        let menuButton = UIButton(frame: CGRect(x: 10, y: 40, width: 40, height: 40))
-        menuButton.setImage(UIImage(named: "menu"), for: .normal)
-        menuButton.backgroundColor = .white
-        menuButton.layer.cornerRadius = 20
-        menuButton.clipsToBounds = true
-        
-        menuButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        menuButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        menuButton.layer.shadowOpacity = 1.0
-        menuButton.layer.masksToBounds = false
-        
-        menuButton.addTarget(self, action: #selector(showMenu), for: .touchUpInside)
-        
-        view.addSubview(menuButton)
-    }
-    
-    @objc private func showMenu() {
-        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
 
 }

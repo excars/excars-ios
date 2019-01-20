@@ -36,7 +36,7 @@ class BottomViewController: UIViewController {
         super.viewDidLoad()
 
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomViewController.panGesture))
-        self.view.addGestureRecognizer(gesture)
+        view.addGestureRecognizer(gesture)
 
         setupHoldView()
     }
