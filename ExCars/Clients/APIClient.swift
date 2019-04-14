@@ -14,7 +14,7 @@ class APIClient {
     @discardableResult
     private static func performRequest<T:Decodable>(route:APIRouter, decoder: JSONDecoder = JSONDecoder(), completion: @escaping (Int, Result<T>)->Void) -> DataRequest {
         return AF.request(route)
-            .responseJSONDecodable (decoder: decoder){ (response: DataResponse<T>) in
+            .responseDecodable (decoder: decoder){ (response: DataResponse<T>) in
                 completion(response.response?.statusCode ?? 500, response.result)
         }
     }

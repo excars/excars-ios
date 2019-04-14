@@ -435,13 +435,16 @@
 				TargetAttributes = {
 					7400C74321A153F200DFD5A3 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					7400C75721A153F500DFD5A3 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 7400C74321A153F200DFD5A3;
 					};
 					7400C76221A153F500DFD5A3 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 7400C74321A153F200DFD5A3;
 					};
 				};
@@ -534,7 +537,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ExCars/Pods-ExCars-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ExCars/Pods-ExCars-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -559,7 +562,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExCars/Pods-ExCars-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExCars/Pods-ExCars-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CD3720ED35C743D685EBF139 /* [CP] Copy Pods Resources */ = {
@@ -570,7 +573,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ExCars/Pods-ExCars-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ExCars/Pods-ExCars-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
@@ -585,7 +588,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExCars/Pods-ExCars-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExCars/Pods-ExCars-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -824,7 +827,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -862,7 +865,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -881,7 +884,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCarsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExCars.app/ExCars";
 			};
@@ -901,7 +904,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCarsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExCars.app/ExCars";
 			};
@@ -920,7 +923,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCarsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = ExCars;
 			};
@@ -939,7 +942,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCarsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = ExCars;
 			};
@@ -1040,7 +1043,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Dev;
@@ -1059,7 +1062,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCarsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExCars.app/ExCars";
 			};
@@ -1078,7 +1081,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCarsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = ExCars;
 			};

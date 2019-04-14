@@ -100,6 +100,8 @@ extension ViewController: CLLocationManagerDelegate {
             mapView.isLocationAllowed = false
         case .authorizedAlways, .authorizedWhenInUse:
             mapView.isLocationAllowed = true
+        @unknown default:
+            break
         }
     }
 
