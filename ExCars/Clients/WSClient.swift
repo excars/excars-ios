@@ -120,6 +120,7 @@ extension WSClient: WebSocketDelegate {
 
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         timer?.invalidate()
+        connect()
     }
 
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
