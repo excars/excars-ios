@@ -26,7 +26,7 @@ class MapView: XibView {
         }
     }
     
-    private let durationTreshhold = 1.0
+    private let durationThreshold = 8.0
     
     private let defaultLocation = CLLocationCoordinate2D(latitude: 34.67, longitude: 33.04)
     private let zoomLevel: Float = 15.0
@@ -152,9 +152,9 @@ extension MapView: GMSMapViewDelegate {
 extension MapView {
     
     private func moveMarker(_ marker: GMSMarker, from oldLocation: MapItemLocation?, to newLocation: MapItemLocation) {
-        var duration = (oldLocation != nil) ? newLocation.ts - oldLocation!.ts + 0.1 : 0.0
-        if duration > durationTreshhold {
-            duration = durationTreshhold
+        var duration = (oldLocation != nil) ? newLocation.ts - oldLocation!.ts + 0.5 : 0.0
+        if duration > durationThreshold {
+            duration = durationThreshold
         }
         
         let position = CLLocationCoordinate2D(latitude: newLocation.latitude, longitude: newLocation.longitude)
