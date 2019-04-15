@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginView" customModule="ExCars" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicatorView" destination="WCb-8P-zhO" id="2Hx-cg-IRq"/>
                 <outlet property="image" destination="45q-sv-Xwj" id="G9C-sS-3IC"/>
                 <outlet property="signInButton" destination="e4E-xZ-GnU" id="Pal-Bg-f33"/>
             </connections>
@@ -28,10 +30,18 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4E-xZ-GnU" customClass="GIDSignInButton">
                     <rect key="frame" x="67.5" y="491" width="240" height="44"/>
+                    <subviews>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="WCb-8P-zhO">
+                            <rect key="frame" x="212" y="12" width="20" height="20"/>
+                            <color key="color" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </activityIndicatorView>
+                    </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="4pw-5I-9r2"/>
+                        <constraint firstAttribute="trailing" secondItem="WCb-8P-zhO" secondAttribute="trailing" constant="8" id="dUy-Mg-PAV"/>
                         <constraint firstAttribute="width" constant="240" id="lAx-dk-ek1"/>
+                        <constraint firstItem="WCb-8P-zhO" firstAttribute="centerY" secondItem="e4E-xZ-GnU" secondAttribute="centerY" id="xug-XM-j8z"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When You pick Colleagues" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMx-qk-T7o">
@@ -72,6 +82,6 @@
         </view>
     </objects>
     <resources>
-        <image name="login-image" width="1200" height="1200"/>
+        <image name="login-image" width="600" height="600"/>
     </resources>
 </document>

@@ -14,20 +14,28 @@ import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    private enum RootMode {
+        case launch
+        case login
+        case map(User)
+    }
 
     var window: UIWindow?
+    private var authObserverToken: NSObjectProtocol?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey(GMS_API_KEY)
 
         GIDSignIn.sharedInstance().clientID = GOOGLE_OAUTH2_CLIENT_ID
-        GIDSignIn.sharedInstance().delegate = self
         
         registerWSMessages()
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = RootViewController()
         window?.makeKeyAndVisible()
+        
+        setupObserving()
+        checkAuthenticationAndDisplayRoot()
 
         return true
     }
@@ -39,18 +47,76 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             annotation: options[UIApplication.OpenURLOptionsKey.annotation]
         )
     }
-
-}
-
-
-extension AppDelegate {
-
-    static var shared: AppDelegate {
-        return UIApplication.shared.delegate as! AppDelegate
+    
+    // MARK: - private
+    
+    private func checkAuthenticationAndDisplayRoot() {
+        if KeyChain.getJWTToken() != nil {
+            updateRootController(.launch)
+            AuthFacade.shared.fetchUser() { [weak self] result in
+                if case .failure = result {
+                    self?.updateRootController(.login)
+                }
+            }
+        } else {
+            updateRootController(.login)
+        }
     }
-
-    var rootViewController: RootViewController {
-        return window!.rootViewController as! RootViewController
+    
+    private func setupObserving() {
+        authObserverToken = NotificationCenter.default
+            .addObserver(forName: Notification.Name.authenticationUpdated,
+                         object: nil,
+                         queue: OperationQueue.main) { [weak self] _ in
+                            let mode: RootMode
+                            if let user = AuthFacade.shared.currentUser {
+                                mode = .map(user)
+                            } else {
+                                mode = .login
+                            }
+                            self?.updateRootController(mode)
+        }
+    }
+    
+    private func updateRootController(_ mode: RootMode) {
+        switch mode {
+        case .launch:
+            window?.rootViewController = LaunchViewController()
+        case .login:
+            if let current = window?.rootViewController {
+                guard !(current is LoginViewController) else {
+                    return
+                }
+                let loginController = LoginViewController()
+                current.present(loginController, animated: true) {
+                    self.window?.rootViewController = loginController
+                }
+            } else {
+                window?.rootViewController = LoginViewController()
+            }
+        case .map(let user):
+            let controller = ViewController(currentUser: user)
+            let previousRootController = window?.rootViewController
+            window?.rootViewController = controller
+            
+            if let previous = previousRootController, previous is LoginViewController {
+                guard let snapshot = previous.view.snapshotView(afterScreenUpdates: false) else {
+                    return
+                }
+                
+                controller.view.addSubview(snapshot)
+                controller.view.layoutIfNeeded()
+                
+                UIView.animate(withDuration: 0.2,
+                               animations: {
+                                snapshot.frame.origin.y = snapshot.frame.maxY
+                },
+                               completion: { _ in
+                                snapshot.removeFromSuperview()
+                })
+            }
+        }
+        
     }
 
 }
@@ -65,39 +131,6 @@ extension AppDelegate {
         Message.register(RideRequest.self, for: .rideRequested)
         Message.register(RideRequest.self, for: .rideRequestAccepted)
         Message.register(RideRequest.self, for: .rideRequestDeclined)
-    }
-
-}
-
-
-extension AppDelegate: GIDSignInDelegate {
-    
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print("GOOGLE SIGNIN ERROR: \(error)")
-            return
-        }
-        
-        APIClient.auth(idToken: user.authentication.idToken) { status, result in
-            switch result {
-            case .success(let response):
-                KeyChain.setJWTToken(token: response.jwtToken)
-                AppDelegate.shared.rootViewController.toMap()
-            case .failure(let error):
-                print("AUTH ERROR [\(status)]: \(error)")
-                
-                let alertController = UIAlertController(
-                    title: "Cannot connect to server",
-                    message: "",
-                    preferredStyle: UIAlertController.Style.alert
-                )
-                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-                alertController.addAction(okAction)
-                self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
-
-                AppDelegate.shared.rootViewController.toLogin()
-            }
-        }
     }
 
 }

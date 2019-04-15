@@ -11,11 +11,11 @@ import KeychainAccess
 class KeyChain {
     private static let keychain = Keychain(service: "com.fdooch.ExCars")
     
-    static func setJWTToken(token: String) {
+    static func setJWTToken(token: String?) {
         keychain["jwtToken"] = token
     }
     
-    static func getJWTToken() -> String! {
+    static func getJWTToken() -> String? {
         return keychain["jwtToken"]
     }
 }

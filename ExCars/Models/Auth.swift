@@ -8,9 +8,10 @@
 
 import Foundation
 
+typealias JWTToken = String
 
 struct Auth: Codable {
-    let jwtToken: String
+    let jwtToken: JWTToken
 }
 
 

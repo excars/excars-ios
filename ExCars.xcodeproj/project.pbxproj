@@ -55,7 +55,6 @@
 		74F1167A21D3F37600738E59 /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1167921D3F37600738E59 /* HeaderViewCell.swift */; };
 		74F1167C21D403E300738E59 /* EmptyRideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74F1167B21D403E300738E59 /* EmptyRideView.xib */; };
 		74F1167E21D403F300738E59 /* EmptyRideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1167D21D403F300738E59 /* EmptyRideView.swift */; };
-		74F7CD0821B08053003463A9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0721B08053003463A9 /* RootViewController.swift */; };
 		74F7CD0A21B08145003463A9 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0921B08145003463A9 /* LaunchViewController.swift */; };
 		74F7CD0C21B08866003463A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7CD0B21B08865003463A9 /* ViewController.swift */; };
 		74FBBA8B21E7C5F600E5203E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74FBBA8A21E7C5F600E5203E /* Colors.xcassets */; };
@@ -66,6 +65,8 @@
 		74FF005221AE9A8D00D588BA /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74FF005121AE9A8D00D588BA /* WelcomeView.xib */; };
 		74FF005421AE9BC000D588BA /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FF005321AE9BC000D588BA /* WelcomeView.swift */; };
 		BD2E4109E5C82AAC0AC7AD28 /* Pods_ExCars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA4426F5266D8890A9B1B9D /* Pods_ExCars.framework */; };
+		D59A320722645AAE006481BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D59A320622645AAE006481BD /* LaunchScreen.storyboard */; };
+		D5A5383B22637D950068D8C1 /* AuthFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5383A22637D950068D8C1 /* AuthFacade.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,7 +143,6 @@
 		74F1167921D3F37600738E59 /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
 		74F1167B21D403E300738E59 /* EmptyRideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyRideView.xib; sourceTree = "<group>"; };
 		74F1167D21D403F300738E59 /* EmptyRideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRideView.swift; sourceTree = "<group>"; };
-		74F7CD0721B08053003463A9 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		74F7CD0921B08145003463A9 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		74F7CD0B21B08865003463A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		74FBBA8A21E7C5F600E5203E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -154,6 +154,8 @@
 		74FF005321AE9BC000D588BA /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		A96F478CF922E74E5D152055 /* Pods-ExCars.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExCars.dev.xcconfig"; path = "Pods/Target Support Files/Pods-ExCars/Pods-ExCars.dev.xcconfig"; sourceTree = "<group>"; };
 		C4F3098860B17DAC3D4991BC /* Pods_ExCarsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCarsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D59A320622645AAE006481BD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D5A5383A22637D950068D8C1 /* AuthFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFacade.swift; sourceTree = "<group>"; };
 		FD3E7380E57D919B93268712 /* Pods_ExCarsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCarsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEA4426F5266D8890A9B1B9D /* Pods_ExCars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -219,6 +221,7 @@
 		7400C74621A153F200DFD5A3 /* ExCars */ = {
 			isa = PBXGroup;
 			children = (
+				D5A5383922637D750068D8C1 /* RootLogic */,
 				7438806D21C9670B009C339A /* Components */,
 				740F6ABA21B5CECA00A955A4 /* Presenters */,
 				7442FD4421A74D2D00D311F8 /* Clients */,
@@ -274,7 +277,6 @@
 				746E42BE21B4142100F083C3 /* ProfileViewController.swift */,
 				7462254421B48144001E3C40 /* RideRequestViewController.swift */,
 				740F6ABF21B6F31E00A955A4 /* RideViewController.swift */,
-				74F7CD0721B08053003463A9 /* RootViewController.swift */,
 				744E6B8721B12CF4002CC847 /* WelcomeViewController.swift */,
 			);
 			path = Controllers;
@@ -337,6 +339,7 @@
 				74FF005321AE9BC000D588BA /* WelcomeView.swift */,
 				74FF005121AE9A8D00D588BA /* WelcomeView.xib */,
 				74E2F0CF21AC37470092FEEF /* XibView.swift */,
+				D59A320622645AAE006481BD /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -352,6 +355,14 @@
 				74F1167D21D403F300738E59 /* EmptyRideView.swift */,
 			);
 			path = RideViewTable;
+			sourceTree = "<group>";
+		};
+		D5A5383922637D750068D8C1 /* RootLogic */ = {
+			isa = PBXGroup;
+			children = (
+				D5A5383A22637D950068D8C1 /* AuthFacade.swift */,
+			);
+			path = RootLogic;
 			sourceTree = "<group>";
 		};
 		E13FEF35E88B83973C68D3C3 /* Pods */ = {
@@ -435,13 +446,16 @@
 				TargetAttributes = {
 					7400C74321A153F200DFD5A3 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					7400C75721A153F500DFD5A3 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 7400C74321A153F200DFD5A3;
 					};
 					7400C76221A153F500DFD5A3 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 7400C74321A153F200DFD5A3;
 					};
 				};
@@ -482,6 +496,7 @@
 				74F1167821D3F26900738E59 /* HeaderViewCell.xib in Resources */,
 				7438806C21C815DC009C339A /* LoginView.xib in Resources */,
 				74FF005221AE9A8D00D588BA /* WelcomeView.xib in Resources */,
+				D59A320722645AAE006481BD /* LaunchScreen.storyboard in Resources */,
 				7400C74F21A153F500DFD5A3 /* Assets.xcassets in Resources */,
 				74A21CB821A605A500982247 /* ProfileView.xib in Resources */,
 			);
@@ -534,7 +549,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ExCars/Pods-ExCars-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ExCars/Pods-ExCars-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -559,7 +574,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExCars/Pods-ExCars-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExCars/Pods-ExCars-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CD3720ED35C743D685EBF139 /* [CP] Copy Pods Resources */ = {
@@ -570,7 +585,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ExCars/Pods-ExCars-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ExCars/Pods-ExCars-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
@@ -585,7 +600,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExCars/Pods-ExCars-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExCars/Pods-ExCars-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -599,7 +614,6 @@
 				745418ED21A35BCA00EF3F09 /* APIRouter.swift in Sources */,
 				74FCC5A521EB978500644765 /* Location.swift in Sources */,
 				740F6ABE21B5DAB500A955A4 /* Presenter.swift in Sources */,
-				74F7CD0821B08053003463A9 /* RootViewController.swift in Sources */,
 				740F6ABC21B5CEDF00A955A4 /* ExclusivePresenter.swift in Sources */,
 				74F1167621D375A500738E59 /* Secrets.swift in Sources */,
 				749355C421F3980B00E7FC1F /* MenuView.swift in Sources */,
@@ -610,6 +624,7 @@
 				74FCC59F21EB933D00644765 /* MapItem.swift in Sources */,
 				746E42BF21B4142100F083C3 /* ProfileViewController.swift in Sources */,
 				749355C221F397C500E7FC1F /* MenuViewController.swift in Sources */,
+				D5A5383B22637D950068D8C1 /* AuthFacade.swift in Sources */,
 				74E2F0C821AC0E550092FEEF /* Profile.swift in Sources */,
 				747FDFEF21A19B8E00BD8D75 /* LoginViewController.swift in Sources */,
 				740F6AC021B6F31E00A955A4 /* RideViewController.swift in Sources */,
@@ -816,7 +831,7 @@
 					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
 				);
 				INFOPLIST_FILE = ExCars/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -824,7 +839,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -854,7 +869,7 @@
 					"$(SRCROOT)/**",
 				);
 				INFOPLIST_FILE = ExCars/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -862,7 +877,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -881,7 +896,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCarsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExCars.app/ExCars";
 			};
@@ -901,7 +916,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCarsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExCars.app/ExCars";
 			};
@@ -920,7 +935,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCarsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = ExCars;
 			};
@@ -939,7 +954,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCarsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = ExCars;
 			};
@@ -1032,7 +1047,7 @@
 					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
 				);
 				INFOPLIST_FILE = ExCars/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1040,7 +1055,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Dev;
@@ -1059,7 +1074,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCarsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExCars.app/ExCars";
 			};
@@ -1078,7 +1093,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fdooch.ExCarsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = ExCars;
 			};
