@@ -13,6 +13,6 @@ target :'ExCars' do
     pod 'KeychainAccess',       '~> 3.2'
     pod 'Starscream',           '~> 3.1'
     pod 'SDWebImage',           '~> 5.0'
-    pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
+    pod 'Alamofire',            '~> 5.0.0-beta.5'
     pod 'SideMenu',             '~> 5.0'
 end
