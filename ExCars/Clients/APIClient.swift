@@ -12,11 +12,37 @@ import Alamofire
 class APIClient {
 
     @discardableResult
-    private static func performRequest<T:Decodable>(route:APIRouter, decoder: JSONDecoder = JSONDecoder(), completion: @escaping (Int, Result<T>)->Void) -> DataRequest {
+    private static func performRequest<T:Decodable>(route: APIRouter, decoder: JSONDecoder = JSONDecoder(), completion: @escaping (Int, Result<T>)->Void) -> DataRequest {
         return AF.request(route)
             .responseDecodable (decoder: decoder){ (response: DataResponse<T>) in
+                #if DEBUG
+                if let request = response.request, let httpResponse = response.response {
+                    var log = "---- [ START REQUEST LOG ] ----"
+                    if let url = request.url, let method = request.httpMethod {
+                        log += "\nMETHOD & URL: (\(method)) \(url)"
+                    }
+                    log += "\nHEADERS: \(request.httpHeaders)"
+                    log += "\nSTATUS: \(httpResponse.statusCode)"
+                    if let data = response.data, let object = try? JSONSerialization.jsonObject(with: data, options: .allowFragments), let prettyData = try? JSONSerialization.data(withJSONObject: object, options: .prettyPrinted), let stringData = String(data: prettyData, encoding: .utf8) {
+                        
+                        log += "\nRESPONSE BODY: \(stringData)"
+                    }
+                    log += "\n---- [ END REQUEST LOG ] ----"
+                    print(log)
+                }
+                #endif
                 completion(response.response?.statusCode ?? 500, response.result)
         }
+    }
+    
+    private func prettyString(from data: Data) -> String? {
+        let object = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+        return object.flatMap(prettyString)
+    }
+    
+    private func prettyString(from jsonObject: Any) -> String? {
+        let data = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
+        return data.flatMap { String(data: $0, encoding: .utf8) }
     }
 
     static func auth(idToken: String, completion: @escaping (Int, Result<Auth>)->Void) {

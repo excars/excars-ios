@@ -30,9 +30,8 @@ class MenuViewController: UIViewController {
     }
     
     private func logout() {
-        GIDSignIn.sharedInstance()?.signOut()
-        AppDelegate.shared.rootViewController.toLogin()
         self.dismiss(animated: true, completion: nil)
+        AuthFacade.shared.logout()
     }
     
 }

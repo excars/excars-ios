@@ -47,7 +47,6 @@ class MapView: XibView {
     }
     
     private func setupMapView() {
-        mapView.frame = bounds
         mapView.camera = GMSCameraPosition(target: defaultLocation, zoom: zoomLevel, bearing: 0.0, viewingAngle: 0.0)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.padding = UIEdgeInsets(top: view.safeAreaInsets.top, left: 0.0, bottom: 80.0, right: 0.0)

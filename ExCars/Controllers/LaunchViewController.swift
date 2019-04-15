@@ -22,13 +22,12 @@ class LaunchViewController: UIViewController {
         activityIndicator.center = view.center
 
         activityIndicator.color = UIColor.gray
-
-        if GIDSignIn.sharedInstance().hasAuthInKeychain() {
-            activityIndicator.startAnimating()
-            GIDSignIn.sharedInstance().signInSilently()
-        } else {
-            AppDelegate.shared.rootViewController.toLogin()
-        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        activityIndicator.startAnimating()
     }
 
 }
