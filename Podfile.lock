@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.0.0.beta.1)
+  - Alamofire (5.0.0-beta.5)
   - GoogleMaps (3.0.3):
     - GoogleMaps/Maps (= 3.0.3)
   - GoogleMaps/Base (3.0.3)
@@ -29,7 +29,7 @@ PODS:
   - Starscream (3.1.0)
 
 DEPENDENCIES:
-  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `alamofire5`)
+  - Alamofire (~> 5.0.0-beta.5)
   - GoogleMaps (~> 3.0)
   - GooglePlaces (~> 3.0)
   - GoogleSignIn (~> 4.4)
@@ -41,6 +41,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - GoogleMaps
     - GooglePlaces
     - GoogleSignIn
@@ -52,18 +53,8 @@ SPEC REPOS:
     - SkeletonView
     - Starscream
 
-EXTERNAL SOURCES:
-  Alamofire:
-    :branch: alamofire5
-    :git: https://github.com/Alamofire/Alamofire.git
-
-CHECKOUT OPTIONS:
-  Alamofire:
-    :commit: 2c99a6691dac40f03ef9f9e89aaf2eb751843393
-    :git: https://github.com/Alamofire/Alamofire.git
-
 SPEC CHECKSUMS:
-  Alamofire: 2ef6d6c984c5d21c366e9b41a9ae7dfee2b67a44
+  Alamofire: 9afb08f7f43efcc71c072374e720fcf67521317d
   GoogleMaps: fd5c9fa58871781b9fb94d4936f19c69fe60ce32
   GooglePlaces: f09e76993c9c3ee4af8f4f7f535bb94d6aa3b649
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
@@ -75,6 +66,6 @@ SPEC CHECKSUMS:
   SkeletonView: c2523c3c8c6510e273e49a3bf364a434744c3914
   Starscream: 08172b481e145289c4930cb567230fb55897cfa4
 
-PODFILE CHECKSUM: 85b1aef4f21feedf16ec43b49a48ed30c256a384
+PODFILE CHECKSUM: f140723449ca893ca60a29fbc9fb450d26729c79
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.5.3
