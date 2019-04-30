@@ -44,10 +44,6 @@ class APIClient {
         let data = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
         return data.flatMap { String(data: $0, encoding: .utf8) }
     }
-
-    static func auth(idToken: String, completion: @escaping (Int, AFResult<Auth>)->Void) {
-        performRequest(route: APIRouter.auth(idToken: idToken), completion: completion)
-    }
     
     static func me(completion: @escaping (Int, AFResult<User>)->Void) {
         performRequest(route: APIRouter.me, completion: completion)

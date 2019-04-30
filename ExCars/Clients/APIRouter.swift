@@ -11,7 +11,6 @@ import Alamofire
 
 enum APIRouter: URLRequestConvertible {
 
-    case auth(idToken: String)
     case me
     case profile(_ uid: String)
     case join(_ role: Role, _ destination: Destination)
@@ -22,8 +21,6 @@ enum APIRouter: URLRequestConvertible {
 
     var method: HTTPMethod {
         switch self {
-        case .auth:
-            return .post
         case .me:
             return .get
         case .profile:
@@ -43,10 +40,8 @@ enum APIRouter: URLRequestConvertible {
     
     var path: String {
         switch self {
-        case .auth:
-            return "/auth/"
         case .me:
-            return "/api/profiles/me/"
+            return "/api/v1/users/me"
         case .profile(let uid):
             return "/api/profiles/\(uid)"
         case .join:
@@ -64,10 +59,6 @@ enum APIRouter: URLRequestConvertible {
     
     var parameters: [String: Any]? {
         switch self {
-        case .auth(let idToken):
-            return [
-                "id_token": idToken,
-            ]
         case .join(let role, let destination):
             return [
                 "role": role.rawValue,

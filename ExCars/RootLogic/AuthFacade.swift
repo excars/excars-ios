@@ -24,19 +24,11 @@ final class AuthFacade: NSObject {
     
     // MARK: - actions
 
-    func login(googleToken: String,
-               completion: @escaping (Result<User, Error>) -> Void) {
-        APIClient.auth(idToken: googleToken) { [weak self] status, result in
-            switch result {
-            case .success(let response):
-                KeyChain.setJWTToken(token: response.jwtToken)
-                self?.fetchUser(completion: completion)
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+    func login(googleToken: String, completion: @escaping (Result<User, Error>) -> Void) {
+        KeyChain.setJWTToken(token: googleToken)
+        self.fetchUser(completion: completion)
     }
-    
+
     func fetchUser(completion: @escaping (Result<User, Error>) -> Void) {
         APIClient.me() { [weak self] status, result in
             guard let self = self else { return }

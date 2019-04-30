@@ -40,8 +40,8 @@ class WSClient {
     weak var timer: Timer?
     
     init() {
-        let url = URL(string: "\(Configuration.API_WS_URL)/stream")!
-        
+        let url = URL(string: "\(Configuration.API_WS_URL)/api/v1/ws")!
+
         var request = URLRequest(url: url)
 
         if let token = KeyChain.getJWTToken() {

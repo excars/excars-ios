@@ -71,7 +71,7 @@ class ProfileViewController: BottomViewController {
 
         guard let ride = currentUser.ride else { return .normal(profile, distance) }
 
-        let passenger_uid = (profile.role == .driver) ? currentUser.uid : profile.uid
+        let passenger_uid = (profile.role == .driver) ? currentUser.user_id : profile.uid
 
         if let passenger = ride.passengers.first(where: {$0.profile.uid == passenger_uid}) {
             switch passenger.status {
