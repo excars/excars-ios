@@ -35,23 +35,28 @@ final class AuthFacade: NSObject {
             switch result {
             case .success(let me):
                 self.currentUser = me
-                APIClient.profile(id: me.id) { [weak self] status, result in
-                    guard let self = self else { return }
-                    switch result {
-                    case .success(let profile):
-                        self.currentUser?.role = profile.role
-                        self.currentUser?.destination = profile.destination
-                    case .failure(let error):
-                        if status != 404 {
-                            completion(.failure(error))
-                        }
-                    }
-                }
+                self.fetchProfile()
                 completion(.success(me))
             case .failure(let error):
-                KeyChain.setJWTToken(token: nil)
+                self.logout()
                 completion(.failure(error))
                 return
+            }
+        }
+    }
+    
+    private func fetchProfile() {
+        guard let userId = self.currentUser?.id else { return }
+        APIClient.profile(id: userId) { [weak self] status, result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let profile):
+                self.currentUser?.destination = profile.destination
+                self.currentUser?.role = profile.role
+            case .failure:
+                if status != 404 {
+                    print("Failed to fetch profile")
+                }
             }
         }
     }

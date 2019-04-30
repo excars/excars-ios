@@ -90,7 +90,7 @@ extension WSClient: WebSocketDelegate {
                 print("MESSAGE FAILED TO DECODE \(text)")
                 return
         }
-        
+
         switch message.type {
         case .map:
             delegate?.didReceiveMapUpdate(items: message.payload as! [MapItem])

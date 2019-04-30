@@ -14,10 +14,11 @@ enum APIRouter: URLRequestConvertible {
     case me
     case profile(_ id: String)
     case join(_ role: Role, _ destination: Destination)
+    case leave
     case requestRide(_ id: String)
     case updateRideRequest(_ rideRequest: RideRequest, status: PassengerStatus)
     case currentRide
-    case leave
+    case leaveRide
 
     var method: HTTPMethod {
         switch self {
@@ -27,13 +28,15 @@ enum APIRouter: URLRequestConvertible {
             return .get
         case .join:
             return .post
+        case .leave:
+            return .delete
         case .requestRide:
             return .post
         case .updateRideRequest:
             return .put
         case .currentRide:
             return .get
-        case .leave:
+        case .leaveRide:
             return .delete
         }
     }
@@ -46,13 +49,15 @@ enum APIRouter: URLRequestConvertible {
             return "/api/v1/profiles/\(profile_id)"
         case .join:
             return "/api/v1/profiles"
+        case .leave:
+            return "/api/v1/profiles"
         case .requestRide:
             return "/api/v1/rides"
         case .updateRideRequest(let rideRequest, _):
             return "/api/v1/rides/\(rideRequest.id)"
         case .currentRide:
             return "/api/v1/rides/current"
-        case .leave:
+        case .leaveRide:
             return "/api/v1/rides"
         }
     }
@@ -75,7 +80,7 @@ enum APIRouter: URLRequestConvertible {
         case .updateRideRequest(let rideRequest, let status):
             return [
                 "status": status.rawValue,
-                "passenger_id": rideRequest.passenger.id,
+                "sender": rideRequest.sender.id,
             ]
         default:
             return nil

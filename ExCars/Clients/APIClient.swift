@@ -15,22 +15,22 @@ class APIClient {
     private static func performRequest<T:Decodable>(route: APIRouter, decoder: JSONDecoder = JSONDecoder(), completion: @escaping (Int, AFResult<T>)->Void) -> DataRequest {
         return AF.request(route)
             .responseDecodable (decoder: decoder){ (response: DataResponse<T>) in
-                #if DEBUG
-                if let request = response.request, let httpResponse = response.response {
-                    var log = "---- [ START REQUEST LOG ] ----"
-                    if let url = request.url, let method = request.httpMethod {
-                        log += "\nMETHOD & URL: (\(method)) \(url)"
-                    }
-                    log += "\nHEADERS: \(request.headers)"
-                    log += "\nSTATUS: \(httpResponse.statusCode)"
-                    if let data = response.data, let object = try? JSONSerialization.jsonObject(with: data, options: .allowFragments), let prettyData = try? JSONSerialization.data(withJSONObject: object, options: .prettyPrinted), let stringData = String(data: prettyData, encoding: .utf8) {
-                        
-                        log += "\nRESPONSE BODY: \(stringData)"
-                    }
-                    log += "\n---- [ END REQUEST LOG ] ----"
-                    print(log)
-                }
-                #endif
+//                #if DEBUG
+//                if let request = response.request, let httpResponse = response.response {
+//                    var log = "---- [ START REQUEST LOG ] ----"
+//                    if let url = request.url, let method = request.httpMethod {
+//                        log += "\nMETHOD & URL: (\(method)) \(url)"
+//                    }
+//                    log += "\nHEADERS: \(request.headers)"
+//                    log += "\nSTATUS: \(httpResponse.statusCode)"
+//                    if let data = response.data, let object = try? JSONSerialization.jsonObject(with: data, options: .allowFragments), let prettyData = try? JSONSerialization.data(withJSONObject: object, options: .prettyPrinted), let stringData = String(data: prettyData, encoding: .utf8) {
+//
+//                        log += "\nRESPONSE BODY: \(stringData)"
+//                    }
+//                    log += "\n---- [ END REQUEST LOG ] ----"
+//                    print(log)
+//                }
+//                #endif
                 completion(response.response?.statusCode ?? 500, response.result)
         }
     }
@@ -56,9 +56,13 @@ class APIClient {
     static func join(role: Role, destination: Destination, completion: @escaping (Int, AFResult<Profile>)->Void) {
         performRequest(route: APIRouter.join(role, destination), completion: completion)
     }
-
+    
     static func leave(completion: @escaping (Int, AFResult<Empty>)->Void) {
         performRequest(route: APIRouter.leave, completion: completion)
+    }
+
+    static func leaveRide(completion: @escaping (Int, AFResult<Empty>)->Void) {
+        performRequest(route: APIRouter.leaveRide, completion: completion)
     }
     
     static func currentRide(completion: @escaping (Int, AFResult<Ride>)->Void) {
