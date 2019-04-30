@@ -10,9 +10,20 @@ import Foundation
 
 
 struct Profile: Codable {
-    let uid: String
+    let id: String
     let name: String
     let avatar: URL
     let role: Role
     let destination: Destination
+}
+
+
+extension Profile {
+    private enum CodingKeys: String, CodingKey {
+        case id = "user_id"
+        case name
+        case avatar
+        case role
+        case destination
+    }
 }

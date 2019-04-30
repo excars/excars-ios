@@ -12,9 +12,9 @@ import Alamofire
 enum APIRouter: URLRequestConvertible {
 
     case me
-    case profile(_ uid: String)
+    case profile(_ id: String)
     case join(_ role: Role, _ destination: Destination)
-    case requestRide(_ uid: String)
+    case requestRide(_ id: String)
     case updateRideRequest(_ rideRequest: RideRequest, status: PassengerStatus)
     case currentRide
     case leave
@@ -42,18 +42,18 @@ enum APIRouter: URLRequestConvertible {
         switch self {
         case .me:
             return "/api/v1/users/me"
-        case .profile(let uid):
-            return "/api/profiles/\(uid)"
+        case .profile(let profile_id):
+            return "/api/v1/profiles/\(profile_id)"
         case .join:
-            return "/api/rides/join"
+            return "/api/v1/profiles"
         case .requestRide:
-            return "/api/rides"
+            return "/api/v1/rides"
         case .updateRideRequest(let rideRequest, _):
-            return "/api/rides/\(rideRequest.uid)"
+            return "/api/v1/rides/\(rideRequest.id)"
         case .currentRide:
-            return "/api/rides/current"
+            return "/api/v1/rides/current"
         case .leave:
-            return "/api/rides/leave"
+            return "/api/v1/rides"
         }
     }
     
@@ -68,14 +68,14 @@ enum APIRouter: URLRequestConvertible {
                     "longitude": destination.longitude,
                 ]
             ]
-        case .requestRide(let uid):
+        case .requestRide(let id):
             return [
-                "receiver": uid,
+                "receiver": id,
             ]
         case .updateRideRequest(let rideRequest, let status):
             return [
                 "status": status.rawValue,
-                "passenger_uid": rideRequest.passenger.uid,
+                "passenger_id": rideRequest.passenger.id,
             ]
         default:
             return nil

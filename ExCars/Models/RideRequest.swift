@@ -10,7 +10,7 @@ import Foundation
 
 
 struct RideRequest: Codable {
-    let uid: String
+    let id: String
     let sender: Profile
     let receiver: Profile
     
@@ -22,7 +22,7 @@ struct RideRequest: Codable {
 
 extension RideRequest {
     private enum CodingKeys: String, CodingKey {
-        case uid = "ride_uid"
+        case id = "ride_id"
         case sender
         case receiver
     }

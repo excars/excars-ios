@@ -16,9 +16,18 @@ enum PassengerStatus: String, Codable {
 
 
 struct Ride: Codable {
-    let uid: String
+    let id: String
     let driver: Profile
     let passengers: [Passenger]
+}
+
+
+extension Ride {
+    private enum CodingKeys: String, CodingKey {
+        case id = "ride_id"
+        case driver
+        case passengers
+    }
 }
 
 

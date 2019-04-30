@@ -76,7 +76,7 @@ class ViewController: UIViewController {
     
     private func showProfile(_ mapItem: MapItem) {
         let distance = getDistance(from: mapItem)
-        let profileVC = ProfileViewController(uid: mapItem.uid, currentUser: currentUser, withDistance: distance, wsClient: wsClient)
+        let profileVC = ProfileViewController(userId: mapItem.userId, currentUser: currentUser, withDistance: distance, wsClient: wsClient)
 
         bottomPresenter.collapse()
         exclusivePresenter.present(profileVC)
@@ -115,7 +115,7 @@ extension ViewController: WSClientDelegate {
     }
 
     func didReceiveRideRequest(rideRequest: RideRequest) {
-        let marker = mapView.markers[rideRequest.sender.uid]
+        let marker = mapView.markers[rideRequest.sender.id]
         let distance = getDistance(from: marker?.position)
         let rideRequestVC = RideRequestViewController(rideRequest: rideRequest, withDistance: distance)
         if let marker = marker {

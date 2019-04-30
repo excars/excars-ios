@@ -17,7 +17,7 @@ protocol UserDelegate: class {
 class User: Codable {
     weak var delegate: UserDelegate?
 
-    let user_id: String
+    let id: String
     let name: String
     let avatar: URL
     var destination: Destination?
@@ -37,7 +37,7 @@ class User: Codable {
 
 extension User {
     private enum CodingKeys: String, CodingKey {
-        case user_id
+        case id = "user_id"
         case name
         case avatar
         case role

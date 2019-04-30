@@ -49,8 +49,8 @@ class APIClient {
         performRequest(route: APIRouter.me, completion: completion)
     }
     
-    static func profile(uid: String, completion: @escaping (Int, AFResult<Profile>)->Void) {
-        performRequest(route: APIRouter.profile(uid), completion: completion)
+    static func profile(id: String, completion: @escaping (Int, AFResult<Profile>)->Void) {
+        performRequest(route: APIRouter.profile(id), completion: completion)
     }
     
     static func join(role: Role, destination: Destination, completion: @escaping (Int, AFResult<Profile>)->Void) {
