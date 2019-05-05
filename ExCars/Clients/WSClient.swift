@@ -69,12 +69,13 @@ class WSClient {
             speed: location.speed
         )
 
-        guard let data = try? encoder.encode(Message(type: .location, payload: payload)) else {
+        guard let data = try? encoder.encode(Message(type: .location, payload: payload)),
+            let text = String(data: data, encoding: .utf8) else {
             print("CANT ENCODE LOCATION")
             return
         }
 
-        socket.write(data: data)
+        socket.write(string: text)
     }
 
 }
