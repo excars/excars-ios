@@ -40,8 +40,8 @@ class WSClient {
     weak var timer: Timer?
     
     init() {
-        let url = URL(string: "\(Configuration.API_WS_URL)/stream")!
-        
+        let url = URL(string: "\(Configuration.API_WS_URL)/api/v1/ws")!
+
         var request = URLRequest(url: url)
 
         if let token = KeyChain.getJWTToken() {
@@ -69,12 +69,13 @@ class WSClient {
             speed: location.speed
         )
 
-        guard let data = try? encoder.encode(Message(type: .location, payload: payload)) else {
+        guard let data = try? encoder.encode(Message(type: .location, payload: payload)),
+            let text = String(data: data, encoding: .utf8) else {
             print("CANT ENCODE LOCATION")
             return
         }
 
-        socket.write(data: data)
+        socket.write(string: text)
     }
 
 }
@@ -90,7 +91,7 @@ extension WSClient: WebSocketDelegate {
                 print("MESSAGE FAILED TO DECODE \(text)")
                 return
         }
-        
+
         switch message.type {
         case .map:
             delegate?.didReceiveMapUpdate(items: message.payload as! [MapItem])

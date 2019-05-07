@@ -74,13 +74,23 @@ class RideViewController: BottomViewController {
         
         present(alertController, animated: true)
     }
-    
+
     private func exitRole() {
-        APIClient.leave() { [weak self] status, result in
-            guard let self = self else { return }
+        APIClient.leaveRide() { [weak self] status, result in
             switch result {
             case .success:
-                self.currentUser.role = nil
+                self?.exitProfile()
+            case .failure(let error):
+                print("LEAVE RIDE ERROR \(status): \(error)")
+            }
+        }
+    }
+    
+    private func exitProfile() {
+        APIClient.leave() { [weak self] status, result in
+            switch result {
+            case .success:
+                self?.currentUser.role = nil
             case .failure(let error):
                 print("LEAVE ERROR \(status): \(error)")
             }

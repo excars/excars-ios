@@ -99,7 +99,7 @@ class MapView: XibView {
         let hitchhikerIcon = UIImage(named: "hitchhiker")
         
         for item in items {
-            let marker = markers[item.uid] ?? GMSMarker()
+            let marker = markers[item.userId] ?? GMSMarker()
             marker.map = mapView
             marker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
             
@@ -115,7 +115,7 @@ class MapView: XibView {
             
             moveMarker(marker, from: data?.location, to: item.location)
             
-            markers[item.uid] = marker
+            markers[item.userId] = marker
         }
     }
 

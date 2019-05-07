@@ -12,7 +12,7 @@ import UIKit
 
 class ProfileViewController: BottomViewController {
 
-    private let uid: String
+    private let userId: String
     private let currentUser: User
 
     private var profile: Profile?
@@ -20,8 +20,8 @@ class ProfileViewController: BottomViewController {
 
     private let distance: Double?
 
-    init(uid: String, currentUser: User, withDistance: Double?, wsClient: WSClient) {
-        self.uid = uid
+    init(userId: String, currentUser: User, withDistance: Double?, wsClient: WSClient) {
+        self.userId = userId
         self.currentUser = currentUser
         self.profileView = ProfileView()
         self.distance = withDistance
@@ -50,7 +50,7 @@ class ProfileViewController: BottomViewController {
         profileView.frame = view.bounds
         profileView.render(for: .loading)
 
-        APIClient.profile(uid: uid) { [weak self] status, result in
+        APIClient.profile(id: userId) { [weak self] status, result in
             guard let self = self else { return }
 
             switch result {
@@ -71,9 +71,9 @@ class ProfileViewController: BottomViewController {
 
         guard let ride = currentUser.ride else { return .normal(profile, distance) }
 
-        let passenger_uid = (profile.role == .driver) ? currentUser.uid : profile.uid
+        let passengerId = (profile.role == .driver) ? currentUser.id : profile.id
 
-        if let passenger = ride.passengers.first(where: {$0.profile.uid == passenger_uid}) {
+        if let passenger = ride.passengers.first(where: {$0.profile.id == passengerId}) {
             switch passenger.status {
             case .accepted:
                 return .accepted(profile, distance)
@@ -88,7 +88,7 @@ class ProfileViewController: BottomViewController {
     func requestRide() {
         profileView.render(for: .requested(profile!, distance))
 
-        APIClient.requestRide(to: uid) { status, result in
+        APIClient.requestRide(to: userId) { status, result in
             switch result {
             case .success(_):
                 return

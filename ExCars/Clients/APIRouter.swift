@@ -11,63 +11,59 @@ import Alamofire
 
 enum APIRouter: URLRequestConvertible {
 
-    case auth(idToken: String)
     case me
-    case profile(_ uid: String)
+    case profile(_ id: String)
     case join(_ role: Role, _ destination: Destination)
-    case requestRide(_ uid: String)
+    case leave
+    case requestRide(_ id: String)
     case updateRideRequest(_ rideRequest: RideRequest, status: PassengerStatus)
     case currentRide
-    case leave
+    case leaveRide
 
     var method: HTTPMethod {
         switch self {
-        case .auth:
-            return .post
         case .me:
             return .get
         case .profile:
             return .get
         case .join:
             return .post
+        case .leave:
+            return .delete
         case .requestRide:
             return .post
         case .updateRideRequest:
             return .put
         case .currentRide:
             return .get
-        case .leave:
+        case .leaveRide:
             return .delete
         }
     }
     
     var path: String {
         switch self {
-        case .auth:
-            return "/auth/"
         case .me:
-            return "/api/profiles/me/"
-        case .profile(let uid):
-            return "/api/profiles/\(uid)"
+            return "/api/v1/users/me"
+        case .profile(let profile_id):
+            return "/api/v1/profiles/\(profile_id)"
         case .join:
-            return "/api/rides/join"
-        case .requestRide:
-            return "/api/rides"
-        case .updateRideRequest(let rideRequest, _):
-            return "/api/rides/\(rideRequest.uid)"
-        case .currentRide:
-            return "/api/rides/current"
+            return "/api/v1/profiles"
         case .leave:
-            return "/api/rides/leave"
+            return "/api/v1/profiles"
+        case .requestRide:
+            return "/api/v1/rides"
+        case .updateRideRequest(let rideRequest, _):
+            return "/api/v1/rides/\(rideRequest.id)"
+        case .currentRide:
+            return "/api/v1/rides/current"
+        case .leaveRide:
+            return "/api/v1/rides"
         }
     }
     
     var parameters: [String: Any]? {
         switch self {
-        case .auth(let idToken):
-            return [
-                "id_token": idToken,
-            ]
         case .join(let role, let destination):
             return [
                 "role": role.rawValue,
@@ -77,14 +73,14 @@ enum APIRouter: URLRequestConvertible {
                     "longitude": destination.longitude,
                 ]
             ]
-        case .requestRide(let uid):
+        case .requestRide(let id):
             return [
-                "receiver": uid,
+                "receiver": id,
             ]
         case .updateRideRequest(let rideRequest, let status):
             return [
                 "status": status.rawValue,
-                "passenger_uid": rideRequest.passenger.uid,
+                "sender": rideRequest.sender.id,
             ]
         default:
             return nil

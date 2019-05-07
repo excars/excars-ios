@@ -24,7 +24,7 @@ class APIClient {
                     log += "\nHEADERS: \(request.headers)"
                     log += "\nSTATUS: \(httpResponse.statusCode)"
                     if let data = response.data, let object = try? JSONSerialization.jsonObject(with: data, options: .allowFragments), let prettyData = try? JSONSerialization.data(withJSONObject: object, options: .prettyPrinted), let stringData = String(data: prettyData, encoding: .utf8) {
-                        
+
                         log += "\nRESPONSE BODY: \(stringData)"
                     }
                     log += "\n---- [ END REQUEST LOG ] ----"
@@ -44,19 +44,15 @@ class APIClient {
         let data = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
         return data.flatMap { String(data: $0, encoding: .utf8) }
     }
-
-    static func auth(idToken: String, completion: @escaping (Int, AFResult<Auth>)->Void) {
-        performRequest(route: APIRouter.auth(idToken: idToken), completion: completion)
-    }
     
     static func me(completion: @escaping (Int, AFResult<User>)->Void) {
         performRequest(route: APIRouter.me, completion: completion)
     }
-    
-    static func profile(uid: String, completion: @escaping (Int, AFResult<Profile>)->Void) {
-        performRequest(route: APIRouter.profile(uid), completion: completion)
+
+    static func profile(id: String, completion: @escaping (Int, AFResult<Profile>)->Void) {
+        performRequest(route: APIRouter.profile(id), completion: completion)
     }
-    
+
     static func join(role: Role, destination: Destination, completion: @escaping (Int, AFResult<Profile>)->Void) {
         performRequest(route: APIRouter.join(role, destination), completion: completion)
     }
@@ -64,7 +60,11 @@ class APIClient {
     static func leave(completion: @escaping (Int, AFResult<Empty>)->Void) {
         performRequest(route: APIRouter.leave, completion: completion)
     }
-    
+
+    static func leaveRide(completion: @escaping (Int, AFResult<Empty>)->Void) {
+        performRequest(route: APIRouter.leaveRide, completion: completion)
+    }
+
     static func currentRide(completion: @escaping (Int, AFResult<Ride>)->Void) {
         performRequest(route: APIRouter.currentRide, completion: completion)
     }

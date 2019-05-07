@@ -12,7 +12,7 @@ import Foundation
 
 
 struct MapItem: Codable {
-    let uid: String
+    let userId: String
     let role: Role
     let hasSameRide: Bool
     let location: MapItemLocation
@@ -21,7 +21,7 @@ struct MapItem: Codable {
 
 extension MapItem {
     private enum CodingKeys: String, CodingKey {
-        case uid = "user_uid"
+        case userId = "user_id"
         case role
         case hasSameRide = "has_same_ride"
         case location
