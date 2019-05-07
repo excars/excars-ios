@@ -82,6 +82,13 @@ class ViewController: UIViewController {
         exclusivePresenter.present(profileVC)
     }
     
+    private func preventIdleIfNeeded(role: Role?) {
+        UIApplication.shared.isIdleTimerDisabled = false
+        if role == .driver {
+            UIApplication.shared.isIdleTimerDisabled = true
+        }
+    }
+
 }
 
 
@@ -132,13 +139,13 @@ extension ViewController: UserDelegate {
 
     func didChangeRole(role: Role?) {
         let bottomVC: UIViewController
-
+        
         if role == nil {
             bottomVC = WelcomeViewController(currentUser: currentUser)
         } else {
             bottomVC = RideViewController(currentUser: currentUser, wsClient: wsClient)
         }
-
+        preventIdleIfNeeded(role: role)
         exclusivePresenter.dismiss()
         bottomPresenter.present(bottomVC)
     }
