@@ -118,6 +118,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
     }
+    
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        print("FETCH")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            completionHandler(.noData)
+        }
+    }
 
 }
 

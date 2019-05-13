@@ -8,6 +8,7 @@
 
 import CoreLocation
 import UIKit
+import PushKit
 
 import SideMenu
 
@@ -53,6 +54,12 @@ class ViewController: UIViewController {
         currentUser.delegate = self
         didChangeRole(role: currentUser.role)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        NotificationsClient.shared.requestAccess(presentController: self)
+    }
 
     private func setupMyView() {
         view.addSubview(mapView)
@@ -84,7 +91,9 @@ class ViewController: UIViewController {
     
     private func preventIdleIfNeeded(role: Role?) {
         UIApplication.shared.isIdleTimerDisabled = false
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalNever)
         if role == .driver {
+            UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
             UIApplication.shared.isIdleTimerDisabled = true
         }
     }

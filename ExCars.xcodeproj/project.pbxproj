@@ -64,6 +64,7 @@
 		74FCC5A521EB978500644765 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FCC5A421EB978500644765 /* Location.swift */; };
 		74FF005221AE9A8D00D588BA /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74FF005121AE9A8D00D588BA /* WelcomeView.xib */; };
 		74FF005421AE9BC000D588BA /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FF005321AE9BC000D588BA /* WelcomeView.swift */; };
+		BAFFF625228A04CD006C9DE1 /* NotificationsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFFF624228A04CD006C9DE1 /* NotificationsClient.swift */; };
 		BD2E4109E5C82AAC0AC7AD28 /* Pods_ExCars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA4426F5266D8890A9B1B9D /* Pods_ExCars.framework */; };
 		D59A320722645AAE006481BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D59A320622645AAE006481BD /* LaunchScreen.storyboard */; };
 		D5A5383B22637D950068D8C1 /* AuthFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A5383A22637D950068D8C1 /* AuthFacade.swift */; };
@@ -154,6 +155,7 @@
 		74FF005121AE9A8D00D588BA /* WelcomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
 		74FF005321AE9BC000D588BA /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		A96F478CF922E74E5D152055 /* Pods-ExCars.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExCars.dev.xcconfig"; path = "Pods/Target Support Files/Pods-ExCars/Pods-ExCars.dev.xcconfig"; sourceTree = "<group>"; };
+		BAFFF624228A04CD006C9DE1 /* NotificationsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsClient.swift; sourceTree = "<group>"; };
 		C4F3098860B17DAC3D4991BC /* Pods_ExCarsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExCarsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D59A320622645AAE006481BD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D5A5383A22637D950068D8C1 /* AuthFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFacade.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				74E2F0CB21AC17650092FEEF /* APIClient.swift */,
 				745418EC21A35BCA00EF3F09 /* APIRouter.swift */,
 				7415AEDB21A5D1660042674A /* WSClient.swift */,
+				BAFFF624228A04CD006C9DE1 /* NotificationsClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -449,6 +452,11 @@
 					7400C74321A153F200DFD5A3 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					7400C75721A153F500DFD5A3 = {
 						CreatedOnToolsVersion = 10.1;
@@ -617,6 +625,7 @@
 				7438806A21C815D0009C339A /* LoginView.swift in Sources */,
 				74F1167E21D403F300738E59 /* EmptyRideView.swift in Sources */,
 				7415AEDC21A5D1660042674A /* WSClient.swift in Sources */,
+				BAFFF625228A04CD006C9DE1 /* NotificationsClient.swift in Sources */,
 				74A204B421C67365004B8A2D /* Ride.swift in Sources */,
 				744E6B8821B12CF4002CC847 /* WelcomeViewController.swift in Sources */,
 				74F7CD0A21B08145003463A9 /* LaunchViewController.swift in Sources */,

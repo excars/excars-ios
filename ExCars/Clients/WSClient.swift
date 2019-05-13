@@ -86,6 +86,8 @@ extension WSClient: WebSocketDelegate {
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         let decoder = JSONDecoder()
         
+        NSLog("WS Message received")
+        
         guard let data = text.data(using: .utf8),
             let message = try? decoder.decode(Message.self, from: data) else {
                 print("MESSAGE FAILED TO DECODE \(text)")
@@ -96,7 +98,9 @@ extension WSClient: WebSocketDelegate {
         case .map:
             delegate?.didReceiveMapUpdate(items: message.payload as! [MapItem])
         case .rideRequested:
-            delegate?.didReceiveRideRequest(rideRequest: message.payload as! RideRequest)
+            let rideRequest = message.payload as! RideRequest
+            delegate?.didReceiveRideRequest(rideRequest: rideRequest)
+            NotificationsClient.shared.showQuickNotification(.rideRequest(receiverName: rideRequest.receiver.name))
         case .rideRequestAccepted:
             rideRequestDelegate?.didAcceptRequest()
         case .rideRequestDeclined:
@@ -117,11 +121,15 @@ extension WSClient: WebSocketDelegate {
             guard let self = self else { return }
             self.socket.write(pong: Data())
         }
+        
+        print("WS Connected")
     }
 
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         timer?.invalidate()
         connect()
+        
+        print("WS Disconnected")
     }
 
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
